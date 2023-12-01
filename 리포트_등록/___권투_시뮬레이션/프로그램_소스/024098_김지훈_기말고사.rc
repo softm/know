@@ -1,0 +1,165 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Korean resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+#ifdef _WIN32
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "게임(&G)"
+    BEGIN
+        MENUITEM "게임시작",                    ID_START
+        MENUITEM "게임설정",                    ID_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "끝내기",                      ID_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 170, 175
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "게임설정"
+FONT 10, "돋움체"
+BEGIN
+    EDITTEXT        IDC_PLAYER_A,38,86,43,12,ES_AUTOHSCROLL
+    LTEXT           "총 라운드",IDC_ROUND_LAB,5,15,37,8
+    EDITTEXT        IDC_PROB_A,38,101,43,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_ATT_A,38,116,43,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_PLAYER_B,105,86,43,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROB_B,105,101,43,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_ATT_B,105,116,43,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    DEFPUSHBUTTON   "확인",IDOK,40,153,50,14
+    LTEXT           "선수명",IDC_NAME,6,90,25,8
+    PUSHBUTTON      "취소",IDCANCEL,107,153,50,14
+    LTEXT           "확률",IDC_PROB,6,103,17,8
+    LTEXT           "맷집",IDC_ATT,6,118,17,8
+    GROUPBOX        "A 선수",IDC_LAB_A,32,67,65,80
+    GROUPBOX        "B 선수",IDC_LAB_B,98,67,65,80
+    LTEXT           "%",IDC_PROB2,84,103,8,8
+    LTEXT           "%",IDC_PROB3,150,103,8,8
+    LTEXT           "휴식시간",IDC_REST_TIME_LAB,5,47,33,8
+    LTEXT           "라운드 당 공격수",IDC_ROUND_HIT_LAB,5,31,65,8
+    EDITTEXT        IDC_ROUND,75,13,43,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_ROUND_HIT,75,29,43,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_REST_TIME,75,45,43,12,ES_RIGHT | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "번",IDC_NAME5,122,33,9,8
+    LTEXT           "라운드",IDC_NAME6,122,15,25,8
+    LTEXT           "초",IDC_NAME7,122,48,9,8
+    GROUPBOX        "",IDC_STATIC,1,2,162,63
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON    DISCARDABLE     "face02.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CURSOR1             CURSOR  DISCARDABLE     "scprod.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        RIGHTMARGIN, 167
+        BOTTOMMARGIN, 168
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDR_WAVE1               WAVE    DISCARDABLE     "EyeOFTheTiger.wav"
+#endif    // Korean resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

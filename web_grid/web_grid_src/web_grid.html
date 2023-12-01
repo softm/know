@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<TITLE> New Document </TITLE>
+<script src="./weg_grid_js/ie_emulate.js"></script>
+<script src="./weg_grid_js/web_grid.js"></script>
+<style> body, html {margin:0px; padding: 0px; overflow: hidden;} </style>
+<!-- classic / flat / xp / web_grid -->
+</HEAD>
+
+<BODY>
+
+<!-- <textarea style='width:400;height:200' id=chek></textarea> -->
+<link href="./web_grid_skin/flat/grid.css" rel="stylesheet" type="text/css" ></link>
+<style>
+    .active-controls-grid {width:100%; font: menu;}
+
+    <!-- grid format -->
+    .active-grid-column {border-right : 1px solid threedlightshadow;}
+    .active-grid-row    {border-bottom: 1px solid threedlightshadow;}
+
+    .active-column-0{width:100}
+    .active-column-1{width:50}
+    .active-column-2{width:50}
+    .active-column-3{width:100}
+
+    .grid1-column-0{display:none;width:0}
+
+</style>
+<TABLE border=1 width='100%' height='200'>
+    <TR>
+    <TD width='50%' height='100'>
+        <script type="text/javascript">
+            var aData = [['처음데이터', '1', '1', 'A tree widget'],
+                         ['xMenu', '1', '2', 'A cross browser menu widget'],
+                         ['Grid', '1', '1', 'A grid widget'],
+                         ['Generic Resize', '1', '2', ''],
+                         ['xTree', '1', '1', 'A tree widget'],
+                         ['xMenu', '1', '2', 'A cross browser menu widget'],
+                         ['Grid', '1', '1', 'A grid widget'],
+                         ['Generic Resize', '1', '2', ''],
+                         ['xTree', '1', '1', 'A tree widget'],
+                         ['xMenu', '1', '2', 'A cross browser menu widget'],
+                         ['Grid', '1', '1', 'A grid widget'],
+                         ['Generic Resize', '1', '2', ''],
+                         ['xTree', '1', '1', 'A tree widget'],
+                         ['xMenu', '1', '2', 'A cross browser menu widget'],
+                         ['Grid', '1', '1', 'A grid widget'],
+                         ['Generic Resize', '1', '2', ''],['xTree', '1', '1', 'A tree widget'],['xMenu', '1', '2', 'A cross browser menu widget'],['Grid', '1', '1', 'A grid widget'],['Generic Resize', '1', '2', '']];
+            var aColHeaders = ['Name', 'Category', 'Author', 'Short Description'];
+            var aColTypes = ['S', 'S', 'S', 'S'];
+            var grid1 = new WebGrid();
+            grid1.setId("grid1");
+            grid1.setData(aData);
+            grid1.setHeader(aColHeaders);
+            grid1.setType  (aColTypes  );
+            grid1.rowSelectColor         = '#FFFFFF'; // Row 선택시 폰트 색상    
+            grid1.rowSelectBgColor       = '#316AC5'; // Row 선택시 배경 색상    
+            grid1.rowDeSelectColor       = '#000000'; // Row 선택해제시 폰트 색상
+            grid1.rowDeSelectBgColor     = '#FFFFFF'; // Row 선택해제시 배경 색상
+            grid1.colSelectColor         = '#FFFFFF'; // Col 선택시 폰트 색상    
+            grid1.colSelectBgColor       = '#82A6A6'; // Col 선택시 배경 색상    
+
+            document.write('<textarea style="width:50%">' + grid1 + '</textarea>');
+            document.write(grid1);
+            grid1.calcSize();
+
+            grid1.selectedRow = function(sRowObj) {
+                //alert ( this.getCellValue(0) );
+                //alert ( sRowObj.innerText );
+                alert ( sRowObj.children[0].innerText);
+                //this.s_row.children[idx].innerText;
+            }
+
+            grid1.selectedCol = function(sRowObj,sColObj) {
+                //alert ( this.getCellValue(0) );
+                //alert ( sColObj.innerHTML);
+            }
+            var grid4 = new WebGrid();
+            grid4.setId("grid4");
+            grid4.setData(aData);
+            grid4.setHeader(aColHeaders);
+            grid4.setType   (aColTypes  );
+            grid4.rowSelectColor         = '#FFFFFF'; // Row 선택시 폰트 색상    
+            grid4.rowSelectBgColor       = '#316AC5'; // Row 선택시 배경 색상    
+            grid4.rowDeSelectColor       = '#000000'; // Row 선택해제시 폰트 색상
+            grid4.rowDeSelectBgColor     = '#FFFFFF'; // Row 선택해제시 배경 색상
+            grid4.colSelectColor         = '#FFFFFF'; // Col 선택시 폰트 색상    
+            grid4.colSelectBgColor       = '#82A6A6'; // Col 선택시 배경 색상    
+
+            //document.write('<textarea style="width:50%">' + grid2 + '</textarea>');
+            document.write(grid4);
+            grid4.calcSize();
+        </script>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+    function testSelectedValue(){
+        alert(grid1.s_cell.innerText);
+    }
+//-->
+</SCRIPT>
+<BUTTON onClick='testSelectedValue();' style='position:absolute;top:0;left:400'>선택된 Name값은?</BUTTON>
+    </TD>
+    <TD width='50%' height='200'>
+        <script type="text/javascript">
+            var grid2 = new WebGrid();
+            grid2.setId("grid2");
+            grid2.setData(aData);
+            grid2.setHeader(aColHeaders);
+            grid2.setType   (aColTypes  );
+            grid2.rowSelectColor         = '#FFFFFF'; // Row 선택시 폰트 색상    
+            grid2.rowSelectBgColor       = '#316AC5'; // Row 선택시 배경 색상    
+            grid2.rowDeSelectColor       = '#000000'; // Row 선택해제시 폰트 색상
+            grid2.rowDeSelectBgColor     = '#FFFFFF'; // Row 선택해제시 배경 색상
+            grid2.colSelectColor         = '#FFFFFF'; // Col 선택시 폰트 색상    
+            grid2.colSelectBgColor       = '#82A6A6'; // Col 선택시 배경 색상    
+
+            //document.write('<textarea style="width:50%">' + grid2 + '</textarea>');
+            document.write(grid2);
+            grid2.calcSize();
+
+            var grid3 = new WebGrid();
+            grid3.setId("grid3");
+            grid3.setData(aData);
+            grid3.setHeader(aColHeaders);
+            grid3.setType   (aColTypes  );
+            grid3.rowSelectColor         = '#FFFFFF'; // Row 선택시 폰트 색상    
+            grid3.rowSelectBgColor       = '#316AC5'; // Row 선택시 배경 색상    
+            grid3.rowDeSelectColor       = '#000000'; // Row 선택해제시 폰트 색상
+            grid3.rowDeSelectBgColor     = '#FFFFFF'; // Row 선택해제시 배경 색상
+            grid3.colSelectColor         = '#FFFFFF'; // Col 선택시 폰트 색상    
+            grid3.colSelectBgColor       = '#82A6A6'; // Col 선택시 배경 색상    
+
+            //document.write('<textarea style="width:50%">' + grid2 + '</textarea>');
+            document.write(grid3);
+            grid3.calcSize();
+
+        </script>
+    </TD>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+function fnHandler(){
+   // Retrieve the element that fired the event.
+   var oElement=event.srcElement;
+   var iIndex=oElement.sourceIndex;
+   var sTagName=oElement.tagName;
+   if(sTagName=="!"){
+      sTagName="COMMENT";
+   }
+   oVal1.innerText=iIndex;
+   oVal2.innerText=sTagName;
+   if(iIndex-1>0){
+      sTagName=document.all[iIndex-1].tagName;
+      if(sTagName=="!"){
+         sTagName="COMMENT";
+      }   
+      oVal3.innerText=sTagName;
+   }
+   else{
+      oVal3.innerText="Cannot read.";
+   }
+   if(iIndex+1<document.all.length){
+      sTagName=document.all[iIndex+1].tagName;
+      if(sTagName=="!"){
+         sTagName="COMMENT";
+      }   
+      oVal4.innerText=sTagName;
+   }
+   else{
+      oVal4.innerText="Cannot read.";
+   }
+    oVal5.innerText=oElement.id;
+}
+document.body.onmousemove = fnHandler;
+//-->
+</SCRIPT>
+</TR>
+</TABLE>
+<TABLE>
+<TR><TD>Source Index:</TD><TD ID=oVal1></TD></TR>
+<TR><TD>Object Name:</TD><TD ID=oVal2></TD></TR>
+<TR><TD>Previous Object:</TD><TD ID=oVal3></TD></TR>
+<TR><TD>Next Object:</TD><TD ID=oVal4></TD></TR>
+<TR><TD>id:</TD><TD ID=oVal5></TD></TR>
+</TABLE>
+<textarea id=tmp style="width:100%;height:500">
+</textarea>
+</BODY>
+</HTML>
+
+
+

@@ -1,0 +1,91 @@
+------------ 제목 : 네트웍 스캐너 실습 ( nmap , fport )
+------------ 페이지 : 12
+------------ 목차
+    1. nmap 이란?
+    2. nmap 특징
+    3. nmap 지원 기능
+    4. nmap 설치
+    5. nmap 사용법
+    * Scan Type
+    * Option
+    * 호스트 적용 Option
+    * 표시 상태
+    6. nmap실습
+    7. fport란?
+    8. fport 설치
+    9. fport사용법
+    10. fport실습
+    11. 참고
+
+------------ 본문
+1. nmap 이란?
+- Nmap(Network Mapper)은 네트워크 보안을 위한 유틸리티.
+- 대규모 네트워크를 고속으로 스캔하는 도구이다.
+- Nmap은 raw IP 패킷을 사용 네트워크의 특징 점검
+1. 호스트의 상태
+2. 서비스(포트) 
+3. 운영체제(OS 버전)
+4. filter/firewall의 패킷 타입
+2. nmap 특징
+분류	기능 / 특징
+Flexible
+(유연성)	IP 필터, 방화벽, 라우터..의 네트워크 상태
+(포트 스캐닝 메카니즘(TCP & UDP), OS 검색, pings sweeps 등) 점검
+Powerful
+(강력함)	수천 수백 개의 호스트를 가진 거대한 네트워크를 고속으로 스캔
+Portable
+(이식성)	Linux, Open/Free/Net BSD, Solaris, IRIX, Mac OS X, HP-UX,
+Sun OS등 대부분의 운영체제 지원
+Easy
+(용이성)	강력하면서도 다양한 set을 제공함에도 불구 하고
+"nmap -O -sS targethost"와 같이 아주 간단한 명령어를 이용
+또한 command line 및 graphical (GUI) 버전 모두를 지원
+Free
+(자율성)	http://www.insecure.org/nmap에서 무료로 다운받을 수 있으며, 
+GNU General Public License(GPL)하에 모든 사람이 자유롭게 
+사용할 수 있다.
+Popular
+(인지도)	현재 네트워크 스캔 툴 중에서 가장 많이 이용되고 있는 툴이다.
+3. nmap 지원 기능
+1. Vanilla TCP connect() scanning,
+2. TCP SYN (half open) scanning,
+3. TCP FIN (stealth) scanning,
+4. TCP ftp proxy (bounce attack) scanning,
+5. SYN/FIN scanning using IP fragments (bypasses packet filters),
+6. UDP recvfrom() scanning,
+7. UDP raw ICMP port unreachable scanning,
+8. ICMP scanning (ping-sweep), and Reverse-ident scanning.
+
+------------ 참고자료
+http://apollon.busanedu.net/eduzine/200307/etc.htm
+
+http://blog.naver.com/aram96.do?Redirect=Log&logNo=20005958486
+
+http://www.linuxsecurity.com/feature_stories/feature_story-4.html
+
+http://blog.naver.com/aram96.do?Redirect=Log&logNo=20005959860
+
+http://www.insecure.org/nmap/
+
+http://www.pcline.co.kr/old_magazine/2002/2002_07/step_by_step/linux/linux_4.htm
+
+http://www.gyn.pe.kr/linux/security/nmap.html
+
+http://enleaf.made.com/bbs/zboard.php?id=news&no=16
+
+http://815server.net/servertip/tip_liunx_view.htm?page=1&no=119&check_ck=&search_sel=&search_name=
+
+http://ict.kaist.ac.kr/www/nmap3.htm
+
+http://www.foundstone.com
+
+------------ 상세분류 : 네트웍 보안
+------------ 판매자 : 네트웍보안을 수강하고 있는 대학생
+------------ 키워드 : 
+네트웍
+스캐너
+nmap
+fport
+------------ 가격 : 2000
+------------ 추가정보 : 
+

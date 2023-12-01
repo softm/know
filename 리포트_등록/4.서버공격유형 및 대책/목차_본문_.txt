@@ -1,0 +1,151 @@
+------------ 제목 : 서버공격유형 및 대책 
+------------ 페이지 : 23
+------------ 목차
+1. IP Spoofing?
+1-1. 방법
+1-2. 공격도구
+1-3. 공격방법
+1-4. 대응방안
+2. 가로채기 (Session Hijacking)?
+2-1. 공격 개요
+2-2. 초기 desynchronization
+2-3. 널 데이터 desynchronization
+2-4. 공격 도구(HUNT)
+2-5. 공격탐지
+2-6. 대응방법
+3. 스니핑?
+3-1. 스니핑의 원리
+3-2. 스니핑의 방법
+3-3. 스위칭 환경의 네트워크 구성
+3-4. 스니핑의 탐지 원리
+3-5. 스니핑 탐지 툴
+4. IP Fragmentation?
+4-1. 기본개념
+4-2. 원리
+4-3. 공격 방법
+4-4. 공격 대응방안
+5. DoS ( Denial of Service )
+5-1. DoS 공격의 종류
+5-2. DDoS 공격의 개요
+5-3. DoS 공격에 대한 대책
+5-4. DDoS 방법
+5-5. DDoS 공격 피해 사례
+6. 참고
+
+------------ 본문
+1. IP Spoofing?
+spoofing이라는 것은 '속이다' 라는 의미이고
+     IP spoofing은 IP를 속여서 공격하는 기법을 의미한다.
+
+
+
+
+
+
+
+
+
+
+1-1. 방법
+- 순서제어번호 추측(Sequence number guessing)
+  - 반(Half)접속시도 공격(SYN flooding)
+  - 접속가로채기(Connection hijacking)
+  - RST를 이용한 접속끊기(Connection killing by RST)
+  - FIN을 이용한 접속끊기(Connection killing by FIN)
+  - SYN/RST패킷 생성공격(SYN/RST generation)
+  - 네트워크 데몬 정지(killing the INETD)
+  - TCP 윈도우 위장(TCP window spoofing)
+
+1-2. 공격 도구
+1. IP Spoofing?
+spoofing이라는 것은 '속이다' 라는 의미이고
+     IP spoofing은 IP를 속여서 공격하는 기법을 의미한다.
+
+
+
+
+
+
+
+
+
+
+1-1. 방법
+- 순서제어번호 추측(Sequence number guessing)
+  - 반(Half)접속시도 공격(SYN flooding)
+  - 접속가로채기(Connection hijacking)
+  - RST를 이용한 접속끊기(Connection killing by RST)
+  - FIN을 이용한 접속끊기(Connection killing by FIN)
+  - SYN/RST패킷 생성공격(SYN/RST generation)
+  - 네트워크 데몬 정지(killing the INETD)
+  - TCP 윈도우 위장(TCP window spoofing)
+
+1-2. 공격 도구
+     1. nmap(network mapper)
+        - 네트워크보안 유틸리티로 대규모 네트워크를 고속으로 스캔하는 툴.
+        - 어느 호스트가 살아있고, 그들이 어떠한 서비스(포트)를 제공하며,
+         운영체제(OS 버전)가 무엇이며, filter/firewall의 패킷 타입이 무엇인지 등
+         네트워크의 수많은 특징들을 점검가능.
+    2. Neptune
+       - 존재하지 않는 호스트의 IP를 삽입한 많은 수의 SYN 패킷을 전송함으로써
+       half-open TCP 연결을 시도하여 목표 호스트의 listen queue를 가득 채우게
+하는 도구
+    3. mendax
+       - 신뢰된 호스트에 대한 DoS 공격, Seq Number 추측, 임의의 명령 수행 등의
+         일련의 과정을 자동으로 수행할 수 있는 도구.
+1-3. 공격방법
+ 
+1. 위 그림에서 C는 A로 자신의 IP주소를 위장하여 SYN를 보내 접속요청을한다.
+       요청에 대한 응답으로 A가 C에 대한 ACK와 함께 자시의 SYN을 전송하지만
+       C가 이에 대해 ACK를 보내지 않으면 A는 자신이 보낸 ACK에 대한 C의 응답을 
+기다리게 된다.
+      이 과정을 연속적으로 반복하면
+           (예를 들어 SunOs의 경우, 약 8개 정도의 SYN패킷을 80초 정도 간격 으로 
+보낸다.)
+       A는 외부의 접속요청에 응답할 수 없는 오버플로우 상태가 된다.
+   2. 이후, C는 B로 정상적인 접속을 시도하여 순서제어번호의 변화를
+      패킷 모니터링을 이용하여 관측한다.
+   3. 순서제어번호의 변화를 관찰아여 추측한 순서제어번호를 이용하여 C는 자신의 
+IP주소를 A로 가장한후 B에 접속요청(SYN)을 보낸다.
+      (순서제어번호의 변화는, 예를 들어 4.4BSD 에서 OS부팅시 1로 세트되고 
+0.5초마다 64,000씩 증가한다.
+        또한 새로운 TCP 접속이 만들어질 때마다 64,000씩 증가한다.)
+     4. B는 수신된 SYN 패킷이 A에서 온 것으로 인식, A에게 ACK와 새로운 SYN를 
+보내지만 이미 A는 외부와 통신 불능상태이므로 응답을 할 수 없게 된다.
+       (만일 A가 C보다 먼저 응답하여 RST을 보내게되면 C의 공격은 실패한다.)
+   5. C는 자신의 IP 주소를 A주소로 위장하여 추측된 순서제어번호를 이용해 
+B가 A로 보낸SYN/ ACK에 대한 ACK를 B에 보낸다.
+ 6. 결국 C와 B 불법적 접속이 이루어지고, B와 A는 연결되어 있는것으로 착각한다.
+ 7. 이후 rsh을 이용하여 echo '+ +' >/.rhosts과 같은 데이터를 보내면 된다.
+
+1-4. 대응방안
+1. router에서 filtering 적용
+' 내/외부로 부터의 접속시 인가된 IP 이외의 것은 block.
+    2. sequence number를 임의로 생성
+    3. DoS 취약성 제거
+' DoS 공격을 막을 수 있으면, IP spoofing공격 방어가능.
+4. R-서비스를 이용하지 않음 ( TCPwrapper, ssh 등 을 설치해서 운영 )
+' IP 주소로 인증하는
+패스워드의 인증 과정이 없는 서비스를 서비스는 사용하지 않음.
+5. 암호화된 Protocol을 사용
+' 효과적차단이 가능. 성능문제 및 일반화되지 않았음.
+6. 여러종류의 IP spoofing은 TCP/IP의 설계와 구현상의 문제점에 기인한 
+것으로 새로운 프로토콜을 사용하지 않는 한 완벽한 보호대책은 존재할 수 없다.
+          다만 지속적인 보안 관리 및 점검만이 최소한의 피해를 막을 수 있다고 할 수 
+있겠다.
+
+
+------------ 참고자료
+http://www.krcert.or.kr/ ( 기술 문서 )
+------------ 판매자 : 시스템보안을 수강하고 있는 대학생
+
+------------ 상세분류 : 시스템 보안
+------------ 키워드 : 
+스푸핑
+스니핑
+Dos
+IP Fragmentation
+
+------------ 가격 : 3000
+------------ 추가정보
+

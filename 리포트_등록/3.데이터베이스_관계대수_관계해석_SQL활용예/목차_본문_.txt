@@ -1,0 +1,130 @@
+------------ 제목 : 데이터베이스_관계대수_관계해석_SQL활용예
+------------ 페이지 : 14
+------------ 목차
+0. 관계 대수 / 관계 해석 비교
+
+1. 관계 대수란 (Relational Algebra)?
+   1-1. 특징
+   1-2. 관계연산자의 종류
+   1-3. 일반 집합 연산자
+   1-4. 순수 관계 연산자
+
+2. 관계 해석 이란 (Relational Calculus)?
+   2-1. 특징
+   2-2. QBE (Query By Example)
+   2-3. 투플 관계 해석(tuple relational calculus)
+   2-4. 투플 해석식(tuple calculus expression)
+   2-5. 도메인 관계 해석(Domain relational calculus)
+   2-6. 도메인 해석식(Domain calculus expression)
+
+3. SQL 예제
+   3-1. COMPANY 데이터베이스의 초기 개념적 설계
+   3-2. COMPANY 데이터베이스 구성 Relation
+   3-3. COMPANY 데이터베이스 인스턴스
+   3-4. SQL 예제
+
+------------ 본문
+1. 관계 대수란 (Relational Algebra)?
+1-1. 특징
+1.	Relation (Relation) 조작을 위한 연산의 집합
+2.	색 요구(질의)를 기술하는 데에 사용
+3.	검절자 언어(Procedural Language)
+4.	어떻게(How)의 관점
+1-2. 관계연산자의 종류
+1. 일반집합 연산자
+합집합, 교집합, 차집합, 카티션 프로덕트
+2. 순수관계연산자
+셀렉트, 프로젝트, 조인, 디비젼
+구분	연산명	표기	설 명
+일반
+집합
+연산	합집합 (Union)	∪	합병 가능한 두 개의 Relation A, B의 합집합
+	교집합(Intersection)	∩	합병 가능한 두 개의 Relation A, B의 교집합
+	차집합 (Difference)	－	합병 가능한 두 개의 Relation A, B의 차집합
+	카티션 프로덕트	×	두 개의 Relation A, B의 카티션 프로덕트
+순수
+관계
+연산	셀렉트 (Select)	δ	Relation에서 특정 튜플 값 검색
+	프로젝트 (Project)	∏	Relation에서 특정 속성 값 검색
+	조인 (Join)	 	두 개의 Relation A, B에서 공통된 속성을 연결
+	디비전(Division)	÷	정수 나눗셈 연산과 연산
+
+1-3. 일반 집합 연산자
+전제1.  R1, R2 Relation이 존재할경우
+특성1. 피연산자 Relation R1과 같은 애트리뷰트 이름들을 갖는다 (관례적으로)
+특성2. Relation R1 & R2의 차수가 같고 대응 속성별로 도메인이 같음
+1. 합집합 (union)
+  R1   R2 =  { t   t   R1     t   R2 } 
+R1 or R2에 속하는 tuple t로 구성되는 Relation.
+==> 차수 = R1 or R2의 차수
+	cardinality  |R1   R2|     |R1| + |R2|
+	2. 교집합 (intersection)
+  R1   R2  =  { t   t   R1     t   R2 } 
+R1 과 R2에 동시에 속하는 튜플 t로 구성되는 Relation.
+      ==> 차수 = R1 or R2의 차수
+	cardinality  |R1   R2|     MIN { |R1| , |R2| }
+3. 차집합 (difference)
+  R1   R2 = { t   t   R1     t   R2 }  
+R 에는 있지만 S에는 없는 tuple t로 구성되는 rel.
+       ==> 차수 = R1 or R2의 차수
+	cardinality  |R1   R2|     |R1| 
+4. 카티션 프로덕트(cartesian product)
+  R1   R2  =  { r   s   r1   R1     r2   R2 }  
+       r1  R1 이고 r2  R2일 때, r1과 r2를 접속시킨 
+       모든 tuple r1,r2로 구성되는 rel.
+       (tuple r1=(a1,a2,...,an)이고, r2=(b1,b2,...,bm)일때, 
+	==> 차수 = R1의 차수 + R2의 차수           
+	r1 r2=(a1,a2,...,an,b1.b2,...,bm)으로 정의) 
+	cardinality  |R1 x R2|  =  |R| x |S|
+* 각 attribute는 R1.A1,R1.A2,...,R1.An,R2.B1,R2.B2,...,R2.Bm
+
+5. 집합연산자의 특성
+합집합, 교집합, 카티션 프로덕트는 "결합적(associative)"이다.
+       Relation.  R1,R2,T에 대해
+    
+
+
+
+       또 "교환적 (commutative)" 연산이다.
+         
+
+
+
+
+위의 특성은 데이터 처리 과정을 최적화 방법으로 구현할 때 이용 됩니다.
+
+1-4. 순수 관계 연산자
+1. 셀렉트 (select ,  ) 
+①	Relation R에서 어떤 선택조건 c를 만족하는 투플들을 선택한다.
+②	연산 형식: σc(R)
+③	조건 c는 R의 애트리뷰트들에 대한 임의의 불리언 식이다.
+④	결과 Relation 은 R과 똑같은 Attribure들을 갖는다.
+예1) σDNO=4 (EMPLOYEE) 
+::> EMPLOYEE Relation에서 DNO Attribute가 4인 값을 SELECT
+예2) σSALARY>30000 (EMPLOYEE)
+::> EMPLOYEE Relation에서 SALARY Attribute가 30000 보다 큰값 SELECT
+예3) σ(DNO=4 AND SALARY>25000) OR DNO=5 (EMPLOYEE)
+연산1. EMPLOYEE Relation에서 
+DNO Attribute가 4 이고
+   SALARY Attribute가 25000 보다 큰값 SELECT
+연산2. EMPLOYEE Relation에서DNO Attribute가 5 값 SELECT
+연산1,2의 OR 연산 실행
+
+2.  프로젝트 연산 (PROJECT,∏)
+①	Relation R에서 Attribute 리스트 L에 명시된 Attribute들만 선택한다.
+②	연산 형식: ∏L(R)
+③	결과 Relation은 L에 명시된 R의 Attribute들만 갖는다.
+
+------------ 참고자료
+------------ 판매자 : 데이터베이스를 수강하고 있는 대학생
+------------ 상세분류 : 데이터베이스
+------------ 키워드 : 
+데이터베이스
+관계대수
+관계해석
+SQL
+------------
+DataBase
+------------ 가격 : 2000
+------------ 추가정보
+

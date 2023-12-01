@@ -1,0 +1,1531 @@
+From: <Microsoft Internet Explorer 5·Î ÀúÀå>
+Subject: WebFX - Grid - Demo
+Date: Mon, 15 Jan 2007 17:51:05 +0900
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01C738CD.BA6EC060"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3028
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C738CD.BA6EC060
+Content-Type: text/html;
+	charset="ks_c_5601-1987"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: =?ks_c_5601-1987?B?ZmlsZTovL0M6XERvY3VtZW50cyBhbmQgU2V0dGluZ3Nccw==?=
+	=?ks_c_5601-1987?B?b2Z0bWluZFy52cXBIMituOlcsde4rrXlwaS4rlx3ZWJmeA==?=
+	=?ks_c_5601-1987?B?LmVhZS5uZXRfZ3JpZFxkZW1vLmh0bWw=?=
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<?xml version=3D"1.0" encoding=3D"UTF-8"?><HTML lang=3Den =
+xml:lang=3D"en"=20
+xmlns=3D"http://www.w3.org/1999/xhtml"><HEAD><TITLE>WebFX - Grid - =
+Demo</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dks_c_5601-1987"><LINK=20
+href=3D"file:///C:/Documents%20and%20Settings/softmind/=B9=D9=C5=C1%20=C8=
+=AD=B8=E9/=B1=D7=B8=AE=B5=E5=C1=A4=B8=AE/webfx.eae.net_grid/grid.css"=20
+type=3Dtext/css rel=3Dstylesheet><!--script src=3D"grid.js" =
+type=3D"text/javascript"></script-->
+<SCRIPT type=3Dtext/javascript>=0A=
+/*-----------------------------------------------------------------------=
+-----\=0A=
+|                               Grid Widget 1.0                          =
+     |=0A=
+|------------------------------------------------------------------------=
+-----|=0A=
+|                          Created by Emil A Eklund                      =
+     |=0A=
+|                  (http://webfx.eae.net/contact.html#emil)              =
+     |=0A=
+|                      For WebFX (http://webfx.eae.net/)                 =
+     |=0A=
+|------------------------------------------------------------------------=
+-----|=0A=
+| An object based grid widget, targeted at database powered web =
+applications, |=0A=
+| incorporating features found in popular spreadsheet and database =
+management |=0A=
+| applications. Currently only internet explorer 5.5 and later are =
+supported. |=0A=
+|------------------------------------------------------------------------=
+-----|=0A=
+|                   Copyright (c) 2000 - 2003 Emil A Eklund              =
+     |=0A=
+|------------------------------------------------------------------------=
+-----|=0A=
+| This software is provided "as is", without warranty of any kind, =
+express or |=0A=
+| implied, including  but not limited  to the warranties of  =
+merchantability, |=0A=
+| fitness for a particular purpose and noninfringement. In no event =
+shall the |=0A=
+| authors or  copyright  holders be  liable for any claim,  damages or  =
+other |=0A=
+| liability, whether  in an  action of  contract, tort  or otherwise, =
+arising |=0A=
+| from,  out of  or in  connection with  the software or  the  use  or  =
+other |=0A=
+| dealings in the software.                                              =
+     |=0A=
+| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - =
+- - - |=0A=
+| This  software is  available under the  three different licenses  =
+mentioned |=0A=
+| below.  To use this software you must chose, and qualify, for one of =
+those. |=0A=
+| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - =
+- - - |=0A=
+| The WebFX Non-Commercial License          =
+http://webfx.eae.net/license.html |=0A=
+| Permits  anyone the right to use the  software in a  non-commercial =
+context |=0A=
+| free of charge.                                                        =
+     |=0A=
+| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - =
+- - - |=0A=
+| The WebFX Commercial license           =
+http://webfx.eae.net/commercial.html |=0A=
+| Permits the  license holder the right to use  the software in a  =
+commercial |=0A=
+| context. Such license must be specifically obtained, however it's =
+valid for |=0A=
+| any number of  implementations of the licensed software.               =
+     |=0A=
+| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - =
+- - - |=0A=
+| GPL - The GNU General Public License    =
+http://www.gnu.org/licenses/gpl.txt |=0A=
+| Permits anyone the right to use and modify the software without =
+limitations |=0A=
+| as long as proper  credits are given  and the original  and modified =
+source |=0A=
+| code are included. Requires  that the final product, software derivate =
+from |=0A=
+| the original  source or any  software  utilizing a GPL  component, =
+such  as |=0A=
+| this, is also licensed under the GPL license.                          =
+     |=0A=
+|------------------------------------------------------------------------=
+-----|=0A=
+| Dependencies: grid.css (To set up the CSS of the grid classes)         =
+     |=0A=
+|------------------------------------------------------------------------=
+-----|=0A=
+| 2002-07-03 | Fixed quite a few focus/blur realted bugs, and updated =
+the key |=0A=
+|            | navigation code to better support the home and end keys.  =
+     |=0A=
+| 2002-08-05 | The setNewIds method now accepts the id substitute -1 as =
+as an |=0A=
+|            | an  indicator that  something went wrong,  thus resetting =
+ the |=0A=
+|            | changed flag for each column in the affected row.         =
+     |=0A=
+| 2002-08-06 | Added the setColLengths method, can  be used  to limit =
+the max |=0A=
+|            | length that can be typed into each column.                =
+     |=0A=
+| 2002-08-07 | Rows may now be selected by clicking on the id column.    =
+     |=0A=
+| 2002-08-08 | Fixed a  bug that  caused all key  navigation to stop  =
+working |=0A=
+|            | when either deleting a row or selecting one by clicking =
+on the |=0A=
+|            | id column for that row.                                   =
+     |=0A=
+| 2002-08-11 | Fixed a few minor problems caused by the previous fix.    =
+     |=0A=
+| 2002-09-22 | Renamed dumpMatrix method to getGridData.                 =
+     |=0A=
+|------------------------------------------------------------------------=
+-----|=0A=
+| Created 2000-01-20 | All changes are in the log above. | Updated =
+2002-09-22 |=0A=
+\------------------------------------------------------------------------=
+----*/=0A=
+=0A=
+var webFXGridHandler =3D {=0A=
+	idCounter : 0,=0A=
+	idPrefix  : "webfx-grid-object-",=0A=
+	getId     : function() { return this.idPrefix + this.idCounter++; },=0A=
+	all       : {},=0A=
+	scroll    : function(id) { this.all[id]._scroll(); },=0A=
+	resize    : function(id) { this.all[id].calcSize(); },=0A=
+	click     : function() { var e =3D getElement(window.event.srcElement); =
+if (e) { this.all[e.id].click(); } },=0A=
+	select    : function() {=0A=
+		var e =3D getElement(window.event.srcElement);=0A=
+		if ((e) && (e.tagName =3D=3D 'TD')) {=0A=
+			var s =3D e.parentNode.parentNode.parentNode.parentNode.className;=0A=
+			if (s =3D=3D 'webfxGridMain') { this.all[e.id].select(); }=0A=
+			else if (s =3D=3D 'webfxGridMainIdCol') { =
+this.all[e.rowid].select(true); }=0A=
+		}=0A=
+	},=0A=
+	deselect  : function() { var e =3D getElement(window.event.srcElement); =
+if ((e) && (e.tagName =3D=3D 'TD') && (this.all[e.id])) { =
+this.all[e.id].parent.deselect(); } },=0A=
+	over      : function() { var e =3D getElement(window.event.srcElement); =
+if ((e) && (e.tagName =3D=3D 'TD') && (this.all[e.id])) { =
+this.all[e.id].parent.over(); } },=0A=
+	out       : function() { var e =3D getElement(window.event.srcElement); =
+if ((e) && (e.tagName =3D=3D 'TD') && (this.all[e.id])) { =
+this.all[e.id].parent.out(); } },=0A=
+	keydown   : function() { var e =3D getElement(window.event.srcElement); =
+if ((e) && (e.tagName =3D=3D 'TD') && (this.all[e.id])) { =
+this.all[e.id].parent.parent._selected._handleKey(); } },=0A=
+	//select    : function() { return (window.event.srcElement.tagName =
+=3D=3D 'INPUT')?true:false; },=0A=
+	boxkey    : function() { return =
+this.all[window.event.srcElement.id]._handleKey(); },=0A=
+	boxblur   : function() { =
+this.all[window.event.srcElement.id]._blurBox(); },=0A=
+	sort      : function(id, col) { this.all[id].sort(col); },=0A=
+	headDown  : function(e) { this.all[e.id]._headDown(); },=0A=
+	headUp    : function(e) { this.all[e.id]._headUp(); },=0A=
+	headMove  : function(e) { this.all[e.id]._headMove(); }=0A=
+};=0A=
+=0A=
+function getElement(e) {=0A=
+	if (e.tagName =3D=3D 'TD') { return e; }=0A=
+	else if (e.tagName =3D=3D 'SPAN') { return e.parentNode; }=0A=
+	else return null;=0A=
+}=0A=
+=0A=
+function WebFXGrid(p0, p1, bUnescapeData) {=0A=
+	var r =3D (p0.length)?p0.length:p0;=0A=
+	var c =3D (p0.length && p0[0].length)?p0[0].length:p1;=0A=
+	this.id =3D webFXGridHandler.getId();=0A=
+	webFXGridHandler.all[this.id] =3D this;=0A=
+	this.rows          =3D new Array();=0A=
+	this.headers       =3D new Array();=0A=
+	this.colSizes      =3D new Array();=0A=
+	this.colFlags      =3D new Array();=0A=
+	this.colLinkData   =3D new Array();=0A=
+	this.colDefault    =3D new Array();=0A=
+	this.colTypes      =3D new Array();=0A=
+	this.colLengths    =3D new Array();=0A=
+	this.cols          =3D c;=0A=
+	this.flags         =3D 7; /* bit map | 1 - update, 2 - insert, 4 - =
+delete */=0A=
+	this.minimal       =3D 25;=0A=
+	this.defColSize    =3D 100;=0A=
+	this.resizeArea    =3D 7; // Actual=0A=
+	this.resizeAreaV   =3D 5; // Visible=0A=
+	this.hideBoxOnBlur =3D true;=0A=
+	this.groupByFirst  =3D false;=0A=
+	this.colSort       =3D true;=0A=
+	this.autoExpand    =3D false;=0A=
+	this._active       =3D false;=0A=
+	this._selected     =3D null;=0A=
+	this._selectedRow  =3D null;=0A=
+	this._selectedCell =3D null;=0A=
+	this._boxid        =3D null;=0A=
+	this._uri          =3D null;=0A=
+	this._rendered     =3D false;=0A=
+	this._showsid      =3D true;=0A=
+	this._sortBy       =3D 0;=0A=
+	this._sortDesc     =3D true;=0A=
+	this._headCell     =3D null;=0A=
+	this._headX        =3D null;=0A=
+	this._headChange   =3D null;=0A=
+	this._headSize     =3D null;=0A=
+	this._headColSize  =3D new Array();=0A=
+	this._headColSplit =3D new Array();=0A=
+	this.onSelect      =3D null;=0A=
+	this.onColResize   =3D null;=0A=
+	this.onSort        =3D null;=0A=
+	this.onChange      =3D null;=0A=
+	this.onNewRow      =3D null;=0A=
+	for (var i =3D 0; i < r; i++) {=0A=
+		this.rows[i] =3D new WebFXGridRow(((p0.length > i)?p0[i]:c), -1, =
+bUnescapeData);=0A=
+		this.rows[i].parent =3D this;=0A=
+}	}=0A=
+=0A=
+WebFXGrid.prototype.setCellValue =3D function(iRow, iCell, sValue, =
+iIndex) {=0A=
+	if ((iRow >=3D this.rows.length) || (iCell >=3D =
+this.rows[iRow].cells.length)) { return; }=0A=
+	var oCell =3D this.rows[iRow].cells[iCell];=0A=
+	var eCell =3D document.getElementById(oCell.id).childNodes(0);=0A=
+	var iSid =3D oCell.parent.sid;=0A=
+	oCell.value =3D new String(sValue);=0A=
+	oCell._changed =3D true;=0A=
+	if (oCell._dropdown) {=0A=
+		var sText =3D '<No Data Selected>';=0A=
+		if (oCell.value.indexOf(',') > 0) { sText =3D '<Multiple Values>'; }=0A=
+		else {=0A=
+			var d =3D this.colLinkData[iCell];=0A=
+			if (d.length > 1) {=0A=
+				var iCounter =3D -1, iSelected =3D 1, d =3D this.colLinkData[iCell];=0A=
+				for (var i =3D 1; i < d.length; i++) {=0A=
+					if (iIndex >=3D 0) {=0A=
+						if ((d[i][2] =3D=3D iSid) || (d[i][2] =3D=3D 0)) { iCounter++; }=0A=
+						if (iCounter =3D=3D iIndex) { iSelected =3D i; oCell.value =3D =
+d[i][0]; break; }=0A=
+					}=0A=
+					else if (d[i][0] =3D=3D oCell.value) { iSelected =3D i; break; }=0A=
+				}=0A=
+				sText =3D d[iSelected][1];=0A=
+	}	}	}=0A=
+	else { sText =3D oCell.value; }=0A=
+	eCell.innerText =3D sText;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setUri =3D function(s) {=0A=
+	this._uri =3D s;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setHeaders =3D function(a) {=0A=
+	this.headers =3D a;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setColSizes =3D function(a) {=0A=
+	this.colSizes =3D a;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.getColSizes =3D function() {=0A=
+	return this.colSizes;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setAutoExpand =3D function(b) {=0A=
+	this.autoExpand =3D b;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setRowsServerIds =3D function(a) {=0A=
+	for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		this.rows[i].sid =3D a[i];=0A=
+	}=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setLinkData =3D function(a) {=0A=
+	this.colLinkData =3D a;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setColDropData =3D WebFXGrid.prototype.setLinkData;=0A=
+=0A=
+WebFXGrid.prototype.setColTypes =3D function(a) {=0A=
+	/* 0 - int=0A=
+	 * 1 - string=0A=
+	 * 2 - date=0A=
+	 * 3 - float=0A=
+	 */=0A=
+	this.colTypes =3D a;=0A=
+}=0A=
+=0A=
+=0A=
+WebFXGrid.prototype.setColFlags =3D function(a) {=0A=
+	/* Bitmap=0A=
+	 * Bit 1 - Read only=0A=
+	 * Bit 2 - Mandatory=0A=
+	 * Bit 4 - Mask data (password field)=0A=
+	 * Bit 8 - Hidden=0A=
+	 */=0A=
+	this.colFlags =3D a;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setColLengths =3D function(a) {=0A=
+	this.colLengths =3D a;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setCellStyles =3D function(a) {=0A=
+	for (var r =3D 0; r < this.rows.length; r++) {=0A=
+		for (var c =3D 0; c < this.rows[r].cells.length; c++) {=0A=
+			if ((a.length > r) && (a[r].length > c) && (a[r][c])) {=0A=
+				this.rows[r].cells[c].style =3D a[r][c];=0A=
+}	} }	}=0A=
+=0A=
+WebFXGrid.prototype.setColDefault =3D function(a) {=0A=
+	this.colDefault =3D a;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.getShowSid =3D function() {=0A=
+	return this._showsid;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setShowSid =3D function(b) {=0A=
+	if (b =3D=3D null) {=0A=
+		if (this._showsid) { this._showsid =3D false; }=0A=
+		else { this._showsid =3D true; }=0A=
+	}=0A=
+	else { this._showsid =3D b; }=0A=
+	if (this._rendered) { this._updateIdCol(); }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.getSelected =3D function() {=0A=
+	return this._selected;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.selectFirst =3D function() {=0A=
+	this.rows[0].select();=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.selectLast =3D function() {=0A=
+	this.rows[this.rows.length - 1].select();=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype._updateIdCol =3D function() {=0A=
+	document.getElementById(this._corn).childNodes(0).innerText =3D =
+((this._showsid)?'ID':'#');=0A=
+	row =3D 0;=0A=
+	for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		if (!this.rows[i]._deleted) {=0A=
+			if ((!this._selectedRow) || (this._selected !=3D this.rows[i]) || =
+!(this._active)) {=0A=
+				document.getElementById(this.rows[i].id).className =3D =
+((!this._showsid) && (row & 0x01))?'odd':'even';=0A=
+			}=0A=
+			if =
+(document.getElementById(this._idcl).childNodes(0).childNodes(0).childNod=
+es.length > i) {=0A=
+				=
+document.getElementById(this._idcl).childNodes(0).childNodes(0).childNode=
+s(i).childNodes(0).innerText =3D (this._showsid)?((this.rows[i].sid !=3D =
+null)?this.rows[i].sid:'-'):(row + 1);=0A=
+				row++;=0A=
+}	}	}	}=0A=
+=0A=
+WebFXGrid.prototype.setNewIds =3D function(a) {=0A=
+	var r =3D 0;=0A=
+	for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		if (this.rows[i].sid =3D=3D null) {=0A=
+			if (a.length <=3D r) { break; }=0A=
+			if (a[r] =3D=3D -1) {=0A=
+				for (var l =3D 0; l < this.rows[i].cells.length; l++) {=0A=
+					this.rows[i].cells[l]._changed =3D true;=0A=
+				}=0A=
+			}=0A=
+			else {=0A=
+				this.rows[i].sid =3D a[r];=0A=
+				if (this._showsid) { =
+document.getElementById(this._idcl).childNodes(0).childNodes(0).childNode=
+s(i).childNodes(0).innerText =3D a[r]; }=0A=
+			}=0A=
+			r++;=0A=
+}	}	}=0A=
+=0A=
+WebFXGrid.prototype.setId =3D function(i, id) {=0A=
+	this.rows[i].sid =3D id;=0A=
+	if (this._showsid) { =
+document.getElementById(this._idcl).childNodes(0).childNodes(0).childNode=
+s(i).childNodes(0).innerText =3D id; }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.setHideBoxOnBlur =3D function(b) {=0A=
+	this.hideBoxOnBlur =3D b;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.sort =3D function(col) {=0A=
+	if (!this.colSort) { return; }=0A=
+	this.hideBox();=0A=
+	var selectedEl =3D null;=0A=
+	if (this._selected) {=0A=
+		this._selected.deselect(true);=0A=
+		selectedEl =3D this._selected;=0A=
+		this._selected =3D null;=0A=
+	}=0A=
+	if (this._sortBy =3D=3D col) { this._sortDesc =3D !this._sortDesc; }=0A=
+	if (col =3D=3D -1) { this.rows.sort(compareBySid(this._sortDesc)); }=0A=
+	else { this.rows.sort(compareByColumn(col, this._sortDesc, =
+this.colTypes[col])); }=0A=
+	var e =3D =
+document.getElementById(this._main).childNodes(0).childNodes(1);=0A=
+	var cell, selected, d, o;=0A=
+	var cl =3D =
+document.getElementById(this._idcl).childNodes(0).childNodes(0).childNode=
+s;=0A=
+	if (col >=3D 0) {=0A=
+		var b =3D =
+document.getElementById(this._head).childNodes(0).childNodes(0).childNode=
+s(0).childNodes(col)._sort;=0A=
+		if (b =3D=3D false) { return false; }=0A=
+	}=0A=
+	if (this._rendered) {=0A=
+		for (var r =3D 0; r < e.childNodes.length; r++) {=0A=
+			for (var c =3D 0; c < e.childNodes[r].childNodes.length; c++) {=0A=
+				cell =3D e.childNodes(r).childNodes(c);=0A=
+				o =3D this.rows[r].cells[c];=0A=
+				if (o._dropdown) {=0A=
+					if (o.value.indexOf(',') > 0) { cell.childNodes(0).innerText =3D =
+'<Multiple Values>'; }=0A=
+					else {=0A=
+						d =3D this.colLinkData[c];=0A=
+						for (var i =3D 1; i < d.length; i++) {=0A=
+							if (d[i][0] =3D=3D o.value) { selected =3D i; }=0A=
+						}=0A=
+						if (!selected) { selected =3D 0; }=0A=
+						cell.childNodes(0).innerText =3D (this.rows[r].sid !=3D =
+null)?d[selected][1]:'';=0A=
+				}	}=0A=
+				else { cell.childNodes(0).innerText =3D (o.value)?o.value:''; }=0A=
+				cell.id =3D o.id;=0A=
+				cell.style.cssText =3D o.style;=0A=
+				webFXGridHandler.all[cell.id] =3D o;=0A=
+			}=0A=
+			e.childNodes(r).id =3D this.rows[r].id;=0A=
+			webFXGridHandler.all[e.childNodes(r).id] =3D this.rows[r];=0A=
+		}=0A=
+		this._updateIdCol();=0A=
+	}=0A=
+	e =3D =
+document.getElementById(this._head).childNodes(0).childNodes(0).childNode=
+s(0);=0A=
+	if (this._sortBy >=3D 0) { =
+e.childNodes(this._sortBy).childNodes(1).innerText =3D ''; }=0A=
+	else { document.getElementById(this._corn).childNodes(1).innerText =3D =
+''; }=0A=
+	if (col >=3D 0) { e.childNodes(col).childNodes(1).innerText =3D =
+((this._sortDesc)?5:6); }=0A=
+	else { document.getElementById(this._corn).childNodes(1).innerText =3D =
+((this._sortDesc)?5:6); }=0A=
+	this._sortBy =3D col;=0A=
+	if (selectedEl) {=0A=
+		var o =3D document.getElementById(selectedEl.id);=0A=
+		var main =3D document.getElementById(this._main);=0A=
+		var head =3D document.getElementById(this._head);=0A=
+		if (main.scrollTop > o.offsetTop) { main.scrollTop =3D o.offsetTop - =
+1; }=0A=
+		if ((main.scrollTop + main.clientHeight) - o.offsetTop - =
+head.offsetHeight < o.offsetHeight) { main.scrollTop =3D o.offsetTop - =
+(main.clientHeight - o.offsetHeight) + head.offsetHeight - 1; }=0A=
+		selectedEl.select();=0A=
+	}=0A=
+	if (this.onSort) { this.onSort(this); }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.find =3D function(condition) {=0A=
+	var o, d, str, selected;=0A=
+	for (var r =3D 0; r < this.rows.length; r++) {=0A=
+		for (var c =3D 0; c < this.rows[r].cells.length; c++) {=0A=
+			o =3D this.rows[r].cells[c];=0A=
+			if (o._dropdown) {=0A=
+				d =3D this.colLinkData[c];=0A=
+				for (var i =3D 1; i < d.length; i++) {=0A=
+					if (d[i][0] =3D=3D o.value) { selected =3D i; }=0A=
+				}=0A=
+				if (o.value =3D=3D -1) { str =3D ""; }=0A=
+				else { str =3D d[selected][1]; }=0A=
+			}=0A=
+			else { str =3D o.value; }=0A=
+			if (str.indexOf(condition) >=3D 0) { this.rows[r].select(); break; }=0A=
+}	}	}=0A=
+=0A=
+WebFXGrid.prototype.addRow =3D function(p0, sid) {=0A=
+	if (!(this.flags & 0x02)) { return; }=0A=
+	if (!p0) { p0 =3D this.cols; }=0A=
+	var r =3D (p0[0])?p0.length:1;=0A=
+	var c =3D (p0[0] && p0[0][0])?p0[0].length:p0;=0A=
+	if ((p0[0]) && (!p0[0][0])) {=0A=
+		var foo =3D p0;=0A=
+		p0 =3D new Array();=0A=
+		p0[0] =3D foo;=0A=
+		r =3D 1;=0A=
+	}=0A=
+	var e, foo, bar;=0A=
+	for (var i =3D 0; i < r; i++) {=0A=
+		this.rows[this.rows.length] =3D new WebFXGridRow(((p0.length > =
+i)?p0[i]:c), ((sid)?((sid[i])?sid[i]:sid):null));=0A=
+		this.rows[this.rows.length - 1].parent =3D this;=0A=
+		if (this._rendered) {=0A=
+			e =3D document.getElementById(this._main).childNodes(0).childNodes(1);=0A=
+			foo =3D this.rows[this.rows.length - 1]._generate(e, this.rows.length =
+- 2);=0A=
+			e.appendChild(foo);=0A=
+			foo =3D document.createElement("TR");=0A=
+			bar =3D document.createElement("TD");=0A=
+			bar.innerText =3D '-';=0A=
+			bar.rowid =3D this.rows[this.rows.length - 1].id;=0A=
+			bar.onclick =3D function() { webFXGridHandler.select(); }=0A=
+			foo.appendChild(bar);=0A=
+			=
+document.getElementById(this._idcl).childNodes(0).childNodes(0).appendChi=
+ld(foo);=0A=
+	}	}=0A=
+	if (!this._showsid) { this._updateIdCol(); }=0A=
+	if (this.onNewRow) { this.onNewRow(this); }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.removeRow =3D function(row) {=0A=
+	if (!(this.flags & 0x04)) { return; }=0A=
+	var e =3D ((row)?row:this._selectedRow);=0A=
+	var o =3D webFXGridHandler.all[e.id];=0A=
+	if (!o) { return; }=0A=
+	var sibling =3D ((e.previousSibling)?e.previousSibling:e.nextSibling);=0A=
+	if (sibling) { webFXGridHandler.all[sibling.id].select(true); }=0A=
+	for (var i =3D 0; i < e.parentNode.childNodes.length; i++) {=0A=
+		if (e.parentNode.childNodes(i).id =3D=3D e.id) { break; }=0A=
+	}=0A=
+	e.parentNode.deleteRow(i);=0A=
+	=
+document.getElementById(this._idcl).childNodes(0).childNodes(0).deleteRow=
+(i);=0A=
+	o._remove();=0A=
+	if (!this._showsid) { this._updateIdCol(); }=0A=
+	if (this.onChange) { this.onChange(this); }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.addCol =3D function(sValue) {=0A=
+	if (!(this.flags & 0x02)) { return; }=0A=
+	for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		this.rows[i].cells[this.rows[i].cells.length] =3D new =
+WebFXGridCell(sValue);=0A=
+		this.rows[i].cells[this.rows[i].cells.length - 1].parent =3D =
+this.rows[i];=0A=
+		if (this._rendered) {=0A=
+			=
+document.getElementById(this.rows[i].id).appendChild(this.rows[i].cells[t=
+his.rows[i].cells.length - 1]._generateCell());=0A=
+	}	}=0A=
+	if (this._rendered) {=0A=
+		var e =3D =
+document.getElementById(this.id).childNodes(0).childNodes(0).childNodes(0=
+);=0A=
+		var c =3D e.insertCell(e.childNodes.length - 1);=0A=
+		c.innerText =3D sValue;=0A=
+	}=0A=
+	this.cols++;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.dump =3D function(b) {=0A=
+	var foo, str, rows, count =3D 0;=0A=
+	rows =3D this._uri + 'rows=3D[';=0A=
+	str =3D ']';=0A=
+	for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		foo =3D this.rows[i]._dump(b);=0A=
+		if (foo) {=0A=
+			if (this.rows[i].sid !=3D null) {=0A=
+				if (count) { rows +=3D ','; }=0A=
+				rows +=3D escape(this.rows[i].sid);=0A=
+			}=0A=
+			str +=3D foo; count++;=0A=
+	}	}=0A=
+	for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		if (this.rows[i]._deleted) { this.rows[i]._remove(); }=0A=
+	}=0A=
+	if (count) { return rows + str; }=0A=
+	else { return null; }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.getGridData =3D function() {=0A=
+	var a =3D new Array;=0A=
+	for (var r =3D 0; r < this.rows.length; r++) {=0A=
+		a[r] =3D new Array;=0A=
+		for (var c =3D 0; c < this.rows[r].cells.length; c++) {=0A=
+			a[r][c] =3D escape(this.rows[r].cells[c].value);=0A=
+	}	}=0A=
+	return a;=0A=
+}=0A=
+=0A=
+/* Deprecated */=0A=
+WebFXGrid.prototype.dumpMatrix =3D WebFXGrid.prototype.getGridData;=0A=
+=0A=
+WebFXGrid.prototype.setSize =3D function(w, h) {=0A=
+	document.getElementById(this.id).style.width =3D w;=0A=
+	document.getElementById(this.id).style.height =3D h;=0A=
+	this.calcSize();=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.calcSize =3D function() {=0A=
+	var root   =3D document.getElementById(this.id);=0A=
+	var main   =3D document.getElementById(this._main);=0A=
+	var corner =3D document.getElementById(this._corn);=0A=
+	var head   =3D document.getElementById(this._head);=0A=
+	var idcol  =3D document.getElementById(this._idcl);=0A=
+	var x =3D main.clientLeft;=0A=
+	var y =3D main.clientTop;=0A=
+	main.style.width   =3D root.clientWidth;=0A=
+	main.style.height  =3D root.clientHeight;=0A=
+	corner.style.top   =3D y;=0A=
+	corner.style.left  =3D x;=0A=
+	head.style.left    =3D x + corner.offsetWidth;=0A=
+	head.style.top     =3D y;=0A=
+	idcol.style.left   =3D x;=0A=
+	idcol.style.top    =3D y + corner.offsetHeight;=0A=
+	head.style.width   =3D main.clientWidth - idcol.clientWidth;=0A=
+	idcol.style.height =3D main.clientHeight - head.clientHeight;=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.focus =3D function() {=0A=
+	if (this.getSelected()) { this.getSelected().select(); }=0A=
+	else { this.selectFirst(); }=0A=
+};=0A=
+=0A=
+WebFXGrid.prototype.toString =3D function() {=0A=
+	this._boxid   =3D webFXGridHandler.getId(); =
+webFXGridHandler.all[this._boxid]   =3D this;=0A=
+	this._dropid  =3D webFXGridHandler.getId(); =
+webFXGridHandler.all[this._dropid]  =3D this;=0A=
+	this._drop2id =3D webFXGridHandler.getId(); =
+webFXGridHandler.all[this._drop2id] =3D this;=0A=
+	this._main =3D webFXGridHandler.getId(); =
+webFXGridHandler.all[this._main] =3D this;=0A=
+	this._corn =3D webFXGridHandler.getId(); =
+webFXGridHandler.all[this._corn] =3D this;=0A=
+	this._head =3D webFXGridHandler.getId(); =
+webFXGridHandler.all[this._head] =3D this;=0A=
+	this._idcl =3D webFXGridHandler.getId(); =
+webFXGridHandler.all[this._idcl] =3D this;=0A=
+	this._rendered =3D true;=0A=
+	var str =3D '<div id=3D"' + this.id + '" class=3D"webfxGrid" =
+onresize=3D"webFXGridHandler.resize(this.id);" =
+onfocus=3D"webFXGridHandler.select(this.id);" =
+onselectstart=3D"webFXGridHandler.select();" =
+onmousedown=3D"webFXGridHandler.headDown(this);" =
+onmousemove=3D"webFXGridHandler.headMove(this);" =
+onmouseup=3D"webFXGridHandler.headUp(this);">';=0A=
+	str +=3D '<div id=3D"' + this._main + '" class=3D"webfxGridMain" =
+onfocus=3D"webFXGridHandler.select(this.parentNode.id);" =
+onscroll=3D"webFXGridHandler.scroll(this.parentNode.id);">';=0A=
+	str +=3D '<table cellspacing=3D"0" =
+onclick=3D"webFXGridHandler.click();" =
+ondblclick=3D"webFXGridHandler.click();" =
+onmouseover=3D"webFXGridHandler.over();" =
+onmouseout=3D"webFXGridHandler.out();" =
+onkeydown=3D"webFXGridHandler.keydown(); return false;">';=0A=
+	str +=3D '<colgroup span=3D"' + this.cols + '">'=0A=
+	for (var i =3D 0; i < this.cols; i++) {=0A=
+		str +=3D '<col style=3D"width: ' + =
+((this.colSizes[i])?this.colSizes[i]:this.defColSize) + ';" />';=0A=
+	}=0A=
+	str +=3D '</colgroup>'=0A=
+	for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		str +=3D this.rows[i]._toString(i);=0A=
+	}=0A=
+	str +=3D '</table></div>';=0A=
+	str +=3D '<div id=3D"' + this._corn + '" =
+onclick=3D"webFXGridHandler.sort(this.parentNode.id,-1);" =
+class=3D"webfxGridMainCorner"><nobr>ID</nobr><span></span></div>';=0A=
+	str +=3D '<div id=3D"' + this._head + '" =
+class=3D"webfxGridMainHeader"><table cellspacing=3D"0"><tr>';=0A=
+	for (var i =3D 0; i < this.cols; i++) {=0A=
+		str +=3D '<td style=3D"width: ' + =
+((this.colSizes[i])?this.colSizes[i]:this.defColSize) + ';" =
+onclick=3D"webFXGridHandler.sort(this.parentNode.parentNode.parentNode.pa=
+rentNode.parentNode.id,' + i + ');"><nobr>' + this.headers[i] + =
+'</nobr><span>' + ((this._sortBy =3D=3D i)?'5':'') + '</span></td>';=0A=
+	}=0A=
+	str +=3D '</tr></table></div>';=0A=
+	str +=3D '<div id=3D"' + this._idcl + '" =
+class=3D"webfxGridMainIdCol"><table cellspacing=3D"0">';=0A=
+  for (var i =3D 0; i < this.rows.length; i++) {=0A=
+		str +=3D '<tr><td onclick=3D"webFXGridHandler.select()" rowid=3D"' + =
+this.rows[i].id + '">' + ((this.rows[i].sid !=3D =
+null)?this.rows[i].sid:'-') + '</td></tr>';=0A=
+	}=0A=
+	str +=3D '</table></div>';=0A=
+	str +=3D '<input type=3D"text" id=3D"' + this._boxid + '" =
+class=3D"webfxGridBox" onkeydown=3D"return webFXGridHandler.boxkey();" =
+onblur=3D"webFXGridHandler.boxblur();" />';=0A=
+	str +=3D '<select id=3D"' + this._dropid + '" class=3D"webfxGridBox" =
+onkeydown=3D"return webFXGridHandler.boxkey();" =
+onblur=3D"webFXGridHandler.boxblur();"></select>';=0A=
+	str +=3D '<select multiple=3D"true" id=3D"' + this._drop2id + '" =
+class=3D"webfxGridBox" onkeydown=3D"return webFXGridHandler.boxkey();" =
+onblur=3D"webFXGridHandler.boxblur();"></select>';=0A=
+	str +=3D '</div>';=0A=
+	return str;=0A=
+}=0A=
+=0A=
+function WebFXGridRow(p0, sid, bUnescapeData) {=0A=
+	var c         =3D (p0.length)?p0.length:p0;=0A=
+	this.id       =3D webFXGridHandler.getId();=0A=
+	this.cells    =3D new Array();=0A=
+	this.parent   =3D null;=0A=
+	this.sid      =3D sid || null;=0A=
+	this._deleted =3D false;=0A=
+	webFXGridHandler.all[this.id] =3D this;=0A=
+	for (var i =3D 0; i < c; i++) {=0A=
+		this.cells[i] =3D new WebFXGridCell((p0.length > =
+i)?((bUnescapeData)?unescape(p0[i]):p0[i]):"");=0A=
+		this.cells[i].parent =3D this;=0A=
+}	}=0A=
+=0A=
+WebFXGridRow.prototype.over =3D function() {=0A=
+	if (this.parent._selected !=3D this) {=0A=
+		var e =3D document.getElementById(this.id);=0A=
+		e.style.background =3D '#DEDEFF'=0A=
+}	}=0A=
+=0A=
+WebFXGridRow.prototype.out =3D function() {=0A=
+	if (this.parent._selected !=3D this) {=0A=
+		var e =3D document.getElementById(this.id);=0A=
+		e.className =3D ((!this.parent._showsid) && (e.rowIndex & =
+0x01))?'odd':'even';=0A=
+}	}=0A=
+=0A=
+WebFXGridRow.prototype.select =3D function(b) {=0A=
+	if ((this.parent._selected) && (this.parent._selected !=3D this)) {=0A=
+		var e =3D document.getElementById(this.parent._selected.id);=0A=
+		e.className =3D ((!this.parent._showsid) && (e.rowIndex & =
+0x01))?'odd':'even';=0A=
+	}=0A=
+	document.getElementById(this.id).className =3D 'selected';=0A=
+	this.parent._active =3D true;=0A=
+	this.parent._selected =3D this;=0A=
+	this.parent._selectedRow =3D document.getElementById(this.id);=0A=
+	if (b) {=0A=
+		document.getElementById(this.id).childNodes(0).focus();=0A=
+		document.getElementById(this.parent._main).scrollLeft =3D 0=0A=
+	}=0A=
+	if (this.parent.onSelect) { this.parent.onSelect(this); }=0A=
+}=0A=
+=0A=
+WebFXGridRow.prototype.deselect =3D function(b) {=0A=
+	if (!(b) && ((document.activeElement.tagName =3D=3D 'INPUT') || =
+(document.activeElement.tagName =3D=3D 'SELECT'))) { return; }=0A=
+	var e =3D document.getElementById(this.parent._selected.id);=0A=
+	e.className =3D ((!this.parent._showsid) && (e.rowIndex & =
+0x01))?'odd':'even';=0A=
+	var w;=0A=
+	for (var i =3D 1; i < e.childNodes.length; i++) {=0A=
+		w =3D e.childNodes(i).style.width;=0A=
+		e.childNodes(i).style.cssText =3D this.cells[i-1].style;=0A=
+		if (w) { e.childNodes(i).style.width =3D w; }=0A=
+	}=0A=
+	this.parent._active =3D false;=0A=
+}=0A=
+=0A=
+WebFXGridRow.prototype._initRow =3D function() {=0A=
+	var e, l, v, str, d =3D this.parent.colLinkData;=0A=
+	for (var i =3D 0; i < this.cells.length; i++) {=0A=
+		e =3D document.getElementById(this.cells[i].id); v =3D 0;=0A=
+		if ((this.parent.colDefault[i]) && !(this.cells[i].value)) { =
+this.cells[i].value =3D this.parent.colDefault[i]; }=0A=
+		if (this.cells[i]._dropdown) {=0A=
+			for (l =3D 1; l < d[i].length; l++) {=0A=
+				if (d[i][l][0] =3D=3D this.cells[i].value) { v =3D l; break; }=0A=
+			}=0A=
+			str =3D d[i][v][1];=0A=
+		}=0A=
+		else { str =3D this.cells[i].value; }=0A=
+		e.childNodes(0).innerText =3D str;=0A=
+		this.cells[i]._changed =3D true;=0A=
+	}=0A=
+}=0A=
+=0A=
+WebFXGridRow.prototype._handleKey =3D function() {=0A=
+	var key =3D window.event.keyCode;=0A=
+	if ((key =3D=3D 38) || (key =3D=3D 40) || (key =3D=3D 35) || (key =
+=3D=3D 36)) {=0A=
+		var o;=0A=
+		if (key =3D=3D 38) { o =3D =
+document.getElementById(this.id).previousSibling; }=0A=
+		else if (key =3D=3D 40) { o =3D =
+document.getElementById(this.id).nextSibling; }=0A=
+		else if (key =3D=3D 35) { o =3D =
+document.getElementById(this.parent.rows[this.parent.rows.length - =
+1].id); }=0A=
+		else { o =3D document.getElementById(this.parent.rows[0].id); }=0A=
+		if (o) {=0A=
+			var main =3D document.getElementById(this.parent._main);=0A=
+			var head =3D document.getElementById(this.parent._head);=0A=
+			if (main.scrollTop > o.offsetTop) { main.scrollTop =3D o.offsetTop - =
+1; }=0A=
+			if ((main.scrollTop + main.clientHeight) - o.offsetTop - =
+head.offsetHeight < o.offsetHeight) { main.scrollTop =3D o.offsetTop - =
+(main.clientHeight - o.offsetHeight) + head.offsetHeight - 1; }=0A=
+			webFXGridHandler.all[o.id].select();=0A=
+		}=0A=
+	}=0A=
+	else if (key =3D=3D 13) { this.parent._showBox(this.cells[0].id); }=0A=
+	else if (key =3D=3D 46) { this.parent.removeRow(); }=0A=
+	//else if (key =3D=3D 33) { =
+document.getElementById(this.parent.id).childNodes(1).doScroll('scrollbar=
+PageUp'); }=0A=
+	//else if (key =3D=3D 34) { =
+document.getElementById(this.parent.id).childNodes(1).doScroll('scrollbar=
+PageDown'); }=0A=
+}=0A=
+=0A=
+WebFXGridRow.prototype._toString =3D function(r) {=0A=
+	var str =3D "<tr id=3D\"" + this.id +"\">";=0A=
+	//str +=3D "<th>" + ((this.parent._showsid)?((this.sid !=3D =
+null)?this.sid:'-'):i) + "</th>";=0A=
+	for (var i =3D 0; i < this.cells.length; i++) {=0A=
+		str +=3D this.cells[i]._toString(i, r);=0A=
+	}=0A=
+	str +=3D "</tr>";=0A=
+	return str;=0A=
+}=0A=
+=0A=
+WebFXGridRow.prototype._remove =3D function() {=0A=
+	if ((!this._deleted) && (this.sid)) { this._deleted =3D true;	}=0A=
+	else {=0A=
+		for (var i =3D 0; i + 1 < this.parent.rows.length; i++) {=0A=
+			if (this.parent.rows[i].id >=3D this.id) { this.parent.rows[i] =3D =
+this.parent.rows[i + 1]; }=0A=
+		}=0A=
+		this.parent.rows[this.parent.length-1] =3D null;=0A=
+		this.parent.rows.length -=3D 1;=0A=
+}	}=0A=
+=0A=
+WebFXGridRow.prototype._generate =3D function(e, r) {=0A=
+	var bar =3D document.createElement("TR");=0A=
+	bar.id =3D this.id;=0A=
+	for (var i =3D 0; i < this.cells.length; i++) {=0A=
+		bar.appendChild(this.cells[i]._generateCell(e, r, i));=0A=
+	}=0A=
+	return bar;=0A=
+}=0A=
+=0A=
+WebFXGridRow.prototype._dump =3D function(b) {=0A=
+	var str =3D '&' + ((this.sid !=3D null)?this.sid:'new') + '=3D';=0A=
+	var changed =3D 0;=0A=
+	if (this._deleted) {=0A=
+		str +=3D 'd';=0A=
+		changed++;=0A=
+	}=0A=
+	else {=0A=
+		str +=3D '[';=0A=
+		for (var i =3D 0; i < this.cells.length; i++) {=0A=
+			if ((this.cells[i]._changed) || (b)) { str +=3D "'" + =
+escape(this.cells[i].value) + "'"; changed++; }=0A=
+			this.cells[i]._changed =3D false;=0A=
+			if (i + 1 < this.cells.length) { str +=3D ','; }=0A=
+		}=0A=
+		str +=3D ']';=0A=
+	}=0A=
+	if (changed) { return str; }=0A=
+	else { return null }=0A=
+}=0A=
+=0A=
+function WebFXGridCell(sValue) {=0A=
+	this.id       =3D webFXGridHandler.getId();=0A=
+	this.value    =3D sValue;=0A=
+	this.index    =3D 0;=0A=
+	this.parent   =3D null;=0A=
+	this.style    =3D '';=0A=
+	this._collapsed =3D false;=0A=
+	this._changed   =3D false;=0A=
+	this._dropdown  =3D false;=0A=
+	webFXGridHandler.all[this.id] =3D this;=0A=
+}=0A=
+=0A=
+WebFXGridCell.prototype._toString =3D function(i, r) {=0A=
+	this.index =3D i;=0A=
+	var str, foo, rows =3D 0;=0A=
+	if ((this.parent.parent.groupByFirst) && (i =3D=3D 0) && =
+(!this._collapsed)) {=0A=
+		for (var n =3D r + 1; n < this.parent.parent.rows.length; n++) {=0A=
+			if (this.parent.parent.rows[n].cells[0].value =3D=3D this.value) { =
+this.parent.parent.rows[n].cells[0]._collapsed =3D true; rows++; }=0A=
+	}	}=0A=
+	str =3D "<td id=3D\"" + this.id + "\" ";=0A=
+	if (rows) { this.style =3D 'border-bottom: 0px;'; }=0A=
+	else if (this._collapsed) { this.style =3D 'border-top: 0px; =
+border-bottom: 0px;'; }=0A=
+	//this.style +=3D 'width: ' + =
+((this.parent.parent.colSizes[i])?this.parent.parent.colSizes[i]:this.par=
+ent.parent.defColSize) + 'px';=0A=
+	str +=3D " style=3D\"" + this.style + "\"";=0A=
+	str +=3D ">";=0A=
+	if (!this.value) { this.value =3D ''; }=0A=
+	if (this._collapsed) { foo =3D ''; }=0A=
+	else if ((this.parent.parent.colLinkData.length > i) && =
+(this.parent.parent.colLinkData[i].length > 1)) {=0A=
+		this._dropdown =3D true;=0A=
+		var d =3D this.parent.parent.colLinkData[i];=0A=
+		var selected =3D 1;=0A=
+		if (this.value !=3D '') {=0A=
+			if (this.value.indexOf(',') > 0) { foo =3D '<Multiple Values>'; }=0A=
+			else {=0A=
+				for (var l =3D 1; l < d.length; l++) {=0A=
+					if (d[l][0] =3D=3D this.value) { selected =3D l; }=0A=
+				}=0A=
+				if (d[0] =3D=3D -1) { foo =3D ''; }=0A=
+				else { foo =3D d[selected][1]; }=0A=
+		}	}=0A=
+		else { foo =3D ''; }=0A=
+	}=0A=
+	else { foo =3D this.value; }=0A=
+	if (foo) {=0A=
+		foo =3D foo.replace('<', '&lt;');=0A=
+		foo =3D foo.replace('>', '&gt;');=0A=
+	}=0A=
+	str +=3D '<span>' + foo + '</span></td>';=0A=
+	return str;=0A=
+}=0A=
+=0A=
+WebFXGridCell.prototype._generateCell =3D function(e, r, c) {=0A=
+	this.index =3D c;=0A=
+	var d =3D this.parent.parent.colLinkData[c];=0A=
+	var foo =3D document.createElement("TD");=0A=
+	var bar =3D document.createElement("SPAN");=0A=
+	foo.id =3D this.id;=0A=
+	if (d[1]) {=0A=
+		this._dropdown =3D true;=0A=
+		if (this.value) {=0A=
+			var foobar;=0A=
+			if (this.value.indexOf(',') >=3D 0) { foobar =3D '<Multiple Values>'; =
+}=0A=
+			else {=0A=
+				for (var i =3D 1; i < d.length; i++) {=0A=
+					if (d[i][0] =3D=3D this.value) { selected =3D i; }=0A=
+				}=0A=
+				if (this.value =3D=3D -1) { foobar =3D ""; }=0A=
+				else { foobar =3D d[selected][1]; }=0A=
+		}	}=0A=
+		else { foobar =3D ""; }=0A=
+		bar.innerText =3D foobar;=0A=
+	}=0A=
+	else { bar.innerText =3D ((this.value)?this.value:""); }=0A=
+	foo.appendChild(bar);=0A=
+	return foo;=0A=
+}=0A=
+=0A=
+WebFXGridCell.prototype.click =3D function() {=0A=
+	this.parent.parent._hideBox(true);=0A=
+	this.parent.select(true);=0A=
+	this.parent.parent._showBox(this.id);=0A=
+}=0A=
+=0A=
+=0A=
+/* box functions */=0A=
+=0A=
+WebFXGrid.prototype._showBox =3D function (id) {=0A=
+	var e =3D document.getElementById(id);=0A=
+	var o =3D webFXGridHandler.all[e.id];=0A=
+	var x =3D e.offsetLeft;=0A=
+	var y =3D e.offsetTop;=0A=
+	var isd =3D o._dropdown;=0A=
+	var txt =3D document.getElementById(this._boxid);=0A=
+	var drp =3D document.getElementById(this._dropid);=0A=
+	var dr2 =3D document.getElementById(this._drop2id);=0A=
+	var box =3D (o._dropdown)?drp:txt;=0A=
+	var main =3D document.getElementById(this._main);=0A=
+	if (o._collapsed) { box =3D txt; isd =3D false; box.readOnly =3D true; }=0A=
+	if ((this.colFlags[e.cellIndex] & 0x01) || ((this.colFlags[e.cellIndex] =
+& 0x08) && (o.parent.sid !=3D null)) || !(this.flags & 0x01)) { box =3D =
+txt; isd =3D false; box.readOnly =3D true; }=0A=
+	if (this.colDefault[e.cellIndex] && !o.value) { o.value =3D =
+this.colDefault[e.cellIndex]; }=0A=
+	if (e.offsetLeft < main.scrollLeft) { main.scrollLeft =3D e.offsetLeft; =
+}=0A=
+	else if (e.offsetLeft + e.offsetWidth > main.scrollLeft + =
+main.clientWidth) { main.scrollLeft =3D e.offsetLeft - (main.clientWidth =
+- e.offsetWidth) + document.getElementById(this._idcl).offsetWidth; }=0A=
+	x +=3D e.offsetParent.offsetLeft;=0A=
+	y +=3D e.offsetParent.offsetTop;=0A=
+	var op =3D e;=0A=
+	var coltype =3D this.colTypes[e.cellIndex];=0A=
+	var maxlen =3D 255;=0A=
+	if (coltype =3D=3D 0) { maxlen =3D 10; }=0A=
+	else if ((coltype =3D=3D 1) && (this.colLengths.length > e.cellIndex)) =
+{ maxlen =3D this.colLengths[e.cellIndex]; }=0A=
+	else if (coltype =3D=3D 2) { maxlen =3D 19; }=0A=
+	else if (coltype =3D=3D 3) { maxlen =3D 20; }=0A=
+	while (op =3D op.offsetParent) {=0A=
+		x -=3D op.scrollLeft;=0A=
+		y -=3D op.scrollTop;=0A=
+	}=0A=
+	var w =3D e.offsetWidth;=0A=
+	var foo =3D e;=0A=
+	while ((w < this.minimal) && (foo.nextSibling)) {=0A=
+		foo =3D foo.nextSibling;=0A=
+		w +=3D foo.offsetWidth;=0A=
+	}=0A=
+	var h =3D e.offsetHeight;=0A=
+	x +=3D 1; y +=3D 1; w -=3D 1; h -=3D 2; /* Compensate the position and =
+size for the the width of the cell border */=0A=
+	if (o._dropdown) {=0A=
+		var d =3D this.colLinkData[e.cellIndex];=0A=
+		if (d[0]) { box =3D dr2; h =3D '100px'; }=0A=
+		var option, selected =3D 0, count =3D 0, val;=0A=
+		val =3D ',' + o.value + ',';=0A=
+		if (o._changed =3D=3D -1) { o._changed =3D true; }=0A=
+		for (var i =3D 1; i < d.length; i++) {=0A=
+			if (isd) {=0A=
+				if ((o.parent.sid =3D=3D d[i][2]) || (d[i][2] =3D=3D 0)) {=0A=
+					option =3D document.createElement("OPTION");=0A=
+					option.value =3D d[i][0];=0A=
+					option.text  =3D d[i][1];=0A=
+					if (box.multiple) {=0A=
+						if (val.indexOf(',' + d[i][0] + ',') >=3D 0) { option.selected =3D =
+true; }=0A=
+					}=0A=
+					else {=0A=
+						if (d[i][0] =3D=3D o.value) { selected =3D count; }=0A=
+					}=0A=
+					box.add(option);=0A=
+					count++;=0A=
+			}	}=0A=
+			else if (d[i][0] =3D=3D o.value) { selected =3D i; }=0A=
+		}=0A=
+		if ((isd) && (!box.options.length)) {=0A=
+			option =3D document.createElement("OPTION");=0A=
+			option.value =3D 0;=0A=
+			option.text  =3D '<No Data>';=0A=
+			box.add(option);=0A=
+			selected =3D 0;=0A=
+		}=0A=
+		if ((isd) && !(box.multiple)) { box.selectedIndex =3D selected; }=0A=
+		else { box.value =3D d[selected][1]; }=0A=
+	}=0A=
+	else if (o._collapsed) { box.value =3D ''; }=0A=
+	else {=0A=
+		box.value =3D o.value;=0A=
+		box.maxLength =3D maxlen;=0A=
+	}=0A=
+	box.style.left   =3D x - ((isd)?1:0);=0A=
+	box.style.top    =3D y - ((isd)?1:0);=0A=
+	box.style.width  =3D w;=0A=
+	box.style.height =3D h;=0A=
+	if (document.activeElement !=3D box) { box.style.display =3D 'block'; =
+box.focus(); }=0A=
+	if (!isd) { box.select(); }=0A=
+	this._selectedCell =3D e;=0A=
+	this._selectedCell.className =3D 'selected';=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype._hideBox =3D function(nohide) {=0A=
+	//if (!nohide) { return; }=0A=
+	if (!this._selectedCell) { return; }=0A=
+	this._selectedCell.className =3D '';=0A=
+	var call =3D false;=0A=
+	var box =3D document.getElementById(this._boxid);=0A=
+	var drop =3D document.getElementById(this._dropid);=0A=
+	var dr2 =3D document.getElementById(this._drop2id);=0A=
+	if (((box.style.display =3D=3D 'block') && (drop.style.display =3D=3D =
+'block')) || ((box.style.display =3D=3D 'block') && (dr2.style.display =
+=3D=3D 'block')) || ((drop.style.display =3D=3D 'block') && =
+(dr2.style.display =3D=3D 'block'))) {=0A=
+		if (document.activeElement =3D=3D box) { drop.style.display =3D =
+'none'; dr2.style.display =3D 'none'; }=0A=
+		else if (document.activeElement =3D=3D drop) { box.style.display =3D =
+'none'; dr2.style.display =3D 'none'; }=0A=
+		else { box.style.display =3D 'none'; drop.style.display =3D 'none'; }=0A=
+		return;=0A=
+	}=0A=
+	var value =3D '';=0A=
+	if (dr2.style.display =3D=3D 'block') { drop =3D dr2; }=0A=
+	if (box.style.display =3D=3D 'block') {=0A=
+		value =3D box.value;=0A=
+		var type =3D =
+this.colTypes[webFXGridHandler.all[this._selectedCell.id].index];=0A=
+		if (this.colFlags[this._selectedCell.cellIndex-1]) { type =3D 1; }=0A=
+		if (box.readOnly) { value =3D =
+webFXGridHandler.all[this._selectedCell.id].value; }=0A=
+		else if (box.value =3D=3D '') { value =3D ''; }=0A=
+		else if (type =3D=3D 0) { value =3D =
+(isNaN(parseInt(box.value))?0:parseInt(box.value)); }=0A=
+		else if (type =3D=3D 1) { value =3D box.value; }=0A=
+		else if (type =3D=3D 2) { value =3D box.value; }=0A=
+		else if (type =3D=3D 3) { value =3D =
+(isNaN(parseFloat(box.value))?0:parseFloat(box.value)); }=0A=
+		if (this._selectedCell.childNodes(0).innerText !=3D value) { =
+webFXGridHandler.all[this._selectedCell.id]._changed =3D true; call =3D =
+true; }=0A=
+		if (!box.readOnly) { this._selectedCell.childNodes(0).innerText =3D =
+value; }=0A=
+		box.readOnly =3D false;=0A=
+		box.value =3D '';=0A=
+	}=0A=
+	else if (drop.style.display =3D=3D 'block') {=0A=
+		if (!webFXGridHandler.all[this._selectedCell.id]._dropdown) { return; }=0A=
+		if (!drop.options) { return; }=0A=
+		value =3D '';=0A=
+		if (drop.multiple) {=0A=
+			var selcount =3D 0;=0A=
+			for (var i =3D 0; i < drop.options.length; i++) {=0A=
+				if (drop.options[i].selected) {=0A=
+					if (selcount) { value +=3D ','; }=0A=
+					value +=3D drop.options[i].value;=0A=
+					selcount++;=0A=
+			}	}=0A=
+			if (selcount > 1) { this._selectedCell.childNodes(0).innerText =3D =
+'<Multiple Values>'; }=0A=
+			else { this._selectedCell.childNodes(0).innerText =3D =
+drop.options[(drop.selectedIndex >=3D 0)?drop.selectedIndex:0].text; }=0A=
+			if (value =3D=3D '') { value =3D 0; }=0A=
+		}=0A=
+		else {=0A=
+			value =3D drop.options[drop.selectedIndex].value;=0A=
+			this._selectedCell.childNodes(0).innerText =3D =
+drop.options[drop.selectedIndex].text;=0A=
+		}=0A=
+		if (webFXGridHandler.all[this._selectedCell.id].value !=3D value) { =
+webFXGridHandler.all[this._selectedCell.id]._changed =3D true; call =3D =
+true; }=0A=
+		for (var i =3D drop.options.length; i >=3D 0; i--) {=0A=
+			drop.options[i] =3D null;=0A=
+		}=0A=
+		box =3D drop;=0A=
+	}=0A=
+	else { return; }=0A=
+	if (this.colFlags[this._selectedCell.cellIndex] !=3D 1) {=0A=
+		webFXGridHandler.all[this._selectedCell.id].value =3D value;=0A=
+	}=0A=
+	box.style.display =3D 'none';=0A=
+	if (!nohide) {=0A=
+		var main =3D document.getElementById(this._main);=0A=
+		var tmp =3D main.scrollLeft;=0A=
+		this._selectedCell.childNodes(0).focus();=0A=
+		main.scrollLeft =3D tmp;=0A=
+	}=0A=
+	if ((this.flags & 0x02) && (!this._selectedCell.parentNode.nextSibling) =
+&& (this._selectedCell.childNodes(0).innerText !=3D '')) {=0A=
+		if (this.autoExpand) {=0A=
+			this.addRow(null);=0A=
+			webFXGridHandler.all[this._selectedCell.parentNode.id]._initRow();=0A=
+	}	}=0A=
+	if ((call) && (this.onChange)) { this.onChange(this._selectedCell); }=0A=
+	if (!nohide) { this._selectedCell =3D null; }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype._blurBox =3D function() {=0A=
+	if ((document.activeElement.className !=3D 'webfxGridBox') && =
+(this.hideBoxOnBlur)) { this._hideBox(); }=0A=
+}=0A=
+=0A=
+WebFXGrid.prototype.hideBox =3D WebFXGrid.prototype._hideBox;=0A=
+=0A=
+=0A=
+WebFXGrid.prototype._handleKey =3D function() {=0A=
+	var key =3D window.event.keyCode;=0A=
+	var e =3D window.event.srcElement;=0A=
+	var cell =3D null;=0A=
+	if ((key =3D=3D 37) || (key =3D=3D 39)) {=0A=
+		if (e.tagName =3D=3D 'INPUT') {=0A=
+			var r =3D document.selection.createRange();=0A=
+			var elRange =3D e.createTextRange();=0A=
+			if ((key =3D=3D 37) && (elRange.compareEndPoints("StartToStart", r) =
+=3D=3D 0)) { cell =3D this._selectedCell.previousSibling; }=0A=
+			else if ((key =3D=3D 39) && (elRange.compareEndPoints("EndToEnd", r) =
+=3D=3D 0)) { cell =3D this._selectedCell.nextSibling; }=0A=
+		}=0A=
+		else {=0A=
+			if (key =3D=3D 37) { cell =3D this._selectedCell.previousSibling; }=0A=
+			else if (key =3D=3D 39) { cell =3D this._selectedCell.nextSibling; }=0A=
+	}	}=0A=
+	else if ((key =3D=3D 38) || (key =3D=3D 40) || (key =3D=3D 13)) {=0A=
+		if (!this._selectedCell) { return false; }=0A=
+		if (((key =3D=3D 38) || (key =3D=3D 40)) && (e.tagName =3D=3D =
+'SELECT')) { return true; }=0A=
+		var e =3D this._selectedCell.parentNode;=0A=
+		if (e) {=0A=
+			var row, col =3D this._selectedCell.cellIndex;=0A=
+			var sibling;=0A=
+			if ((key =3D=3D 38) || ((key =3D=3D 13) && (window.event.shiftKey))) =
+{ sibling =3D e.previousSibling; }=0A=
+			else { sibling =3D e.nextSibling; }=0A=
+			if (sibling) {=0A=
+				this._hideBox(true);=0A=
+				row =3D webFXGridHandler.all[sibling.id];=0A=
+				var o =3D sibling;=0A=
+				var main =3D document.getElementById(this._main);=0A=
+				var head =3D document.getElementById(this._head);=0A=
+				if (main.scrollTop > o.offsetTop) { main.scrollTop =3D o.offsetTop - =
+1; }=0A=
+				if ((main.scrollTop + main.clientHeight) - o.offsetTop - =
+head.offsetHeight < o.offsetHeight) { main.scrollTop =3D o.offsetTop - =
+(main.clientHeight - o.offsetHeight) + head.offsetHeight - 1; }=0A=
+				row.select();=0A=
+				this._showBox(row.cells[col].id);=0A=
+			}=0A=
+			return false;=0A=
+	}	}=0A=
+	else if ((key =3D=3D 9)) {=0A=
+		if (!this._selectedCell) { return false; }=0A=
+		if (window.event.shiftKey) { cell =3D =
+this._selectedCell.previousSibling; }=0A=
+		else { cell =3D this._selectedCell.nextSibling; }=0A=
+	}=0A=
+	else if (key =3D=3D 27) { this._hideBox(); return false; }=0A=
+	else if ((e.tagName !=3D 'INPUT') && (e.tagName !=3D 'SELECT')) {=0A=
+		if (key =3D=3D 33) { =
+document.getElementById(this.parent.id).childNodes(1).doScroll('scrollbar=
+PageUp'); }=0A=
+		else if (key =3D=3D 34) { =
+document.getElementById(this.parent.id).childNodes(1).doScroll('scrollbar=
+PageDown'); }=0A=
+		else if (key =3D=3D 35) { this.parent.selectLast(); }=0A=
+		else if (key =3D=3D 36) { this.parent.selectFirst(); }=0A=
+	}=0A=
+	if (cell) {=0A=
+		this._hideBox(true);=0A=
+		this._showBox(webFXGridHandler.all[cell.id].id);=0A=
+		return false;=0A=
+}	}=0A=
+=0A=
+=0A=
+WebFXGrid.prototype._scroll =3D function() {=0A=
+	var main   =3D document.getElementById(this._main);=0A=
+	var head   =3D document.getElementById(this._head);=0A=
+	var idcol  =3D document.getElementById(this._idcl);=0A=
+	head.scrollLeft =3D main.scrollLeft=0A=
+	idcol.scrollTop =3D main.scrollTop;=0A=
+}=0A=
+=0A=
+=0A=
+=0A=
+WebFXGrid.prototype._headDown =3D function() {=0A=
+	var e =3D window.event.srcElement;=0A=
+	if (e.tagName !=3D "TD") { e =3D e.parentNode; }=0A=
+	if ((e.tagName =3D=3D "TD") && =
+(e.parentNode.parentNode.parentNode.parentNode.id =3D=3D this._head)) {=0A=
+		e =3D checkIfResize(e, window.event.x, this.resizeAreaV);=0A=
+		if (!e) { return; }=0A=
+		this._headCell =3D e;=0A=
+		var foo =3D new Array();=0A=
+		for (var i =3D 0; i < e.parentNode.childNodes.length; i++) {=0A=
+			foo[i] =3D e.parentNode.childNodes[i].clientWidth;=0A=
+		}=0A=
+		for (var i =3D 0; i < e.parentNode.childNodes.length; i++) {=0A=
+			e.parentNode.childNodes[i].style.width =3D foo[i];=0A=
+		}=0A=
+		this._headX =3D window.event.x;=0A=
+		this._headW =3D e.clientWidth;=0A=
+		e.style.width =3D e.clientWidth;=0A=
+		e._sort =3D false;=0A=
+		if (e.nextSibling) { e.nextSibling._sort =3D false; }=0A=
+	}=0A=
+	else { e._sort =3D true; }=0A=
+};=0A=
+=0A=
+WebFXGrid.prototype._headMove =3D function() {=0A=
+	if (this._headCell) {=0A=
+		var w =3D this._headW + (window.event.x - this._headX);=0A=
+		if (w >=3D 5) { this._headCell.style.width =3D w; }=0A=
+	}=0A=
+	else {=0A=
+		var e =3D window.event.srcElement;=0A=
+		if (e.tagName !=3D "TD") { e =3D e.parentNode; }=0A=
+		if ((e.tagName =3D=3D "TD") && =
+(e.parentNode.parentNode.parentNode.parentNode.id =3D=3D this._head)) {=0A=
+			if (checkIfResize(e, window.event.x, this.resizeAreaV)) { =
+e.style.cursor =3D 'e-resize'; }=0A=
+			else if (e.style.cursor =3D=3D 'e-resize') { e.style.cursor =3D =
+'hand'; }=0A=
+	}	}=0A=
+};=0A=
+=0A=
+=0A=
+WebFXGrid.prototype._headUp =3D function() {=0A=
+	var e =3D window.event.srcElement;=0A=
+	if (this._headCell) {=0A=
+		this._headCell =3D null;=0A=
+		this._headW =3D 0;=0A=
+		this._headX =3D 0;=0A=
+		e._sort =3D false;=0A=
+		var h =3D =
+document.getElementById(this._head).childNodes[0].childNodes(0).childNode=
+s[0].childNodes;=0A=
+		var tableCols =3D =
+document.getElementById(this._main).childNodes[0].childNodes[0].childNode=
+s;=0A=
+		for (var i =3D 0; i < h.length; i ++) {=0A=
+			tableCols[i].style.width =3D this.colSizes[i] =3D h[i].clientWidth;=0A=
+		}=0A=
+		if (this.onColResize) { this.onColResize(); }=0A=
+	}=0A=
+	else {=0A=
+		if (e.tagName !=3D "TD") { e =3D e.parentNode; }=0A=
+		if (e.tagName =3D=3D "TD") { e._sort =3D true; }=0A=
+	}=0A=
+};=0A=
+=0A=
+function checkIfResize(e, ex, i) {=0A=
+	var x =3D 0;=0A=
+	var foo =3D e;=0A=
+	while (foo.offsetParent !=3D null) {=0A=
+		x +=3D foo.offsetLeft + foo.clientLeft;=0A=
+		if (foo.scrollLeft > 0) { x -=3D foo.scrollLeft; }=0A=
+		foo =3D foo.offsetParent;=0A=
+	}=0A=
+	if ((ex - x <=3D i) && (e.cellIndex >=3D 1)) { return =
+e.previousSibling; }=0A=
+	if ((e.offsetWidth + x) - ex <=3D i) { return e; }=0A=
+	return null;=0A=
+}=0A=
+=0A=
+function compareByColumn(c, d, t) {=0A=
+	var fTypeCast =3D String;=0A=
+	if (t =3D=3D 0) { fTypeCast =3D parseInt; }=0A=
+	else if (t =3D=3D 3) { fTypeCast =3D parseFloat; }=0A=
+	return function (n1, n2) {=0A=
+		if (n1.sid =3D=3D null) { return +1; }=0A=
+		if (n2.sid =3D=3D null) { return -1; }=0A=
+		if (fTypeCast(n1.cells[c].value) < fTypeCast(n2.cells[c].value)) { =
+return (d) ? -1 : +1; }=0A=
+		if (fTypeCast(n1.cells[c].value) > fTypeCast(n2.cells[c].value)) { =
+return (d) ? +1 : -1; }=0A=
+		return 0;=0A=
+	};=0A=
+}=0A=
+=0A=
+function compareBySid(d) {=0A=
+	return function (n1, n2) {=0A=
+		if (n1.sid =3D=3D null) { return +1; }=0A=
+		if (n2.sid =3D=3D null) { return -1; }=0A=
+		if (n1.sid < n2.sid) { return (d) ? -1 : +1; }=0A=
+		if (n1.sid > n2.sid) { return (d) ? +1 : -1; }=0A=
+		return 0;=0A=
+	};=0A=
+}=0A=
+        </SCRIPT>
+
+<META content=3D"MSHTML 6.00.2900.3020" name=3DGENERATOR></HEAD>
+<BODY>
+<DIV style=3D"MARGIN-BOTTOM: 6px; OVERFLOW: hidden; WIDTH: 500px; =
+HEIGHT: 200px">
+<SCRIPT type=3Dtext/javascript>=0A=
+			var aData =3D [['xTree', '1', '1', 'A tree widget'],['xMenu', '1', =
+'2', 'A cross browser menu widget'],['Grid', '1', '1', 'A grid =
+widget'],['Generic Resize', '1', '2', ''],['xTree', '1', '1', 'A tree =
+widget'],['xMenu', '1', '2', 'A cross browser menu widget'],['Grid', =
+'1', '1', 'A grid widget'],['Generic Resize', '1', '2', ''],['xTree', =
+'1', '1', 'A tree widget'],['xMenu', '1', '2', 'A cross browser menu =
+widget'],['Grid', '1', '1', 'A grid widget'],['Generic Resize', '1', =
+'2', ''],['xTree', '1', '1', 'A tree widget'],['xMenu', '1', '2', 'A =
+cross browser menu widget'],['Grid', '1', '1', 'A grid =
+widget'],['Generic Resize', '1', '2', ''],['xTree', '1', '1', 'A tree =
+widget'],['xMenu', '1', '2', 'A cross browser menu widget'],['Grid', =
+'1', '1', 'A grid widget'],['Generic Resize', '1', '2', '']];=0A=
+			var aColHeaders =3D ['Name', 'Category', 'Author', 'Short =
+Description'];=0A=
+			var aRowIds =3D [34, 31, 12, 43, 43, 76, 12, 67, 4, 98, 21, 54, 18, =
+6, 9, 17, 63, 49, 42, 77];=0A=
+			var aLinkData =3D [[0], [0, [1, 'Widget', 0], [2, 'Javascript =
+technique', 0], [3, 'Mozilla specific', 0]], [0, [1, 'Emil', 0], [2, =
+'Erik', 0]], [0]];=0A=
+			var oGrid =3D new WebFXGrid(aData);=0A=
+			oGrid.setHeaders(aColHeaders);=0A=
+			oGrid.setRowsServerIds(aRowIds);=0A=
+			oGrid.setLinkData(aLinkData);=0A=
+			oGrid.setUri('demo?action=3Dsave&');=0A=
+			document.write(oGrid);=0A=
+			oGrid.calcSize();=0A=
+		</SCRIPT>
+</DIV><BUTTON onclick=3DoGrid.setShowSid();>setShowSid()</BUTTON><BUTTON =
+
+onclick=3Dalert(oGrid.dump());>alert(dump())</BUTTON><BUTTON=20
+onclick=3Dalert(oGrid.getGridData());>alert(getGridData())</BUTTON> =
+</BODY></HTML>
+
+------=_NextPart_000_0000_01C738CD.BA6EC060
+Content-Type: text/css;
+	charset="ks_c_5601-1987"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: =?ks_c_5601-1987?B?ZmlsZTovLy9DOi9Eb2N1bWVudHMlMjBhbmQlMjBTZXR0aQ==?=
+	=?ks_c_5601-1987?B?bmdzL3NvZnRtaW5kL7nZxcElMjDIrbjpL7HXuK615cGk?=
+	=?ks_c_5601-1987?B?uK4vd2ViZnguZWFlLm5ldF9ncmlkL2dyaWQuY3Nz?=
+
+.webfxGrid {
+	BORDER-RIGHT: buttonhighlight 1px solid; BORDER-TOP: buttonshadow 1px =
+solid; OVERFLOW: hidden; BORDER-LEFT: buttonshadow 1px solid; WIDTH: =
+100%; BORDER-BOTTOM: buttonhighlight 1px solid; HEIGHT: 100%
+}
+.webfxGridMainCorner {
+	BORDER-RIGHT: buttonshadow 1px solid; BORDER-TOP: buttonhighlight 1px =
+solid; BACKGROUND: buttonface; LEFT: 0px; FONT: menu; OVERFLOW: hidden; =
+BORDER-LEFT: buttonhighlight 1px solid; WIDTH: 35px; CURSOR: hand; =
+BORDER-BOTTOM: buttonshadow 1px solid; POSITION: absolute; TOP: 0px; =
+HEIGHT: 16px
+}
+.webfxGridMainCorner NOBR {
+	WIDTH: 100%; TEXT-ALIGN: right
+}
+.webfxGridMainCorner SPAN {
+	LEFT: 0px; MARGIN-LEFT: 5px; FONT-FAMILY: Marlett; POSITION: absolute; =
+TOP: 1px
+}
+.webfxGridMainHeader {
+	BACKGROUND: buttonface; LEFT: 0px; OVERFLOW: hidden; POSITION: =
+absolute; TOP: 0px; HEIGHT: 16px
+}
+.webfxGridMainHeader SPAN {
+	MARGIN-LEFT: 5px; FONT-FAMILY: Marlett
+}
+.webfxGridMainIdCol {
+	BACKGROUND: buttonface; LEFT: 0px; OVERFLOW: hidden; WIDTH: 35px; =
+POSITION: absolute; TOP: 0px
+}
+.webfxGridMain {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 34px; BACKGROUND: buttonface; =
+PADDING-BOTTOM: 0px; SCROLLBAR-HIGHLIGHT-COLOR: buttonface; OVERFLOW: =
+scroll; WIDTH: 100%; SCROLLBAR-SHADOW-COLOR: buttonface; =
+SCROLLBAR-3DLIGHT-COLOR: buttonhighlight; PADDING-TOP: 14px; =
+SCROLLBAR-DARKSHADOW-COLOR: buttonshadow; HEIGHT: 100%
+}
+.webfxGridMain TABLE {
+	TABLE-LAYOUT: fixed; WIDTH: 100%; empty-cells: show
+}
+.webfxGridMainHeader TABLE {
+	TABLE-LAYOUT: fixed; WIDTH: 100%; empty-cells: show
+}
+.webfxGridMainIdCol TABLE {
+	TABLE-LAYOUT: fixed; WIDTH: 100%; empty-cells: show
+}
+.webfxGridMain TABLE {
+	BORDER-RIGHT: buttonshadow 1px solid; BORDER-TOP: buttonhighlight 1px =
+solid; BACKGROUND: window; BORDER-LEFT: buttonhighlight 1px solid; =
+BORDER-BOTTOM: buttonshadow 1px solid; BORDER-COLLAPSE: collapse
+}
+.webfxGridMain TABLE TD {
+	FONT: menu; OVERFLOW: hidden; WHITE-SPACE: nowrap; empty-cells: show
+}
+.webfxGridMainHeader TABLE TD {
+	FONT: menu; OVERFLOW: hidden; WHITE-SPACE: nowrap; empty-cells: show
+}
+.webfxGridMainIdCol TABLE TD {
+	FONT: menu; OVERFLOW: hidden; WHITE-SPACE: nowrap; empty-cells: show
+}
+.webfxGridMain TABLE TD {
+	BORDER-RIGHT: buttonshadow 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: =
+buttonshadow 1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; =
+BORDER-LEFT: buttonshadow 0px solid; PADDING-TOP: 1px; BORDER-BOTTOM: =
+buttonshadow 0px solid; WHITE-SPACE: nowrap; HEIGHT: 16px
+}
+.webfxGridMain TABLE TD SPAN {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: 0px; DISPLAY: block; =
+PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; FONT: menu; OVERFLOW: hidden; =
+BORDER-LEFT: 0px; WIDTH: 100%; CURSOR: hand; PADDING-TOP: 0px; =
+BORDER-BOTTOM: 0px; WHITE-SPACE: nowrap; HEIGHT: 100%; TEXT-OVERFLOW: =
+ellipsis
+}
+.webfxGridMain TABLE TR.odd TD {
+	BACKGROUND: infobackground
+}
+.webfxGridMain TABLE TR.even TD {
+	BACKGROUND: window
+}
+.webfxGridMain TABLE TR.selected TD {
+	BORDER-RIGHT: buttonshadow 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: =
+buttonshadow 1px solid; PADDING-LEFT: 0px; BACKGROUND: #a9b2ca; =
+PADDING-BOTTOM: 0px; BORDER-LEFT: buttonshadow 0px solid; COLOR: =
+windowtext; PADDING-TOP: 0px; BORDER-BOTTOM: buttonshadow 0px solid
+}
+.webfxGridMain TABLE TR.selected TD SPAN {
+	BORDER-RIGHT: window 0px solid; PADDING-RIGHT: 1px; BORDER-TOP: window =
+1px solid; PADDING-LEFT: 1px; PADDING-BOTTOM: 0px; BORDER-LEFT: window =
+0px solid; PADDING-TOP: 0px; BORDER-BOTTOM: window 1px solid
+}
+.webfxGridMain TABLE TR.selected TD.selected {
+=09
+}
+.webfxGridMainHeader TABLE TD {
+	BORDER-RIGHT: buttonshadow 1px solid; BORDER-TOP: buttonhighlight 1px =
+solid; BORDER-LEFT: buttonhighlight 1px solid; BORDER-BOTTOM: =
+buttonshadow 1px solid
+}
+.webfxGridMainIdCol TABLE TD {
+	BORDER-RIGHT: buttonshadow 1px solid; BORDER-TOP: buttonhighlight 1px =
+solid; BORDER-LEFT: buttonhighlight 1px solid; BORDER-BOTTOM: =
+buttonshadow 1px solid
+}
+.webfxGridMainHeader TABLE TD {
+	CURSOR: hand; HEIGHT: 16px
+}
+.webfxGridMainIdCol TABLE TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; =
+PADDING-TOP: 0px; HEIGHT: 16px; TEXT-ALIGN: right
+}
+.webfxGridBox {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; DISPLAY: none; LEFT: 0px; FONT: =
+menu; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; POSITION: absolute; TOP: 0px
+}
+
+------=_NextPart_000_0000_01C738CD.BA6EC060--

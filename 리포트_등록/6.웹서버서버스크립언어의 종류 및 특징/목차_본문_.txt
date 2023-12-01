@@ -1,0 +1,94 @@
+------------ 제목 : 웹서버/서버스크립언어의 종류 및 특징
+------------ 페이지 : 7
+------------ 목차
+1. 웹 서버의 이해
+1-1. Server란?
+1-2. 웹서버 (Web server)
+1-3 웹서버의 기능
+
+2. 웹 서버의 종류
+
+3. 웹 서버의 특징
+3-1. Apache Server
+3-2. PWS(Personal Web Server)
+3-3. IIS(Internet Information Server) 
+3-4. NCSA server
+3-5. CERN server 
+3-6. Netscape Enterprise Server 
+
+4. 언어의 종류.
+4-1. 개요
+4-2. PHP
+4-3. JSP
+4-4. ASP
+
+5. 참고 사이트
+
+------------ 본문
+1. 웹 서버의 이해
+    1-1. Server란?
+        일반적으로 서버라고 하면 다른 프로그램에게 서비스를 제공하는 컴퓨터 
+        프로그램을 말한다.
+
+    1-2. 웹서버 (Web server)
+        인터네트 상에서 각종 서비스를 제공하기 위한 각종 서버용 프로그램
+        웹서버는 웹 페이지가 들어 있는 파일을 사용자들에게 제공하는 프로그램이다.
+
+    1-3 웹서버의 기능 
+       클라이언트의 요청을 해석하여 처리, 필요시 CGI에 의해 다른 프로그램과 통신, 
+       필요시 데이터베이스에 대한 엑세스 서비스
+
+2. 웹 서버의 종류
+     서버의 종류는 수백 가지가 넘게 있는데 뉴스 검색을 위한 뉴스 서버, 채팅을 위한 
+     chatting 서버, 전자상거래를 위한 merchant 서버, 카탈로그 서버, 메일 서버, 
+     전화번호 서버 등이 있다.
+     NCAS, CERN, ETSCAPE, APACHE, WEBSITE, MICROSOFTE,IIS, NIS 등등
+
+서버 스크립트
+ 언어	ASP	PHP	JSP
+운영체제	윈도우 2000	UNIX, LINUX, Windows	UNIX, LINUX, Windows
+
+웹서버	IIS, PWS	Apache, IIS	Weblogic,Tomcat,Resin, websphere
+사용언어	VB기본	C와 Perl 중간	자바
+DB	SQL Sever, Oracle	MySQL, Oracle등	SQL Sever, Oracle등
+스크립트 지원	VBScript, JScript
+	자체 지원	JavaScript
+제작사	마이크로소프트	잰드 테크놀로지	썬마이크로시스템
+
+
+3. 웹 서버의 특징.
+    3-1. Apache Server
+      - NCSA Server(1.3.x)의 개량형으로 성능과 기능면에서 우수 
+      - NCSA Server의 기능과 구성을 그대로 유지 
+     - 하나의 Port(default:80)에서 일반 Web과 Proxy 동시 지원 
+      - 각 기능의 Module화 
+      - 가장 많이 사용되는 Web Server 
+    # 참고 사이트
+
+
+
+
+
+    3-2. PWS(Personal Web Server)
+       - 개인 사용자 환경에서 동작할 목적으로 MicroSoft사에서 만든 웹 서버
+       - 개인 웹 서버용으로 제작되었기 때문에 최대 동시 접속자 수를 10명으로 제한 
+       - 웹 서비스는 PWS 프로그램이 실행 중일 때만 실행 됨
+
+
+------------ 참고자료
+http://my.netian.com/~rilla/Techno/server/httpd.html
+http://www.pcbank119.net/mojaic/project/read.php?id=18&offset=1&level=a9999984
+http://www.embeddedbiz.com/INFO/EmbeddedInfo/topic1.html
+
+------------ 상세분류 : 웹서버 프로그래밍
+------------ 판매자 : 웹서버 프로그래밍을 수강하고 있는 대학생
+------------ 키워드 : 
+웹서버
+Web
+Server
+Apache
+IIS
+
+------------ 가격 : 2000
+------------ 추가정보
+

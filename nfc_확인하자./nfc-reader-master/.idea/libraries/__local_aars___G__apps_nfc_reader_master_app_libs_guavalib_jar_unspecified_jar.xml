@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="__local_aars__:G.\apps\nfc-reader-master\app\libs\guavalib.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/guavalib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

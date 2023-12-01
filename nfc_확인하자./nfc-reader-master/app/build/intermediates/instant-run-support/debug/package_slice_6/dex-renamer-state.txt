@@ -1,0 +1,4 @@
+#Thu Nov 23 21:35:44 KST 2017
+base.0=G\:\\apps\\nfc-reader-master\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\6
+path.0=classes.dex
+renamed.0=classes.dex

@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "G:\\apps\\nfc-reader-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_icon.png.flat",
+        "source": "G:\\apps\\nfc-reader-master\\app\\src\\main\\res\\drawable-mdpi\\icon.png"
+    },
+    {
+        "merged": "G:\\apps\\nfc-reader-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_tag_viewer.xml.flat",
+        "source": "G:\\apps\\nfc-reader-master\\app\\src\\main\\res\\layout\\tag_viewer.xml"
+    },
+    {
+        "merged": "G:\\apps\\nfc-reader-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_tag_divider.xml.flat",
+        "source": "G:\\apps\\nfc-reader-master\\app\\src\\main\\res\\layout\\tag_divider.xml"
+    },
+    {
+        "merged": "G:\\apps\\nfc-reader-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_icon.png.flat",
+        "source": "G:\\apps\\nfc-reader-master\\app\\src\\main\\res\\drawable-ldpi\\icon.png"
+    },
+    {
+        "merged": "G:\\apps\\nfc-reader-master\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_icon.png.flat",
+        "source": "G:\\apps\\nfc-reader-master\\app\\src\\main\\res\\drawable-hdpi\\icon.png"
+    },
+    {
+        "merged": "G:\\apps\\nfc-reader-master\\app\\build\\intermediates\\res\\merged\\debug\\layout_tag_text.xml.flat",
+        "source": "G:\\apps\\nfc-reader-master\\app\\src\\main\\res\\layout\\tag_text.xml"
+    },
+    {
+        "merged": "G:\\apps\\nfc-reader-master\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_main.xml.flat",
+        "source": "G:\\apps\\nfc-reader-master\\app\\src\\main\\res\\menu\\menu_main.xml"
+    }
+]

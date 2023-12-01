@@ -1,0 +1,134 @@
+------------ 제목 : VisualBasic_부조관리
+------------ 목차
+1. 프로그램 개발 개요
+
+2. 프로그램 기능
+
+3. 데이터 베이스 구조 ( wedding.mdb )
+
+4. 조회 화면 구성 및 설명
+    1. 화면 레이아웃
+
+    2. 개체 구성
+
+  3. 조회 알고리즘 분석 
+
+1. 전역 변수 선언
+
+2. Form 로드 ( Private Sub Form_load() )
+
+3. 조회 실행 ( Private Sub cmdSelect_Click() )
+
+4. DataGrid 크기 조정 ( Private Sub colWidthFix() )
+
+6. 데이터 정렬 ( DataGrid1_HeadClick(ByVal ColIndex As Integer) )
+
+5. 입력 화면 구성 및 설명
+
+1. 화면 레이아웃
+
+2. 개체 구성
+
+3. 입력 알고리즘 분석 ( Private Sub cmdInsert_Click() )
+       1. 입력 실행 ( Private Sub Form_load() )
+6. 참고
+
+------------ 본문
+1. 프로그램 개발 개요
+결혼이라는 일륜지대사의 부조금 현황을 기록하기 위해 개발을 하였습니다.
+2. 프로그램 기능
+1. 부조금 조회 기능
+2. 부조금 정렬 기능
+3. 부조금 입력 기능
+4. 부조금 삭제 기능
+5. 전체 합계 출력
+
+3. 데이터 베이스 구조 ( wedding.mdb )
+필드명	데이터형	자리수
+gubun	텍스트	4
+name	텍스트	255
+han_name	텍스트	255
+sex	텍스트	4
+help_money	숫자	
+visit_time	날짜	
+
+4. 조회 화면 구성 및 설명
+    1. 화면 레이아웃
+ 
+2. 개체 구성
+개체	이름	속성	설정
+명령단추	cmdInsert	caption	입력
+명령단추	cmdDelete	caption	삭제
+명령단추	cmdUpdate	caption	저장
+명령단추	cmdSelect	caption	조회
+라디오상자	searchGb(0)	caption	전체
+라디오상자	searchGb(1)	caption	신랑
+라디오상자	searchGb(2)	caption	신부
+ADO Control	Adodc1	caption	
+Data Grid	DataGrid1	DataSource	Adodc1
+프레임	Frame1	caption	통계
+레이블	lbResult1	caption	신랑
+레이블	lbResult2	caption	신부
+레이블	lbResult3	caption	전체
+레이블	lbTotal1	caption	0
+레이블	lbTotal2	caption	0
+레이블	lbTotal3	caption	0
+레이블	lbWon1	caption	만원
+레이블	lbWon2	caption	만원
+레이블	lbWon3	caption	만원
+
+3. 조회 알고리즘 분석 
+1. 전역 변수 선언
+ 
+    
+    2. Form 로드 ( Private Sub Form_load() )
+
+
+
+
+        가). dbStr 디비연결 정보 초기화
+        나). 조회 루틴 수생
+        다). 금액 통계 출력
+
+     3. 조회 실행 ( Private Sub cmdSelect_Click() )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        가). Adodc1.ConnectString = dbStr
+      :> 데이터 베이스 연결
+        나). Adodc1.CommandType = adCmdText 
+      :> 쿼리문 실행을 위한 형태로 변경
+        다). sql = "select …………."
+	      :> 쿼리문 생성
+        라). Adodc1.RecordSource = sql & where
+	      :> 쿼리문 실행
+마). DataGrid  크기 조정
+	      :> colWidthFix 호출
+	바). 통계 출력 
+	      :> totalPrint  실행
+
+------------ 참고자료
+책 : 비쥬얼 베이직 21 완성 ( 인포 북 )
+     비주얼베이지6 데이터베이스 완벽 가이드 ( 가남사 )
+     Microsoft Visual Basic DataBase Programming ( 삼양출판사 )
+
+http://www.kbtech777.co.kr/lecture/prog/vb/11localdb/localdb2_5.htm
+
+
+------------ 상세분류 : 컴퓨터 프로그래밍
+------------ 가격 : 3000
+------------ 추가정보
+
