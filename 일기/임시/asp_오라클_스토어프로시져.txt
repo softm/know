@@ -1,0 +1,751 @@
+목차
+1. PL/SQL(스토어드 프로시저 and 스토어드 펑션)란?
+2. PL/SQL(스토어드 프로시저 and 스토어드 펑션)의 종류?
+3. PL/SQL(스토어드 프로시저 and 스토어드 펑션) 작성의 예
+4. PL/SQL(스토어드 프로시저 and 스토어드 펑션)를 마치며..
+
+
+서론
+
+제가 만화를 좋아하는 관계로 시간제 만화방에 가서 만화를 많이 보는데요.
+
+어제 슬램덩크를 그린 작가가 그린 베가본드라는 만화를 보았습니다.
+
+나온지는 꽤 된 것 같았는데..
+
+ㅎㅎㅎ(제가 좀 바빠서)
+
+거기서 본 하나의 결론은 옛날 일본의 사무라이들이 판치던 시대나
+
+지금이나 다를게 없다는거죠..
+
+거기 보면 진검승부를 펼치는데요.
+
+주인공은 목검으로써 상대방과 싸우지만 
+
+목검임에도 불구하고 상대는 죽음을 맞이하죠.
+
+지금의 IT업계도 마찬가지인 것 같네요.
+
+자신의 기술을 가지고 진검승부를 하며 살아가는 것처럼 
+
+보이네요.
+
+자신의 기술을 연마하지 않는 사람들은 점점 뒤쳐지거나
+
+퇴출되는 모습으로 보이네요.
+
+ㅋㅋㅋㅋ
+
+저는 오늘도 칼을 간답니다. 슥슥슥슥~~~~~~(칼가는 소리)
+
+그럼 본론 시작합니다.
+
+PL/SQL이란?
+먼저 PL/SQL을 풀어서 원어부터 알아야겠죠.
+
+PL/SQL이란 Procedural(절차적인) Language로서 SQL의 확장입니다.
+(ㅋㅋㅋ 오라클 온라인 메뉴얼에 보면 요로코롬 나와 있습니다.)
+
+PL/SQL을 procedure나 function 또는 package단위로 만들 수 있습니다.
+
+위에선 빠져 있는데 PL/SQL에서는 anonymous blocks이란 걸 사용할 수도 있답니다.
+
+일반적으로 PL/SQL은 서버측에 저장되는데요.
+
+이 anonymous blocks은 이름도 없고 저장도 되지 않는 일회성적인 놈이죠.
+(SQL*PLUS에서나 혹시 Oracle 툴에서만 사용가능하죠..)
+(ASP에선 쓸데없음)
+
+근데 제가 글을 쓸려고 하니 PL/SQL에 대한 부분이 너무나 방대해서 
+
+글로는 쓰지 못하고 우리가 관심있어하는 stored procedure와 stored function에 대해서
+
+알아보도록 하죠..
+(왜냐구요.. ASP에서 쓸꺼니까... 무하하하)
+
+만약에 여러분들이 Oracle상에서 stored procedure나 stored function을 짤려고 한다면
+
+PL/SQL에 대한 책을 사야하겠죠..  <-- 아마도 요런거 모르는 사람많을꺼에요.(저도 6개월전에 몰랐으니
+까 쿠쿠쿠)
+
+그럼 오늘 강좌 이만..
+
+고맙습니당. 
+
+데브칩이 무지 쌓였습니다. 날려먹긴 했지만
+
+하여튼 좀 더 모아서 다시 데브크래프트 할 껍니다.
+
+데브칩 한 번 눌려주세요..
+
+참고서적:
+
+(1)SQL*PLUS & PL/SQL   
+   (저)현대정보기술주식회사 교육 센터 
+(2)Oracle Online Manual 8.1.6기준 <- 요거는 영문판입니다.. 해석하는 힘이 좀 -_-;;;;
+(3)대용량DB솔루션
+(4)깜찍이님의 강좌 참고
+
+p.s.
+ 틀린 내용에 대해서는 가차없이 꾸짖어 주십시오.
+
+ poo97@nownuri.net으로 메일을 보내주십시오.
+ 
+  이 글을 퍼 가실 때는 저에게 연락을 주시길...
+  (모든 저작권은 곰탱이에게 귀속되어 있습니다.  쿨럭~~~~~)
+   -------------------------------------------------------------------------------------------------------
+
+ㅋㅋㅋ
+초등학교때 3년동안 컴학원에서 오락에 미쳐살다가 겜프로그래머가 되겠다고 맘 먹은 어린
+
+소년이 있었슴당.
+
+이 놈 운좋게 컴공으로 대학교 들어가서 1학년때 껨학원가서 1년 다니다가 변변한
+겜하나 못만들어보고 나왔죠..
+
+그리고도 겜프로그래머하겠다고 깔짝대는 그 놈..
+(들리는 소문에는 요즘 밤마다 회사에 남아서 Direct-X로 프로그램 짠답니다.)
+
+그 놈이 바로 접니다. -_-;;;
+(어찌 어찌 하다보니 웹프로그래머가 되어 있더군요. 가끔 VB도 쓰지만.. 아 참 Pro*C도 한 3개월 했군
+요.)
+--> 아 참 회사옮기면서 자바도 한 3주했군요..  
+
+안해본게 없군요.. 
+
+다만 특히 잘하는게 없다는 말도..
+
+어디 좋은 겜회사 있음 추천이라도 ... 쿨럭 -_-;;(API도 열씸히 하고 있슴당.. )
+(요점은 요겁니당.)
+
+그럼 시작합니다.
+
+2. PL/SQL(스토어드 프로시저)의 종류?
+
+앞에서 설명을 다해버렸음..
+
+앞 강좌의 내용을 요약하자면..
+
+PL/SQL은 Procedural SQL이구요.. <-- 절차적 SQL이란건 아시죠..
+
+(전 이때까지 Programmable SQL인줄 알았음 -_-;;; 에구 부끄러워라.. ^_^;;;)
+
+글구 그 종류로써 Stored Procedure과 stored function과 package가 있는데..
+
+우리의 주된 관심사는 asp에서 연동하는 거니까
+
+일단 stored Procedure와 stored function에 대해서만 알아보죠..
+
+첫 번째로 Stored Procedure에 대해서 알아보죠.
+
+VB를 해보신 분들은 다 아실꺼에요..
+
+Procedure가 뭔지 Function이 뭔지..
+
+그러나 여기 초보 수준의 강좌이므로 이것도 설명하겠습니다.
+(기초가 튼튼해야 실력이 쌓이죠.. 전 기초가 약하죠.. 무하하하)
+
+Procedure은 일반적으로 인자값으로 Procedure안에 들어가는
+
+입력값과 출력값을 반환합니다.
+
+아마도 C를 해보셨다면 Call by reference에 가깝다고 보시면 되겠죠.
+(이것도 프로그래밍 언어론에서 시험칠때 외운 기억이 -_-;;;   쿨럭 )
+
+예를 들죠..
+
+Add라는 Stored Procedure가 있습니다.
+
+이 놈의 주된 원리는 넣어준 숫자를 보고 3을 더해서 밖으로 뽑아낸 것입니다.
+
+그럼 이런 식으로 값을 가져오죠..
+
+Add(In Innum, Out OutNum)
+
+result라는 변수를 선언하죠 
+
+Add(4, result)하였을 때 
+
+다들 이해하셨겠죠..
+
+result에는 7이 저장되는 겁니다.
+
+(너무 쉽다구요.. 무하하하 d_(^.^) Good)
+
+그럼 두번째로 Function에 대해서 설명해볼까요..
+
+어 안다구요.. 설명하지 말라구요..
+
+뭐 그래도 모르시는 분들을 위해 설명을 좀 
+
+혹시 남친없으시고 궁금하신 여성분들은 저에게 개인적으로 전화번호와 함께 메일을...
+
+퍽...
+
+집중하겠슴당..
+
+Function이라는 놈은 우리가 정해준 이 놈의 이름에 값이 반환되는 형태이죠..
+
+예를 들자면 이렇습니다.
+(위에서 사용한 Add함수를 한번더 쓰겠습니다.)
+
+Add(4)   <-- 이 놈 자체가 값이 7이 되는 겁니다.
+
+result라는 변수를 선언했다고 하면
+
+result = Add(4)
+
+다들 아셨겠죠..
+
+Add(4)라는 함수이름에 저장이 되었죠..
+(요 놈은 Call by Value라고 프로그래밍 언어론 할 때 배운 생각이 쿨럭)
+
+그럼 Procedure와 Function의 차이는 정확히 아셨죠..
+
+주로 Procedure의 경우는 UPDATE나 INSERT, DELETE를 같이 사용할 때 많이 쓰이고
+(물론 SELECT도 쓸 수 있어요..)
+
+Function쪽은 SELECT문을 사용하여 값을 반환하는 쪽이죠..
+
+그럼 이제 실무적인 소스를 보아야겠지만 
+
+시간관계상 지면관계상 다음강좌에서 보여드리겠습니다.
+
+글구 시간 나시면 데브칩 좀..
+
+쿠쿠쿠
+
+요즘 데브피아의 Land War에 맛을 들여서리..
+
+휘리릭..
+
+
+참고서적:
+
+(1)SQL*PLUS & PL/SQL   
+   (저)현대정보기술주식회사 교육 센터 
+(2)Oracle Online Manual 8.1.6기준 <- 요거는 영문판입니다.. 해석하는 힘이 좀 -_-;;;;
+(3)대용량DB솔루션
+(4)저의 잡다한 지식들...
+
+
+p.s.
+ 틀린 내용에 대해서는 가차없이 꾸짖어 주십시오.
+
+ poo97@nownuri.net으로 메일을 보내주십시오.
+ 
+  이 글을 퍼 가실 때는 저에게 연락을 주시길...
+  (모든 저작권은 곰탱이에게 귀속되어 있습니다.  쿨럭~~~~~)
+ 
+ 
+-------------------------------------------------------------------------------------------------------------------
+자 여러분들이 고대하시던 실제 소스 보는 시간입니다.
+
+여러분들이 데브칩을 많이 주셨는데(전 그걸로 책 살 수 있는 줄 알았슴당..)
+
+데브크래프트를 해서 10000칩을 날려먹었답니다.
+(4전 3승 1패인데 한 판지면서 전멸당했담스...)
+
+스토어드 프로시져와 스토어드 펑션에 대한 예를 만들어야 하는데 갑자기 귀찮아진다는 생각이 문득..
+
+만들어 놓은걸로 글을 쓰겠습니다.
+
+3. PL/SQL(스토어드 프로시저) 작성의 예
+
+먼저 PL/SQL의 BLOCK구조를 알아보죠..
+
+PL/SQL은 프로그램을 논리적인 블록으로 나누게 하는 구조화된 블록언어입니다.
+
+PL/SQL블록은 선언부(선택적), 실행부(필수적), 예외 처리부(선택적)로 구성되고 BEGIN과
+
+END는 키워드로 반드시 기술하셔야 합니다. PL/SQL 블록에서 사용하는 변수는 블록에
+
+대해 논리적으로 선언할 수 있습니다. 변수들과 그 외의 식별자를 참조하고 선언함으로써 PL/SQL 블록 내
+에서
+
+값을 저장하고 변경할 수 있습니다.
+
+* DECLARE
+   -> variables, cursor, user_defined, exception
+* BEGIN
+   -> SQL, PL/SQL statement
+* EXCEPTION
+   -> actions to perform when errors occur
+* END
+
+참조:
+1)PL/SQL Block내에서는 한 문장이 종료할 때마다 세미콜론(;)을 기술합니다.
+2)END뒤에 세미콜론(;)을 사용하여 하나의 Block이 끝났다는 것을 명시합니다.
+3)PL/SQL Block의 작성은 편집기를 통해 파일로 작성할 수 있고 SQL*PLUS에서 바로
+  작성할 수도 있습니다.
+4)SQL Buffer에서 PL/SQL을 실행하기 위해 "/"을 사용하며 성공적으로 실행된다면
+  PL/SQL procedure successfully complemented라는 Message가 출력됩니다.
+
+그럼 이제 실전으로 들어갈까요...
+
+1)먼저 실습할 테이블을 만들어야겠죠..(Static SQL강좌할 때 쓰던 겁니다.)
+(-_-)v  <-- 이 뛰어난 재활용정신..(사실 귀찮아서리...)
+
+CREATE TABLE employee
+(
+    empno        varchar2(4) primary key,       /* 사원번호 컬럼 */
+    empname     varchar2(20) not null,       /* 사원이름 컬럼 */
+    empaddr        varchar2(200) not null,       /* 사원주소 컬럼 */
+    empcphone   varchar2(11),           /* 사원핸드폰 컬럼 */
+    empstatus   varchar2(1)               /* 사원상태 컬럼 */
+);
+
+2)데이터를 입력해야겠죠..
+
+insert into employee values("0001", "김영준", "서울 서초구 뱅뱅사거
+리", "01133301011", "1");
+
+insert into employee values("0002", "김미정", "서울 뱅뱅사거리2", "01133301011", "1");
+
+commit
+
+
+3)스토어드 프로시져를 만듭니다.
+  (당근 SQL*PLUS나 혹시 Toad쓰시는 분은 procedure Editor를 사용하세요.)
+
+CREATE OR REPLACE PROCEDURE Emp_No_SELECT(emp_number  IN  employee.empno%TYPE,
+                                         emp_ret     OUT employee.empname%TYPE) AS
+BEGIN
+    SELECT empname
+      INTO emp_ret
+      FROM employee
+      WHERE empno = emp_number;
+END;
+
+/
+
+
+SQL> var empname varchar2(20);
+SQL> execute  emp_no_select("0001", :empname);
+
+PL/SQL 처리가 정상적으로 완료되었습니다.
+
+SQL> print empname
+
+EMPNAME
+--------------------------------
+김영준
+
+SQL> 
+
+요렇게 테스트를 합니다.
+
+그럼 ASP랑 연동시켜볼까요?
+
+먼저 선행되어야 할 것 
+a)Oracle Net8 Configration Asistance로 로컬네임서비스를
+
+  세팅을 해놓아야겠죠..
+
+  제가 연결한 DB는 Oracle 8.1.6에다가 SID는 test이구 
+
+  계정은 당근 기본 계정(scott/tiger)으로 했음당..
+
+b)가능하시다면 Static SQL 강좌를 먼저 보시고 이 강좌를 보시길 원합니다.
+
+<%
+    Option Explicit       "<- 습관적으로 붙여주시길..
+%>
+<html>
+<head>
+<!--#include FILE=".\adovbs.inc"-->      "Command객체 사용시 꼭 필요
+<%
+    Dim conObj    "<-- 컨넥션 변수
+
+    "DB연결
+    Set ConObj = Server.CreateObject("ADODB.Connection")
+    ConObj.Open "test", "scott", "tiger"
+
+    Dim DbCmd  "<-- Command 변수선언
+
+    Dim ReturnName  "<-- Output 변수값을 담을 변수
+
+    "Command객체 생성
+    Set DbCmd = Server.CreateObject("ADODB.Command")
+    Set DbCmd.ActiveConnection = ConObj
+
+    with DbCmd
+        .CommandText = "emp_no_select"    "<-- Stored Procedure의 이름
+        .CommandType = adCmdStoredProc    "<-- Stored Procedure사용하겠다는 변수
+
+        "Stored Procedure에 쓸 파라미터 선언(Input과 Output 파라미터 선언)
+        .Parameters.Append    .CreateParameter("emp_number", adVarChar, 
+adParamInput, 4)
+        .Parameters.Append    .CreateParameter("emp_ret", adVarChar, adParamOutput, 
+20)
+        .Parameters("emp_number") = "0001" "<-- Input파라미터에 값을 넣어주는 부분
+        
+        .Execute <-- 주의:실행을 먼저 시킨다음에 값을 변수에 넣어야 합니다.
+
+        ReturnName = .Parameters("emp_ret")  "<-- Output값을 받는 부분
+    End with
+
+    "메모리해제        
+    Set DbCmd = Nothing    
+    Set ConObj = Nothing
+
+
+    "결과출력
+    Response.write "하하하 멋진 내 이름:" & CStr(ReturnName) & vbCrlf
+%>
+
+
+c)드뎌 하나의 Stored Procedure를 ASP에서 사용해보았네요..
+
+  사실 Stored Procedure안에서는 DML(INSERT, DELETE, UPDATE)와 SELECT문을
+
+  잘 쓸 수 있는데 그러면 강좌를 아마 100회까지 해야 할지도 모르기 때문에
+
+  기타 여러가지 사항들은 여러분께 맡깁니다.
+
+d)주의점:
+       (ㄱ)스토어드 프로시져 생성시 아래와 같이 생성하면 만약 기존에 Emp_No_SELECT라는
+           
+      스토어드 프로시져가 있었다면 소리소문없이 없어지고 새로운 내용으로 대체되니
+
+      그 점 꼭 명심하시길..
+        
+          CREATE OR REPLACE PROCEDURE Emp_No_SELECT(emp_number  IN  employee.empno%
+TYPE, 
+         
+        (ㄴ)글구 사용자가 Stored Procedure를 가질 권한(Previlege)를 가지고 있어야 하면
+       
+       Stored Procedure내에서 데이터를 수정하거나 입력하는 테이블에 대한 접근권한이
+
+       있어야 합니다라고 Oracle Online Manual에 나와 있더군요..
+
+     아 정말 강좌 쓴다고 머리 빠집니당..
+
+     앗 머리빠진다고 전 늙은 사람아닙니다. 이제 갓 자라나는 20대 초반입니다.
+         
+     ㅋㅋㅋ
+
+그럼 스토어드 펑션을 만들어 볼까요
+
+먼저 테이블을 만들고(위에서 만들었죠.)
+
+그런 다음 데이터를 입력해야죠.(1)테이블생성은 건너 뛰었습니당. -_-;;;
+
+위에서 이미 입력했지만 조금 더 입력해볼까요?
+
+(2)데이터 입력
+
+insert into employee values("0003", "김은영", "부산시 영도구 ", "01233301011", "2");
+
+insert into employee values("0004", "김현주", "부산시 중구", "01733301011", "3");
+
+자, 그럼 스토어드 펑션을 만들어 볼까요?
+
+(3)스토어드 펑션 생성
+
+CREATE OR REPLACE FUNCTION Emp_Cnt_Select(
+      Emp_Number  IN  Employee.EmpNo%TYPE
+) RETURN VARCHAR2
+IS
+Emp_Cnt NUMBER := 0;   /* 내부 변수를 선언하는 부분 */
+/* 예제:
+다른 변수들은 요렇게 선언하죠..
+Total NUMBER := 0;
+ChkNum NUMBER := 0;
+VAcctNum VARCHAR2(11) := NULL;
+VTemp VARCHAR2(11) := NULL;
+SeqNum VARCHAR2(5) := NULL;
+*/
+BEGIN
+    SELECT COUNT(EmpName)
+      INTO Emp_Cnt
+      FROM Employee
+     WHERE EmpNo = Emp_Number;
+
+    return Emp_Cnt;
+
+    EXCEPTION
+         WHEN NO_DATA_FOUND THEN
+               NULL;
+      WHEN OTHERS THEN
+            NULL;
+
+END Emp_Cnt_Select;
+
+
+(4)SQL*PLUS에서 직접 실행시키면 요렇게 됩니다.
+    
+    SQL> var emp_no number;
+    SQL> EXECUTE :emp_no := emp_cnt_select("0001");  <-- 스토어드 펑션은 요렇게 실행하죠..
+
+         PL/SQL 처리가 정상적으로 완료되었습니다.
+
+    SQL> print emp_no
+
+        EMP_NO
+    ----------
+         1
+
+
+
+ (스토어드 펑션의 경우 SELECT절의 컬럼(필드)로 들어갈 수도 있습니다.)
+ (예)SELECT empname, emp_cnt_select("0001") FROM employee WHERE empno = "0001";
+     그래서 Stored Function이 더 많이 쓰이죠...
+     
+(5)ASP에서는 요렇게 사용하시면 됩니다.
+
+<%
+    Option Explicit
+%>
+<html>
+<head>
+<!--#include FILE=".\adovbs.inc"-->
+<%
+    "컨넥션과 레코드셋관련
+    Dim conObj
+    Set ConObj = Server.CreateObject("ADODB.Connection")
+    ConObj.Open "test", "scott", "tiger"
+
+    Dim DbCmd, oRs
+
+    Dim ReturnName
+
+    Set DbCmd = Server.CreateObject("ADODB.Command")
+    Set DbCmd.ActiveConnection = ConObj
+
+    with DbCmd
+        .CommandText = "Emp_Cnt_Select("0001")"   "<-- input되는 변수를 이런 식으로 받
+음...
+        .CommandType = adCmdStoredProc
+         "-----------------------------------------------------------------------------
+        ".Parameters.Append    .CreateParameter("emp_number", adVarChar, 
+adParamInput, 4)
+        ".Parameters("emp_number") = "0001"
+        " 전 위와 같이 해야 하는 줄 알았는데 아니더군요..
+        " Input 파라미터는 Emp_Cnt_Select("0001")식으로 적어주어야 합니다.2001-08-21
+        "-----------------------------------------------------------------------------
+        
+        .Parameters.Append    .CreateParameter("emp_ret", adVarChar, 
+adParamReturnValue, 20)
+        
+        .Execute
+         ReturnName = .Parameters("emp_ret")
+    End with
+            
+    Set DbCmd = Nothing
+    Set ConObj = Nothing
+
+    Response.write "몇명이나 되지:" & CStr(ReturnName) & vbCrlf
+%>
+
+(주의사항) 스토어드 펑션의 경우 주로 SELECT문에 많이 쓰입니다.
+          왜냐하면 값을 반환해야 하기 때문이죠.. 
+      글구 한 행(Row or Record)의 한 열(Column or Field)를 가져올 수 있습니다.
+          그러나 잘 생각해보면 한 행을 다 가져올 수도 있습니다.
+          각각의 반환될 열들을 구분자와 함께 연결시킨다면 한 열로 반환시킬 수 있겠죠..
+
+      쿠쿠쿠
+
+참고서적:
+
+(1)SQL*PLUS & PL/SQL   
+   (저)현대정보기술주식회사 교육 센터 
+(2)Oracle Online Manual 8.1.6기준 <- 요거는 영문판입니다.. 푸하하 제맘대로 해석했음.. -_-;;;
+(3)대용량DB솔루션
+(4)글구 깜찍이님의 강좌참고..
+(5)저의 잡다한 지식들...
+  
+p.s.
+ 틀린 내용에 대해서는 가차없이 꾸짖어 주십시오.
+
+ poo97@nownuri.net으로 메일을 보내주십시오.
+ 
+  이 글을 퍼 가실 때는 저에게 연락을 주시길...
+  (모든 저작권은 곰탱이에게 귀속되어 있습니다.  쿨럭~~~~~)
+-------------------------------------------------------------------------------------------------------------------
+참 이번에 두 개의 강좌를 올리면서 느꼈습니다.
+
+저 나름대로는 Oracle에서 Stored Procedure와 Stored Function에 대해서 많이 
+
+알고 있었다고 생각했었는데 그게 아니었구나라는 생각이 드네요.
+
+그리고 무척이나 죄송한 것은 PL/SQL의 로직을 처리할 수 있는 부분
+
+IF ... THEN
+ELSE ...
+END IF;
+
+WHILE ...
+END LOOP;
+
+FOR ... IN LOOP
+END LOOP;
+
+위와 같은 부분에 대한 설명을 하지 못한 것입니다.
+
+PL/SQL의 경우 깊게 들어가면 끝이 없기 때문에 아주 간단한 예제와 
+
+테스트 결과를 올리면서 끝내었습니다.
+(직접 공부해보시길..)
+
+아 참 글구 Cursor란 놈은 꼭 공부해두셔야 합니다.
+
+무척 유용하게 쓰이니까요.
+
+4. PL/SQL(스토어드 프로시저 and 스토어드 펑션)를 마치며..
+
+한 편의 글을 쓴다는 것이 이렇게 어려울 줄이야..
+
+Static SQL강좌를 올리고 1편을 무려 4번이나 수정하였습니다.
+
+이번 강좌를 쓰면서 저도 PL/SQL에 대해서 다시 공부하게 되었답니다.
+
+ㅋㅋㅋㅋ
+
+그럼 안녕히 계세요..
+
+나중에 시간이 되면 좀 더 수준높은 PL/SQL강좌로 다가서겠습니다.
+(차후에 Cursor를 이용한 부분과 로직이 들어간 부분을 함께 올리겠습니다.)
+(전 이제 게임을 짜러 가 보렵니다. 그럼 이만.)
+
+(*^_^*)/~~~~~
+
+p.s 아참 애인 없으신 여자분들은 연락을 주세요.. 
+
+    울 팀에 멋지고 잘생긴 울 팀장님이 계십니당..
+
+    영어도 잘하시고 프로그램도 잘하시고..
+
+    카카카..
+
+    조건:키는 적당하고 이쁘고 통통해야함 
+         (과연 지원할까???)
+
+
+추천만화: 카이저(원제:Apocalypse of gamble) 
+         <-- 그림은 좀 마음에 안들지만 내용은 무지 잼있슴니당..
+         한 번 꼭 보시길...
+     이 만화를 잘 보시면 부자 될 수 있슴당..
+ 
+참고서적:
+
+(1)SQL*PLUS & PL/SQL   
+   (저)현대정보기술주식회사 교육 센터 
+(2)Oracle Online Manual 8.1.6기준 <- 요거는 영문판입니다.. 헉헉 힘들어서 필요한 부분만 보았음..
+(3)대용량DB솔루션
+(4)저의 잡다한 지식들...
+  
+p.s.
+ 틀린 내용에 대해서는 가차없이 꾸짖어 주십시오.
+
+ poo97@nownuri.net으로 메일을 보내주십시오.
+ 
+  이 글을 퍼 가실 때는 저에게 연락을 주시길...
+  (모든 저작권은 곰탱이에게 귀속되어 있습니다.  쿨럭~~~~~)ㄴ
+-------------------------------------------------------------------------------------------------------------------
+4. Static SQL을 마치며..
+
+앗 벌써 Static SQL강좌가 끝날 때가 되었네요.
+
+모두들 마지막 강좌라서 내용이 없으려니 해서 안보시는거 아니겠죠.
+
+ㅋㅋㅋ
+
+전 악당이라서 원래 사람들 놀래키는 짓을 좋아하죠..
+
+그럼 강좌 시작합니다.
+
+제가 이 글을 쓰게 된 동기는 데브피아에 올라온 Stored Procedure에
+
+대한 답변글을 쓰면서
+
+이번에 8개월동안 작업한 프로젝트에 적용한 기술들을 사람들과 공유하고 싶다는 생각이 들어서입니다.
+
+그리고 DevPia에 강좌를 한 번 올려보고 싶었습니다.
+
+프로젝트초기에 제가 강력하게 주창해서 Stored Procedure(Oracle에선 PL/SQL이라고도 하죠)
+
+과 MTS의 조합으로 갈려고 했죠.
+
+Stored Procedure 20개를 만들고 있던 도중 장책임님(엔코아책임컨설턴트)이
+
+오셔서 한마디 하시더군요.
+
+"Stored Procedure 많이 쓰지마."
+
+Stored Procedure(이하 PL/SQL이라고 칭함)는 Oracle의 경우 
+
+컨넥션타임은 적게 걸리지만 자체 PL/SQL번역기를 거치기 때문에
+
+컴파일이 되어 있다는 점은 좋지만 번역기 자체가 부하기 있다고 합니다.
+(그리고 저의 의견으로 만들어진 20개의 Stored Procedure들이 버려지게되었다는 슬픈 전설이..)
+
+그리고 나서 Static SQL을 권해주셨습니다.
+(제가 엔코아라고 출처를 정확하게 밝히는 것은 엔코아 광고를 하는 것도
+
+ 아니고 엔코아에서 교육받았다고 자랑하고 싶어서도 아닙니다.
+
+ 그 회사에 계신 컨설턴트 분이 이 바인딩 파라미터를 사용하는 방법을 
+
+ 알아내기 위해 무척 고생을 하셨다는 말씀을 들었기 때문입니다.
+
+ 한국 MS본사에서도 모르고 있었다고 말씀하시더군요.
+
+ -->그리고 최소한 어떤 정보를 참고하여서 글을 쓸 때는 
+
+ 그 분의 노력에 대한 댓가로써 이름이라도 기재해야 한다는
+
+ 생각이 들어서입니다.
+
+ 자바에선 Prepared Statement라고 해서 이 바인딩 파라미터 기법이
+
+ 디폴트로 쓰이고 있는데 말이죠.
+ 
+ -> 쓰는 사람들도 왜 쓰는지는 잘 모르더군요.. 쿨럭 
+ )
+
+ 우리나라 사이트 중에서 MTS와 Stored Procedure를 사용해서
+
+ 3-Tier로 만든 사이트가 그렇게 많지 않은 걸로 알고 있습니다.
+
+ 물론 그걸 완벽하게 구성하기도 무척 힘든일이구요.
+
+ ASP로 만든 사이트가 좀 더 속도향상을 가져오기 위해선
+
+ Static SQL이 하나의 좋은 방법이 될 수 있지 않을까요?
+
+ 그래서 이렇게 짬을 내서 글을 올립니다.
+
+ 그리고 조금 있다가 PL/SQL 그러니까 오라클의 Stored Procedure기법을
+
+ asp에서 사용하는 방법을 강좌로 올리겠습니다.
+
+ 깜찍이님의 강좌와 무척 유사하겠지만 깜찍이님은 MS SQL을 기반으로
+
+ 글을 쓰셨기 때문에 아마 내용이 다른 부분이 많겠죠.
+
+ 지금까지 글을 읽어주셔서 감사드리고.
+
+ 이 글을 쓰는데 도움을 주신 장책임님과 전팀장님과 창현씨께 감사를 드립니다.
+
+ 그럼 이만..
+
+ 다음 강좌를 기대해주세요.
+
+ (*^_^*)/~~~~~
+
+ (앗 실물이랑 너무 똑같당.)
+
+p.s.
+ 틀린 내용에 대해서는 가차없이 꾸짖어 주십시오.
+
+ poo97@nownuri.net으로 메일을 보내주십시오.
+ 
+  이 글을 퍼 가실 때는 저에게 연락을 주시길...
+  (모든 저작권은 곰탱이에게 귀속되어 있습니다.  쿨럭~~~~~)
+
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+

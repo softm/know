@@ -1,0 +1,21 @@
+SELECT
+//SUM(1) 전체갯수 / 디코드 (수행한 개수SUM(1)  )
+TASM.END_DATE    END_DATE   ,
+TASM.EXAM_GB     EXAM_GB    ,
+IF(PAPM.STATE > '0',TRUNCATE((PAPM.CORRECT_CNT  / PAPM.EXAM_CNT) * 100,0),''),
+IF(TASM.EXAM_ONOFF='O',IF(PAPM.STATE > '1',TRUNCATE(( ( PAPM.CORRECT_CNT + ( PAPM.CORRECT_CNT2 / 2 ) ) / PAPM.EXAM_CNT) * 100,0),''),'OFF')
+FROM admin_task_main TASM
+;
+/*
+, admin_paper_main PAPM
+
+where PAQM.END_DATE 가 기간에 있는것들
+//AND   PAQM.STATE > '1'
+GROUP tasm.TASK_NO, papm.STUDENT_NO
+*/
+
+
+
+
+
+

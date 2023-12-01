@@ -1,0 +1,957 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+
+
+
+
+
+
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Type" content="text/html; charset=MS949">
+<script type="text/javascript">
+document.domain="naver.com";
+</script>
+<script type="text/javascript">
+/**********************************************************************************
+**  FlashPlayerUI
+**  mainFrame의 FlashPlayer의 Wrapper
+**********************************************************************************/
+var FlashPlayerUI = function() {
+}
+
+// 메인프레임에 있는 FlashPlayerUI.setVariable() Method 대한 Wrapper function, 
+FlashPlayerUI.prototype.setVariable = function(key, value){
+	try{
+		// 메인프레임의 flashPlayer.setVariable() 호출
+		parent.mainFrame.flashPlayer.setVariable(key, value);
+	} catch(e) {
+	}
+}
+// 플래시 재생
+FlashPlayerUI.prototype.play = function() {
+	this.setVariable("watchobj", "play");
+}
+// 플래시 정지
+FlashPlayerUI.prototype.stop = function() {
+	this.setVariable("watchobj", "pause");
+}
+// 플래시에 제목 전달
+FlashPlayerUI.prototype.setTitle = function(title) {
+	this.setVariable("mTitle", title);
+}
+// 플래시에 설치버튼 노출여부를 전달
+FlashPlayerUI.prototype.setInstallYN = function(isInstallButtonDisplay) {
+	if(isInstallButtonDisplay == "true") {
+		this.setVariable("watchobj", "activeXmode");
+	} else {
+		this.setVariable("watchobj", "activeXcancel");
+	}
+}
+// 플래시 플레이어에 볼륨과 곡명 전달
+FlashPlayerUI.prototype.init = function(title, volume, isPause) {
+	this.setVariable("tVolume", volume);
+	this.setVariable("watchobj", "volume");
+	if(title!="") {
+		this.setVariable("mTitle", title);
+	}
+	if(isPause) {
+		this.setVariable("watchobj", "pause");
+	} else {
+		this.setVariable("watchobj", "play");
+	}
+}
+
+var flashPlayerUI = new FlashPlayerUI();
+</script>
+
+<script type="text/javascript">
+
+/**********************************************************************************
+** GogsPlayerUI Interface
+** ActiveX플레이어의 Wrapper
+**********************************************************************************/
+var GogsPlayerUI = function() {
+}
+
+// ActiveX 초기화
+GogsPlayerUI.prototype.init = function(id, pw, param) {
+	try {
+		gogsweb.Init(id, pw, param);
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX 재생
+GogsPlayerUI.prototype.play = function() {
+	try {
+		gogsweb.Play();
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX 정지
+GogsPlayerUI.prototype.stop = function() {
+	try {
+		gogsweb.Stop();
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX 일지정시
+GogsPlayerUI.prototype.pause = function() {
+	try {
+		gogsweb.Pause();
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX 볼륨 설정
+GogsPlayerUI.prototype.setVolume = function(volume) {
+	try {
+		gogsweb.nVolume = volume;
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX 볼륨 조회
+GogsPlayerUI.prototype.getVolume = function() {
+	try {
+		return gogsweb.nVolume;
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX에서 현재 재생되는 곡의 총 플레이시간 조회
+GogsPlayerUI.prototype.getFileTime = function() {
+	try {
+		return gogsweb.nFileTime;
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX에서 현재 재생되는 현재 플레이시간 조회
+GogsPlayerUI.prototype.getPlayTime = function(fileTime) {
+	try {
+		return gogsweb.nPlayTime;
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX가 설치되었는지 여부 조회
+GogsPlayerUI.prototype.isInstall = function() {
+	try {
+		return (gogsweb.IsInstall == 1);
+	} catch(e) {
+		return false;
+	}	
+}
+// ActiveX가 플레이할 곡 정보 설정
+GogsPlayerUI.prototype.setPath = function(musicPath, musicId) {
+	try {
+		gogsweb.SetPath(musicPath, musicId);
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX에서 플레이할 곡의 Id 설정
+GogsPlayerUI.prototype.addTubeId = function(sourceId) {
+	try {
+		gogsweb.AddTubeID(sourceId);
+	} catch(e) {
+		debug(e);
+	}	
+}
+// ActiveX 이퀄라이즈 정보 설정
+GogsPlayerUI.prototype.setVis = function(param1, param2, param3, param4) {
+	try {
+		gogsweb.SetVis(param1, param2, param3, param4);
+	} catch(e) {
+		debug(e);
+	}	
+}
+// 곡이 끝났을때 호출되는 함수
+function OnGogsComplete(param) {
+	musicPlayer.playNextMusic();
+}
+// 이퀄라이저 데이터 요청시 호출되는 함수, 이퀄라이저 노출시 성능문제로 사용되고 있지 않음 
+function OnGogsVisData(szData, szReserved) {
+	/*
+		if(this.visskip%2==0){
+			bluemetalPlater.setVis(szData);
+		}
+		this.visskip++;
+	*/
+}
+
+var gogsPlayer = new GogsPlayerUI();
+</script>
+
+<script type="text/javascript">
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  MusicPlayer
+//  블로그 플레이어와 포스트 플레이어의 Wrapper
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var MusicPlayer = function() {
+	// 일시정지 여부
+	this.isPause = false;
+	// 볼륨
+	this.volume = 80;
+	// ActiveX에서 플래시로 일정간격으로 곡정보를 전달해주는 함수의 intervalId
+	this.intervalId;
+	// 플래시 UI가 있는 프레임
+	this.mainFrame = parent.mainFrame;
+	// ActiveX가 설치되었는지 여부
+	this.displayIntallSync = false;
+	// 플레이할 BGM 리스트
+	this.blogPlayList = new Array();
+	// 블로그 플레이어에서 현재 플레이될 곡의 idx
+	this.currentBlogMusicIndex = 0;
+	// 타이틀
+	this.title = "";
+	// 설치시도여부
+	this.isTryInstall = false;
+
+	// 포스트내 곡이 플레이되고 있는지 여부
+	this.isPostMusicPlay=false;
+	// 포스트 플레이어에서 현재 플레이할 곡의 idx
+	this.currentPostMusicIndex;
+	// 포스트 플레이어에서 플레이할 곡의 id
+	this.postId; 
+	// 현재 포스트 플레이어의 재생목록
+	this.postPlayList;
+	// 소유하고 있는 모든 곡 목록
+	this.ownMusicList = new Array();
+	// visual효과 스킵여부(사용안됨)
+	//var visskip = 0;
+}
+
+// html 로드후 뮤직플레이어 초기화
+MusicPlayer.prototype.init = function() {
+	try	{
+		setTimeout("musicPlayer.setGogsPlayer()", 100);
+		if(this.blogPlayList.length > 0) {
+			setTimeout("musicPlayer.playBlogMusic()", 200);
+		}
+	} catch(e) {
+	}
+}
+
+MusicPlayer.prototype.showFlashPlayer = function() {
+	try	{
+		if(this.blogPlayList.length > 0) {
+			parent.mainFrame.flashPlayer.showFlashPlayer(this.title, this.volume, this.isPause);
+			setTimeout("musicPlayer.initFlashPlayer();", 1000);
+		}
+	} catch(e) {
+	}
+}
+
+MusicPlayer.prototype.initFlashPlayer = function() {
+	flashPlayerUI.init(this.title, this.volume, this.isPause);
+}	
+
+// gogsPlayer ActiveX 컨트롤 로드(NON-BLOCKING)
+MusicPlayer.prototype.setGogsPlayer = function() {
+	try{
+	    if(document.getElementById("gogsweb") == null)  {
+			var str = "<OBJECT ID='gogsweb' style='width:0px;height:0px'";
+			str += " CLASSID='CLSID:5DAEF053-DEF0-4752-A963-CCE9B49B0B79'></OBJECT>";
+	    	document.body.insertAdjacentHTML('beforeEnd', str );
+		}
+	} catch(e) { 
+		debug(e);
+	}
+}
+
+/**********************************************************************************
+**  블로그 플레이어와 포스트 플레이어의 공통 Method
+**********************************************************************************/
+
+// 음악 정지
+MusicPlayer.prototype.stopMusic = function() {
+	if(this.isPostPlay) {
+		this.stopPostMusic();
+	} else {
+		this.stopBlogMusic();
+	}
+}
+
+// 볼륨 증가
+MusicPlayer.prototype.turnUpVolume = function() {
+	this.volume = gogsPlayer.getVolume()+5;
+	gogsPlayer.setVolume(this.volume);
+}
+
+// 볼륨 감소
+MusicPlayer.prototype.turnDownVolume = function() {
+	this.volume = gogsPlayer.getVolume()-5;
+	gogsPlayer.setVolume(this.volume);
+}
+
+// 볼륨 설정
+MusicPlayer.prototype.setVolume = function(volume) {
+	// ActiveX의 볼륨 설정
+	this.volume = volume;
+	gogsPlayer.setVolume(volume);
+}
+
+// 다음곡 재생
+MusicPlayer.prototype.playNextMusic = function() { 
+	// 포스트에서 플레이되고 있으면 post의 다음곡 재생
+	if(this.isPostMusicPlay) {
+		this.playNextPostMusic();
+	// 블로그에서 플레이되고 있으면 blog의 다음곡 재생
+	} else {
+		this.playNextBlogMusic();
+	}
+}
+
+// 이전곡 재생
+MusicPlayer.prototype.playPrevMusic = function() { 
+	// 포스트에서 플레이되고 있으면 post의 다음곡 재생
+	if(this.isPostMusicPlay) {
+		this.playPrevPostMusic();
+	// 블로그에서 플레이되고 있으면 blog의 다음곡 재생
+	} else {
+		this.playPrevBlogMusic();
+	}
+}
+
+// ActiveX설치
+MusicPlayer.prototype.displayIntallButton = function(isInstallButtonDisplay) { 
+	// 플래시에 설치여부 전송(설치가 안되어 있으면 플래시에서 설치버튼을 노출한다)
+	flashPlayerUI.setInstallYN(isInstallButtonDisplay);
+	// 설치버튼이 안보이면		
+	if(isInstallButtonDisplay != "true") {
+		// 설치되었는지 여부를 판단
+		if(this.displayIntallSync == false) {
+			// 설치가 안되어있으면 플래그 변경하고 설치
+			this.displayIntallSync = true;
+			hidden.installGogsPlayer(); 
+		}
+	}
+}
+
+/**********************************************************************************
+**  블로그 플레이어 Method
+***********************************************************************************/
+
+// 플래시에서 현재 플레이되고 있는 음악목록을 불러온 후 특정 곡 재생(아이템에서 호출)
+MusicPlayer.prototype.playTargetBlogMusic = function(sourceId) {
+	for(var i=0; i < this.blogPlayList.length; i++) {
+		if( this.blogPlayList[i].sourceId == sourceId ) {
+			this.currentBlogMusicIndex = i;
+			break;
+		}
+	}
+	this.playBlogMusic();
+}
+
+// 블로그 플레이어 재생
+MusicPlayer.prototype.playBlogMusic = function() {
+	// 포스트에서 재생되고 있는 음악 정지
+	this.stopPostMusic();
+	try {
+		clearInterval(this.intervalId);
+	} catch(e) {
+		debug(e);
+	}
+	
+	try {
+		// 설치되었으면 
+		if(gogsPlayer.isInstall()) {
+			// 설치되었음을 플래쉬에 알리고 설치가 안되었으면 설치
+			this.displayIntallButton("false");
+			// 일시중지되어있으면 재생
+			if(this.isPause){
+				this.pause();
+			// 일시중지 되어있지 않으면
+			} else {
+				// 초기화
+				gogsPlayer.init('id', 'pw', 'param');
+				// 경로 세팅
+				gogsPlayer.setPath('http://nbgm.ipop.co.kr/cgi-bin/bgm1.cgi?id=$SONGPATH$', 'http://npis.mnet.com/ISZone/BgmPlayBackInfo_Lst.asp?sid=$SONGID$');
+				// 포스트내 멀티미디어 재생 중지
+				this.stopPostMultimedia();
+				// ActiveX에 sourceId 전달
+				gogsPlayer.addTubeId(this.blogPlayList[this.currentBlogMusicIndex].sourceId);
+				// vis 설정(사용하지 않음으로 설정)
+				try{
+					gogsPlayer.setVis(false, 100, 0, "");		
+				} catch(e) {
+					debug(e);
+				}
+				// 일정간격으로 재생되고 있던 곡 정보를 정보를 블로그 플레이어에 전달
+				this.intervalId = setInterval("musicPlayer.onPostMutimediaPlay()", 500);
+				// ActiveX 재생
+				gogsPlayer.play();
+				// ActiveX 볼륨 설정
+				gogsPlayer.setVolume(this.volume);
+				// 현재 플레이할 노래제목을 목록에서 가져와서 플래시에 노출할 제목을 만든다
+				this.title = this.blogPlayList[this.currentBlogMusicIndex].itemName;
+				if(this.blogPlayList[this.currentBlogMusicIndex].artistId != '0')
+					this.title += " - "+this.blogPlayList[this.currentBlogMusicIndex].artistName;
+				// 플래시 제목 설정
+				flashPlayerUI.setTitle(this.title);
+				// 플래시에 상태 전달
+				flashPlayerUI.play();
+			}
+		// 설치 안되었으면 : 두가지 경우가 있다. 하나는 사용자가 아직 "설치" 버튼을 안누른 경우, 하나는 설치를 취소한 경우
+		} else {
+			this.displayIntallButton("true");
+			// 설치할때까지 재시도
+			setTimeout("musicPlayer.playBlogMusic()", 500);
+			if(this.isTryInstall == true) {
+				hidden.installGogsPlayer;
+				this.isTryInstall = false;
+			}
+		}
+	} catch(e) { 
+		debug(e);
+	}
+}
+
+// 블로그 음악 정지
+MusicPlayer.prototype.stopBlogMusic = function() {
+
+	try {
+		clearInterval(this.intervalId);
+	} catch(e) {
+		debug(e);
+	}
+	
+	this.title = "";
+	this.isPause = false;
+	
+	gogsPlayer.stop();
+	flashPlayerUI.setTitle(this.title);
+	flashPlayerUI.stop();
+}
+
+// 블로그 플레이어 이전곡 재생
+MusicPlayer.prototype.playPrevBlogMusic = function() {
+	this.isPause = false;
+	this.currentBlogMusicIndex--;
+
+	if(this.currentBlogMusicIndex == -1) {
+		this.currentBlogMusicIndex = this.blogPlayList.length-1;
+	}
+	this.playBlogMusic();
+}
+
+// 블로그 플레이어 다음곡 재생
+MusicPlayer.prototype.playNextBlogMusic = function() {
+	this.isPause = false;
+	
+	if(this.blogPlayList.length > 0) {
+		this.currentBlogMusicIndex++;
+		if(this.currentBlogMusicIndex == this.blogPlayList.length) {
+			this.currentBlogMusicIndex = 0;
+		}
+		this.playBlogMusic();
+	}
+}
+
+// 일시정지
+MusicPlayer.prototype.pause = function() {
+	// ActiveX 재생/일시정지
+	gogsPlayer.pause();
+	// 현재 중지되어 있었으면 Flash 설정을 재생으로 바꿔주고
+	if(this.isPause){
+		flashPlayerUI.play();
+	// 현재 플레이 중이었으면 Flash의  설정을 일시정지 바꿔준 후 
+	} else {
+		flashPlayerUI.stop();
+		// 일정간격으로 포스트에서 다른 멀티미디어가 사용되고 있는지 체크
+		this.intervalId = setInterval("musicPlayer.onPostMutimediaPlay()", 500);
+	}
+	// 재생/중지 플래그 변경
+	this.isPause = !this.isPause;
+}
+
+// 포스트내 다른 멀티미디어가 플레이상태이면 블로그 플레이어 정지
+MusicPlayer.prototype.onPostMutimediaPlay = function() {
+	var isBreak = false;
+	var postEmbedList = this.getPostMutimediaList("EMBED");
+	var postObjectList = this.getPostMutimediaList("OBJECT");
+
+	try {	
+		// Embed 태그중 플레이되는게 있는지 검사
+		for(var i=0; i < postEmbedList.length && isBreak == false; i++) {
+			try {
+				if(postEmbedList[i].playstate == 2) {
+					gogsPlayer.stop();
+					isBreak = true;
+				}
+			} catch(e) { }
+		}
+		// Object 태그중 플레이되는게 있는지 검사
+		for(var i=0; i < postEmbedList.length && isBreak == false; i++) {
+			try {
+				if(postObjectList[i].playstate == 2) {
+					gogsPlayer.stop();
+					isBreak = true;
+				}
+			} catch(e) { }
+		}
+	} catch(e) { }
+	// 포스트 멀티미디어 정지시 자동으로 ActiveX 재생(사용안됨)
+}
+
+// 포스트의 다른 멀티미디어 정지
+MusicPlayer.prototype.stopPostMultimedia = function() {
+	var postEmbedList = this.getPostMutimediaList("EMBED");
+	var postObjectList = this.getPostMutimediaList("OBJECT");
+	
+	try {
+		// Embed 태그의 멀티미디어 중지
+		for(var i=0; i < postEmbedList.length; i++) {
+			try {
+				if(postEmbedList[i].playstate == 2) {
+					postEmbedList[i].stop();
+				}
+			} catch(e) { }
+		}
+		
+		// Object 태그의 멀티미디어 중지
+		for(var i=0; i < postObjectList.length; i++) {
+			try {
+				if(postObjectList[i].playstate == 2) {
+					postObjectList[i].stop();
+				}
+			} catch(e) { }
+		}
+	} catch(e) { }
+}
+
+// 최초 블로그 플레이어 시작시 포스트내 다른 멀티미디어 재생여부 체크 후 없으면 재생하기
+MusicPlayer.prototype.onFirstPlayBlogMusic = function() {
+	if(this.isPostMusicPlay == false) {
+		var isPostMusicStart = false;
+		var postEmbedList = this.getPostMutimediaList("EMBED");
+		var postObjectList = this.getPostMutimediaList("OBJECT");
+			
+		try{
+			// Embed 태그 검사 
+			for(var i=0; i < postEmbedList.length && isPostMusicStart == false; i++){
+				try {
+					if(postEmbedList[i].playstate == 2) {
+						isPostMusicStart = true;
+						this.isPostMusicPlay = true;
+					}
+				} catch(e) { }
+			}
+		
+			// Object 태그 검사 
+			for(var i=0; i < postObjectList.length && isPostMusicStart == false; i++){
+				try {
+					if(postObjectList[i].playstate==2) {
+						isPostMusicStart = true;
+						this.isPostMusicPlay = true;
+					}
+				} catch(e) { }
+			}
+		} catch(e) { }	
+		
+		// 포스트에서 멀티미디어가 재생중이 아니면 ActiveX 재생
+		if(isPostMusicStart == false) { 
+			this.playBlogMusic();
+		}
+	}
+}
+
+// 포스트의 특정 태그네임 목록 반환
+MusicPlayer.prototype.getPostMutimediaList = function(tagName) {
+	try{
+		var targetFrame = null;
+
+		// 포토로그가 아닐때
+		if (this.mainFrame.papermain != null) {
+			targetFrame = parent.mainFrame.papermain;
+		// 포토로그일때 
+		} else {
+			targetFrame = parent.mainFrame;
+		}
+		// 포스트의 특정 태그네임 목록 반환
+		return targetFrame.document.getElementsByTagName(tagName);	
+	} catch(e) { }
+}
+
+// 로그타입에 상관없이 메인프레임 구하기
+MusicPlayer.prototype.getMainFrame = function() {
+	try{
+		var targetFrame = parent.mainFrame.papermain;
+		return targetFrame;
+	} catch(e) { }
+}
+
+// 블로그 플레이어 리스트에 곡 추가
+MusicPlayer.prototype.addBlogMusic = function(title, artistId, artistName, itemSeq, sourceId) {
+	this.blogPlayList[this.blogPlayList.length] = new Song(itemSeq, title, artistId, artistName, sourceId);
+}
+
+/***************************************************************************************
+**  포스트 플레이어 Method
+****************************************************************************************/
+
+// 포스트 플레이어 재생
+MusicPlayer.prototype.playPostMusic = function(song, obj) {
+	// 블로그 플레이어 정지	
+	this.stopBlogMusic();
+	try{
+		clearInterval(this.intervalId);
+	} catch(e) { }
+	
+	try{
+		// 설치되었으면
+		if(gogsPlayer.isInstall()) {
+			// 설치되었음을 플래쉬에 알리고 설치가 안되었으면 설치
+			this.displayIntallButton("false");	
+			// 초기화
+			gogsPlayer.init('id', 'pw', 'param');
+			// 경로 세팅
+			gogsPlayer.setPath('http://nbgm.ipop.co.kr/cgi-bin/bgm1.cgi?id=$SONGPATH$', 'http://npis.mnet.com/ISZone/BgmPlayBackInfo_Lst.asp?sid=$SONGID$');
+			// 포스트내 멀티미디어 재생 중지
+			this.stopPostMultimedia();
+			// ActiveX에 sourceId 전달
+			gogsPlayer.addTubeId(song.sourceId);
+			// 일정간격으로 포스트에서 다른 멀티미디어가 사용되고 있는지 체크
+			this.intervalId = setInterval("musicPlayer.saveCurrentPostMusicInfo()", 500);
+			// ActiveX 재생
+			gogsPlayer.play();						
+			// ActiveX 볼륨 설정
+			gogsPlayer.setVolume(this.volume);
+			// 현재 플레이할 노래제목과 아티스트명을 가져와서 포스트 플레이어에 노출한다
+			var title = song.itemName;
+			if (song.artistId=='0') {
+				obj.innerHTML="<marquee scrollAmount=1 scrollDelay=90 scrollLeft=100 direction=left>"+song.itemName+"</marquee>";
+			} else {
+				obj.innerHTML="<marquee scrollAmount=1 scrollDelay=90 scrollLeft=100 direction=left>"+song.itemName+" - "+song.artistName+"</marquee>";	
+			}
+		// 설치 안되었으면 : 두가지 경우가 있다. 하나는 사용자가 아직 "설치" 버튼을 안누른 경우, 하나는 설치를 취소한 경우
+		} else {
+			this.displayIntallButton("true");
+			// 설치할때까지 재시도
+			if(this.isTryInstall == true) {
+				hidden.installGogsPlayer;
+				this.isTryInstall = false;
+			}
+			setTimeout("musicPlayer.playPostMusic()", 500);
+		}
+		this.isPostMusicPlay=true;
+	}catch(e){}
+}
+
+// 포스트 플레이어에서 첫번째 곡 재생
+MusicPlayer.prototype.playFirstPostMusic = function(index, itemList, id) {
+	try {
+		// 소유리스트를 가져온다
+		hidden.getOwnMusicList();
+		if(this.currentPostMusicIndex == null  || (id != this.postId)){
+			this.currentPostMusicIndex = index;
+			//PlayPost(currentPostMusicIndex, itemList, id);
+			setTimeout("musicPlayer.playSelectedPostMusic('"+this.currentPostMusicIndex+"','"+itemList+"','"+id+"')", 1000);	
+		}else{
+			//PlayPost(currentPostMusicIndex, itemList, id);
+			setTimeout("musicPlayer.playSelectedPostMusic('"+this.currentPostMusicIndex+"','"+itemList+"','"+id+"')", 1000);	
+		}
+	} catch(e) { }
+}
+
+// 포스트의 재생목록에서 선택한 곡 재생
+MusicPlayer.prototype.playSelectedPostMusic = function(idx, itemList, id) {
+	try {
+		// 선택한 곡명이 현재 플레이되고 있는 곡이 아니면 포스트 플레이어 정지
+		if(id != this.postId){
+			this.stopPostMusic();
+		}
+
+		// 히든프레임에 소유리스트 정보가 있는 iframe을 만든다
+		hidden.getOwnMusicList();
+		// 포스트의 재생목록을 배열로 저장
+		var items = itemList.split("|");
+		// 재생목록에서 선택된 곡을 가져온다
+		var song = this.getSong(items[idx-1]);
+		// 포스트의 재생목록을 현재 재생목록으로 설정
+		this.postPlayList = itemList;
+		
+		if(song != null){
+			this.currentPostMusicIndex = idx;
+			this.postId = id;
+			var objid = "bgmname"+id;
+			var targetFrame = this.getMainFrame();
+			var obj = targetFrame.document.getElementById(objid);
+			var playimg1id = "playimg1"+id;
+			var playimg2id = "playimg2"+id;
+			
+			targetFrame.document.getElementById(playimg1id).style.display="none";
+			targetFrame.document.getElementById(playimg2id).style.display="inline";					
+				
+			this.playPostMusic(song, obj);
+		} else {
+			alert("음악 플레이가 일시적으로 지연되고 있습니다\n잠시 후 다시 시도해주세요\n(단, 원본 포스트가 아닌 경우 음악이 플레이되지 않습니다)");
+		}
+	} catch(e) { }
+}
+
+// 포스트 플레이어에 재생정보 전달
+MusicPlayer.prototype.saveCurrentPostMusicInfo = function() {
+	var nPlayTime;
+	var nFileTime;
+
+	// 포스트내 플레이어에 재생정보 전달
+	try {
+		nPlayTime = gogsPlayer.getPlayTime()/1000;
+		nFileTime = gogsPlayer.getFileTime();
+	
+		var playtimeid = "playtime"+this.postId;
+		var min = Math.floor(nPlayTime/60);
+		var sec = Math.floor(nPlayTime%60);
+		if(sec<10) sec = "0"+sec;
+		var playimg1id = "playimg1"+this.postId;
+		var targetFrame = this.getMainFrame();
+		
+		var displayType = targetFrame.document.getElementById(playimg1id).style.display;
+		if(displayType!="none") { 
+			gogsPlayer.stop();
+		} else {
+		    targetFrame.document.getElementById(playtimeid).valign="bottom";
+		    targetFrame.document.getElementById(playtimeid).innerHTML = min+":"+sec;
+		}
+	} catch(e) {
+		gogsPlayer.stop();
+	}
+} 
+
+// 포스트 플레이어 중지
+MusicPlayer.prototype.stopPostMusic = function() {
+	this.isPostMusicPlay=false;
+	try {
+		clearInterval(this.intervalId);
+	} catch(e) {
+		debug(e);
+	}
+	
+	try{
+		var song = this.getSong(this.postPlayList.split("|")[this.currentPostMusicIndex-1] );
+		if(song!=null) {
+			var objid = "bgmname"+this.postId;
+			var targetFrame = this.getMainFrame();
+			var obj = targetFrame.document.getElementById(objid);	
+			
+			if (song.artistId=='0') {
+				obj.innerHTML = (song.itemName).substring(0,7);
+			} else {
+				obj.innerHTML = (song.itemName+"-"+song.artistName).substring(0,7);
+			}
+			var playimg1id = "playimg1"+this.postId;
+			var playimg2id = "playimg2"+this.postId;
+			
+			targetFrame.document.getElementById(playimg1id).style.display="inline";
+			targetFrame.document.getElementById(playimg2id).style.display="none";
+			
+			gogsPlayer.stop();
+		}
+	} catch(e) { }
+}
+
+// 포스트 플레이어 이전곡
+MusicPlayer.prototype.playPrevPostMusic = function() {
+	if(this.currentPostMusicIndex != null) {
+		this.currentPostMusicIndex--;
+		if(this.currentPostMusicIndex == 0) { 
+			this.currentPostMusicIndex = this.postPlayList.split("|").length-1;
+		}
+		this.playSelectedPostMusic(this.currentPostMusicIndex, this.postPlayList, this.postId);
+	}
+}
+
+// 포스트 플레이어 다음곡 재생
+MusicPlayer.prototype.playNextPostMusic = function() {
+	if(this.currentPostMusicIndex != null) {
+		this.currentPostMusicIndex++;
+		if(this.currentPostMusicIndex == this.postPlayList.split("|").length ) {
+			this.currentPostMusicIndex = 1;
+		}
+		this.playSelectedPostMusic(this.currentPostMusicIndex, this.postPlayList, this.postId);
+	}
+}
+
+// sourceId로 곡정보 얻어오기
+MusicPlayer.prototype.getSong = function(sourceId) {
+	var song = null;
+	
+	for(var i=0; i<this.ownMusicList.length; i++){
+		if(sourceId == this.ownMusicList[i].sourceId){
+			song = this.ownMusicList[i];
+		}
+	}
+	return song;
+}
+
+// 소유하고 있는 음악정보를 array에 저장
+MusicPlayer.prototype.putOwnMusicList = function(ownMusicList) {
+	this.ownMusicList = ownMusicList;
+	mylist = ownMusicList;
+}
+/**********************************************************************************
+**  MusicPlayer old Interface
+**********************************************************************************/
+function PlayPost1(idx, itemlist, id) {
+	musicPlayer.playFirstPostMusic(idx, itemlist, id);
+}
+
+function PlayPost(idx, itemlist, id) {
+	hidden.getOwnMusicList();
+	setTimeout("musicPlayer.playSelectedPostMusic('"+idx+"', '"+itemlist+"', '"+id+"')", 1000);
+}
+
+function StopPost() {
+	musicPlayer.stopPostMusic();
+}
+
+function PrevPost() {
+	musicPlayer.playPrevPostMusic();
+}
+
+function NextPost() {
+	musicPlayer.playNextPostMusic();
+}
+
+var musicPlayer = new MusicPlayer();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 뮤직플레이어에서 사용하는 음악객체
+// NBlogHidden.nhn에서 호출할 때 네트웍 부담을 줄이기 위해서 하나의 파일로 합침
+// song.js와 중복되는 내용
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var Song = function(itemSeq, itemName, artistId, artistName, sourceId){
+	this.itemSeq = itemSeq;
+	this.itemName = itemName;
+	this.artistId = artistId;
+	this.artistName = artistName;
+	this.sourceId = sourceId;
+}
+</script>
+
+<script type="text/javascript">
+// 뮤직플레이어에서 사용하는 음악객체
+var Song = function(itemSeq, itemName, artistId, artistName, sourceId){
+	this.itemSeq = itemSeq;
+	this.itemName = itemName;
+	this.artistId = artistId;
+	this.artistName = artistName;
+	this.sourceId = sourceId;
+}
+</script>
+
+<script type="text/javascript">
+var Hidden = function() {
+    if (navigator.appName && navigator.appName.indexOf("Microsoft") != -1 && navigator.userAgent.indexOf("Windows") != -1 && navigator.userAgent.indexOf("Windows 3.1") == -1) {
+        try {
+	        
+	        setInterval("hidden.setOnEventHandler()",1000);
+	        musicPlayer.init();
+        } catch(e) {
+        	debug(e);
+        }
+    }
+}
+
+// gogsPlayer ActiveX 컨트롤 설치(NON-BLOCKING)
+Hidden.prototype.installGogsPlayer = function() {
+	try {
+	    if(document.getElementById("gogsweb") != null)  {
+			document.body.removeChild(document.getElementById("gogsweb"));
+	    }
+		var str = "<OBJECT ID='gogsweb' style='width:0px;height:0px'";
+		str += " CLASSID='CLSID:5DAEF053-DEF0-4752-A963-CCE9B49B0B79'";
+		str += " codebase='http://blog.naver.com/common/item/nbgm.cab#version=1,0,0,20'></OBJECT>";
+		document.body.insertAdjacentHTML('beforeEnd', str );
+	} catch(e) { 
+		debug(e);
+	}
+}
+
+// 소유하고 있는 음악정보를 조회해서 iframe에 저장
+Hidden.prototype.getOwnMusicList = function() {
+	if(!document.getElementById("ownMusicList")) {
+		var iframeTag = "<iframe id='ownMusicIFrame' name='ownMusicIFrame'  src='http://blog.naver.com/blogMusicOwnList.nhn?blogId=hitbullseye' frameborder='0' style='display:none'></iframe>";
+		var sTag = document.createElement(iframeTag);
+		document.body.insertBefore(sTag);
+	}
+}
+
+// 블로그 top에서 ESC 클릭시 호출되는 함수
+// 블로그/포스트 플레이어 정지
+Hidden.prototype.onTopKeyDown = function() {
+	if(top.event.keyCode == 27) {
+		try{
+			musicPlayer.stopMusic();
+		} catch(e) { }
+	}
+}
+
+// 블로그 parent.mainFrame에서 ESC 클릭시 호출되는 함수
+// 블로그/포스트 플레이어 정지
+Hidden.prototype.onTopMainKeyDown = function() {
+	if(parent.mainFrame.event.keyCode == 27) {
+		try{
+			musicPlayer.stopMusic();
+		} catch(e) { }
+	}
+}
+
+// 블로그 parent.mainFrame.papermain에서 ESC keydown시 호출되는 함수
+// 블로그/포스트 플레이어 정지
+Hidden.prototype.onTopPaperMainKeyDown = function() {
+	if(parent.mainFrame.papermain.event.keyCode == 27) {
+		try{
+			musicPlayer.stopMusic();
+		} catch(e) { }
+	}
+}
+
+// ESC key 이벤트 핸들러 맵핑
+Hidden.prototype.setOnEventHandler = function() {
+	try{       
+		top.document.onkeydown = hidden.onTopKeyDown;
+	}catch(e){}
+	try{       
+		parent.mainFrame.document.onkeydown = hidden.onTopMainKeyDown;
+	}catch(e){}
+	try{       
+		parent.mainFrame.papermain.document.onkeydown =  hidden.onTopPaperMainKeyDown;
+	}catch(e){}
+}
+
+// 블로그 뮤직플레이어에서 list 클릭시 호출되는 함수
+Hidden.prototype.popBlogMusicList = function() {
+	var itemSeqList = "";
+	for(var i=0; i< musicPlayer.blogPlayList.length; i++) {
+		itemSeqList += musicPlayer.blogPlayList[i].itemSeq+",";
+	}
+	window.open("http://bridge.item2.naver.com/MusicBGMBlogPlayList.nhn?blogId=hitbullseye&itemseqlist="+itemSeqList, "playlist", "scrollbars=yes,status=yes");
+}
+
+// 블로그 뮤직플레이어에서 list 클릭시 호출되는 함수
+Hidden.prototype.setBlogMusicList = function() {
+	window.open("http://admin.blog.naver.com/AdminMain.nhn?blogId=hitbullseye&Redirect=ItembagMu", "_top", "");
+}
+
+/**********************************************************************************
+**  디버그 alert을 찍기위한 함수
+**********************************************************************************/
+var isDebugEnabled = false;
+
+function debug(e) {
+	if(isDebugEnabled) {
+		alert(e.message);
+	}
+}
+
+var hidden = new Hidden();
+</script></head><body></body></html>

@@ -1,0 +1,97 @@
+   * 이건산업에 생성된 테이블 스페이스
+        1. EAGON_EMP
+        2. EAGON_IBS
+        3. EAGON_RBS
+        4. EAGON_TBS
+        5. EAGON_TMP
+
+    * 이건산업 테이블 스페이스 생성
+        CREATE TABLESPACE EAGON_TBS
+                 DATAFILE 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_TBS.dbf' SIZE 1320968K
+                 DEFAULT STORAGE
+                     (INITIAL    10K
+                      NEXT      10K
+                      MINEXTENTS 2
+                      MAXEXTENTS 50
+                      PCTINCREASE 50);
+
+        CREATE TABLESPACE EAGON_IBS
+                 DATAFILE 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_IBS.dbf' SIZE 500M
+                 DEFAULT STORAGE
+                     (INITIAL    10K
+                      NEXT      10K
+                      MINEXTENTS 2
+                      MAXEXTENTS 50
+                      PCTINCREASE 50);
+
+        CREATE TABLESPACE EAGON_EMP
+                 DATAFILE 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_EMP.dbf' SIZE 40M
+                 DEFAULT STORAGE
+                     (INITIAL    10K
+                      NEXT      10K
+                      MINEXTENTS 2
+                      MAXEXTENTS 50
+                      PCTINCREASE 50);
+
+        CREATE TABLESPACE EAGON_RBS
+                 DATAFILE 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_RBS.dbf' SIZE 50M
+                 DEFAULT STORAGE
+                     (INITIAL    10K
+                      NEXT      10K
+                      MINEXTENTS 2
+                      MAXEXTENTS 50
+                      PCTINCREASE 50);
+
+        CREATE TABLESPACE EAGON_TMP
+                 DATAFILE 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_TMP.dbf' SIZE 50M
+                 DEFAULT STORAGE
+                     (INITIAL    10K
+                      NEXT      10K
+                      MINEXTENTS 2
+                      MAXEXTENTS 50
+                      PCTINCREASE 50);
+
+    * ORA-01658, ORA-01659 에러시 조치
+        ALTER TABLESPACE EAGON_TBS add datafile 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_TBS_ADD.dbf' size 500m;
+        ALTER TABLESPACE EAGON_TBS add datafile 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_TBS_ADD_02.dbf' SIZE 500m AUTOEXTEND ON NEXT 10M MAXSIZE 1024M;
+        ALTER TABLESPACE EAGON_IBS add datafile 'C:\orant90\oradata\wood4\DB_SPACE\EAGON_IBS_ADD_01.dbf' SIZE 250m AUTOEXTEND ON NEXT 10M MAXSIZE 500M;
+
+    1. 임포트/익스포트 를 통한 데이터베이스 백업
+        * 익스포트(export)
+            host exp userid = system/manager file = D:\EAGON\eagon.dmp owner = eagon
+            host exp userid = system/manager@eagon file=D:\EAGON\eagon.dmp owner = eagon STATISTICS=NONE
+
+            EXP-00091 [불완전한 통계를 엑스포트 중입니다]  에러시 : STATISTICS=NONE
+
+        * 익스포트(import)
+            host imp system/manager@wood4 file=C:\orant90\admin\wood4\eagon.dmp full=y fromuser=eagon touser=wood4
+            --> [ full과 fromuser중 한가지만 선택적으로 사용가능함 ]
+
+            host imp system/manager@wood4 file=C:\orant90\admin\wood4\eagon_bak.dmp fromuser=eagon touser=wood4
+
+        * 오라클 백업 - 임포트,익스포트
+            http://tong.nate.com/reizes/11542832
+
+            오라클 설치 디렉토리에 bin 디렉토리에 있는
+
+            exp.exe, imp.exe (exp80.exe, imp80.exe 인 경우도 있다) 를 이용해서 백업과 복구를 할 수 있다
+
+            - 백업하기
+
+            exp.exe userid=USERID/PASSWORD@TNSNAME file=C:/EXP.DMP owner=USERID
+
+            - 복구하기
+
+            imp.exe userid=USERID/PASSWORD@TNSNAME file=C:/EXP.DMP fromuser=USERID touser=USERID
+
+            이텔릭체로 된 곳은 실제 사용자아이디와 암호를 써야 한다.
+
+            SELECT * FROM USER_TABLESPACES
+
+    2. 디비링크 생성을 통한 CREATE TABLE AS SELECT
+
+    3. SCHEMA 파일 및 INSERT 스크립트를 통한 백업
+        @ C:\orant90\admin\wood4\eagon_op.sql
+        @ C:\orant90\admin\wood4\data.sql
+ 
+ 

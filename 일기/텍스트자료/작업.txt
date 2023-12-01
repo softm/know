@@ -1,0 +1,301 @@
+2006-12-01
+    HwpCtrl.ocx파일을 이용한 AcitveX 컨트롤 제작
+        - 파일을 html, hwp포맷으로 저장할 수 있도록 구현
+
+2006-12-06
+    0. 프로그램 모듈정리 작업
+    1. 디자인보드 최종소스 찾아오기
+
+2006-12-07
+    - 회원그룹
+        1. 관리자   ( 99 )
+
+        2. 학원장   (  4 )
+        3. 교사     (  3 )
+        4. 학생     (  2 )
+        5. 학부모   (  1 )
+
+    - 회원 그룹별로 디렉토리를 다르게 구성한다.
+      공통적인 성격의 프로그램 모듈은 공유 인클루드 한다.
+
+    - 로그인 테이블은 하나를 이용한다.
+
+    - 디렉토리 구조
+        /                       - 루트
+        /common                 - 공통파일
+        /js                     - 프로그램 아이디_js.php
+
+        /include/common
+        /include/lecture
+        /include/report
+        /include/charts
+
+        /admin
+        /president
+        /teacher
+        /student
+
+        /board
+
+2006-12-08 - 2006-12-14
+    대략적인 구성
+        - 학원, 회원 테이블
+        - 
+    $m_user_id = $memInfor['m_user_id'];
+    $user_id   = $memInfor['user_id'  ];
+    $user_no   = $memInfor['user_no'  ];
+
+2006-12-14
+    * 문제 유형 테이블                                                          < QUESTION_TYPE >
+        문제 유형 번호                                                              TYPE_NO
+        문제 유형명                                                                 TYPE_NAME
+        문제수                                                                      TYPE_CNT
+
+    * 문제 테이블                                                               < QUESTION_MASTER >
+        문제 번호                                                                   QUEST_NO
+        문제 구분 ( 객관식 : 1, 주관식 : 2 )                                        QUEST_GB
+        문제 유형 번호                                                              TYPE_NO
+        문제 제목 ( 자동 생성 --> 문제 유형명 + 순서 <수정 가능> )                  QUEST_NAME
+
+        문제 hwp                                                                    DATA_HWP
+        문제 html                                                                   DATA_HTM
+
+    * 문항 테이블                                                               < QUESTION_ANSWER >
+        문제 번호                                                                   QUEST_NO
+        문항 번호                                                                   ANSWER_NO
+        답안 hwp                                                                    DATA_HWP
+        답안 htm                                                                    DATA_HTM
+
+    * 정답 테이블                                                               < QUESTION_CORRECT >
+        문제 번호                                                                   QUEST_NO
+        객관식 정답 문제 번호                                                       CORRECT_NO
+        주관식 정답 hwp                                                             DATA_HWP
+        주관식 정답 htm                                                             DATA_HTM
+
+    * 해설 테이블                                                               < QUESTION_COMMENT >
+        문제 번호                                                                   QUEST_NO
+        해설 hwp                                                                    DATA_HWP
+        해설 htm                                                                    DATA_HTM
+
+    /* 문제 유형 */
+    $tb_question_type_schm           = "CREATE  TABLE  " . $tb_question_type . " (";
+    $tb_question_type_schm          .= "    TYPE_NO            INT      (10 )   NOT NULL                    ,   /* 문제 유형 번호*/";
+    $tb_question_type_schm          .= "    TYPE_NAME          VARCHAR  (20 )   NOT NULL                    ,   /* 문제 유형명   */";
+    $tb_question_type_schm          .= "    TYPE_CNT           INT      (10 )   DEFAULT 0                   ,   /* 문제수        */";
+    $tb_question_type_schm          .= "    CONSTRAINT " . $tb_question_type . "_PK PRIMARY KEY (TYPE_NO),";
+    $tb_question_type_schm          .= "    KEY IDX_" . $tb_question_type . "_0  ( TYPE_NAME     ) ";
+    $tb_question_type_schm          .= ");";
+
+    /* 문제 */
+    $tb_question_master_schm         = "CREATE  TABLE  " . $tb_question_master . " (";
+    $tb_question_master_schm        .= "    QUEST_NO           INT      (10 )   NOT NULL                    ,   /* 문제 번호                                                 */";
+    $tb_question_master_schm        .= "    QUEST_GB           CHAR     ( 1 )   NOT NULL                    ,   /* 문제 구분 ( 객관식 : 1, 주관식 : 2 )                      */";
+    $tb_question_master_schm        .= "    TYPE_NO            INT      (10 )   NOT NULL                    ,   /* 문제 유형 번호                                            */";
+    $tb_question_master_schm        .= "    QUEST_NAME         VARCHAR  (20 )   NOT NULL                    ,   /* 문제 제목 ( 자동 생성 --> 문제 유형명 + 순서 <수정 가능> )*/";
+    $tb_question_master_schm        .= "    DATA_HWP           BLOB                                         ,   /* 문제 hwp                                                  */";
+    $tb_question_master_schm        .= "    DATA_HTM           TEXT                                         ,   /* 문제 html                                                 */";
+    $tb_question_master_schm        .= "    CONSTRAINT " . $tb_question_master . "_PK PRIMARY KEY (QUEST_NO),";
+    $tb_question_master_schm        .= "    KEY IDX_" . $tb_question_master . "_0  ( QUEST_GB     ), ";
+    $tb_question_master_schm        .= "    KEY IDX_" . $tb_question_master . "_1  ( TYPE_NO      ), ";
+    $tb_question_master_schm        .= "    KEY IDX_" . $tb_question_master . "_2  ( QUEST_NAME   )  ";
+    $tb_question_master_schm        .= ");";
+
+    /* 문항 */
+    $tb_question_answer_schm        = "CREATE  TABLE  " . $tb_question_answer . " (";
+    $tb_question_answer_schm       .= "    QUEST_NO           INT     (10 )   NOT NULL                      ,   /* 문제 번호  */";
+    $tb_question_answer_schm       .= "    ANSWER_NO          INT     (1  )   NOT NULL                      ,   /* 문항 번호  */";
+    $tb_question_answer_schm       .= "    DATA_HWP           BLOB                                          ,   /* 답안 hwp   */";
+    $tb_question_answer_schm       .= "    DATA_HTM           TEXT                                          ,   /* 답안 htm   */";
+    $tb_question_answer_schm       .= "    CONSTRAINT " . $tb_question_answer . "_PK PRIMARY KEY (QUEST_NO),";
+    $tb_question_answer_schm       .= "    KEY IDX_" . $tb_question_answer . "_0  ( ANSWER_NO     )  ";
+    $tb_question_answer_schm       .= ");";
+
+    /* 정답 */
+    $tb_question_correct_schm        = "CREATE  TABLE  " . $tb_question_correct . " (";
+    $tb_question_correct_schm       .= "    QUEST_NO           INT     (10 )   NOT NULL                     ,   /* 문제 번호             */";
+    $tb_question_correct_schm       .= "    CORRECT_NO         INT     (1  )   NOT NULL                     ,   /* 객관식 정답 문제 번호 */";
+    $tb_question_correct_schm       .= "    DATA_HWP           BLOB                                         ,   /* 주관식 정답 hwp       */";
+    $tb_question_correct_schm       .= "    DATA_HTM           TEXT                                         ,   /* 주관식 정답 htm       */";
+    $tb_question_correct_schm       .= "    CONSTRAINT " . $tb_question_correct . "_PK PRIMARY KEY (QUEST_NO),";
+    $tb_question_correct_schm       .= "    KEY IDX_" . $tb_question_correct . "_0  ( ANSWER_NO     )  ";
+    $tb_question_correct_schm       .= ");";
+
+    /* 해설 */
+    $tb_question_comment_schm        = "CREATE  TABLE  " . $tb_question_comment . " (";
+    $tb_question_comment_schm       .= "    QUEST_NO           INT     (10 )   NOT NULL                     ,   /* 문제 번호              */";
+    $tb_question_comment_schm       .= "    DATA_HWP           BLOB                                         ,   /* 해설 hwp               */";
+    $tb_question_comment_schm       .= "    DATA_HTM           TEXT                                         ,   /* 해설 htm               */";
+    $tb_question_comment_schm       .= "    CONSTRAINT " . $tb_question_comment . "_PK PRIMARY KEY (QUEST_NO),";
+    $tb_question_comment_schm       .= "    KEY IDX_" . $tb_question_comment . "_0  ( QUEST_NO     )  ";
+    $tb_question_comment_schm       .= ");";
+
+2006-12-20
+    1. AcitveWidget 1.0버전의 css스타일을 꼭 필요한것들만 정리해서
+       html 포맷으로 가공한다.
+
+2006-12-28
+    1. 단순 그리드 기능 완료
+
+    2. 정의
+        1. 기본정의항목
+            1. 타입 
+                STRING DATA       : D
+                INPUT TEXT        : T
+                INPUT CHECKBOX    : C
+                INPUT RADIO       : R
+                INPUT HIDDEN      : H
+                SELECT            : S
+            2. 헤드 타이틀
+
+            3. 그리드 데이터
+
+            4. 컬럼명
+
+    3. 개발서버 셋팅 ( 2006-12-30 )
+        http://esischool.cafe24.com/
+        id : esischool
+        pw : esi1234
+
+<?
+    $sql_info  = "SELECT * FROM $tb_user_kind WHERE MEMBER_LEVEL <> 0";
+    //  echo $sql;
+    $stmt_info = multiRowSQLQuery ($sql_info);
+    echo "&nbsp;<select name='member_level'>";
+    while ( $rs_info = multiRowFetch  ($stmt_info) ) {
+        if ( $rs_info[MEMBER_LEVEL]  == $data[MEMBER_LEVEL] ) {
+            echo "<option value='" . $rs_info[MEMBER_LEVEL] . "' selected>" . $rs_info[MEMBER_NM] . "</option>";
+        } else {
+            echo "<option value='" . $rs_info[MEMBER_LEVEL] . "'>" . $rs_info[MEMBER_NM] . "</option>";
+        }
+    }
+    echo "</select>";
+?>
+2007-01-04
+    ActiveX 배포시 ( 코드사이닝 제외시 )
+        1. 캐비넷 파일을 생성한다.(setup/bat파일 이용)
+        2. lpk_tool.exe를 실행해서 .lpk파일을 생성한다.
+           ( lpk_tool.exe 는 lpktool.exe를 압축해제하면 InetSDK1\BIN 디렉토리에 존재한다.)
+        3. 브라우져 설정에서 신뢰할 수 있는 사이트 등록
+            - 인터넷옵션 - 보안 - 사용자 지정 수준 - 서명안된 ActiveX 컨트롤 다운로드 - 사용
+
+        * ActiveX 컨트롤 업데이트가 안될경우
+            인터넷옵션 - 일반 - 설정 - 개체보기 [C:\WINDOWS\Downloaded Program Files] - 파일 삭제
+
+2007-01-15
+    공통 그리드 컨트롤 작업 완료. -> 추후 기능 보완 필요
+
+2007-03-14
+    * 학교정보 조회 : 교육인적자원부 홈피 --> 하단 교육통계 --> 상단 통계도우미 메뉴--> 공개자료실 3페이지
+      최신자료 얻기 ::>>>>>>>> 02 3460 0114 ASR 1, 3 ( 전화 안받음 메일 발송해놈 )
+2007-03-24
+    1. 나의페이지 링크 JS함수로 빼주세요.
+        -> 함수명 : goMyPage()
+
+    2. 좌측메뉴 폭,길이가 조정 화면 깨지지 않게.
+    3. 선택된 탭의 색상이 눈에 띠지 않음.
+    4. 시안과 레이아웃이 다름
+
+------------------------------------------
+
+            &nbsp;<select name="search_gb" class="jm_01">
+                <option value='campus_name' >학원이름</option>
+                <option value='auth_code'   >학원코드</option>
+            </select>
+            <input type="text" name="search" value=''>
+            <a href='#' onClick='selectCampusInfo(500,163);return false;'><img border="0" name="imageField3222" src="<?=$baseDir?>images/btn_s_search.gif" width="43" height="20" align="top"></a>
+
+
+
+//////////////////////////////////
+
+
+            $execScript = "var proVal   = ( (parent.sendIdx + 1)  / " . $p_sms_tot_cnt ." ) * 100 + '%'\r\n";
+          //$execScript.= "alert(parent.sendIdx + '$p_sms_tot_cnt');\r\n";
+            $execScript.= "if ( parseInt(proVal) > 0 ) {\r\n";
+            $execScript.= "    parent.document.getElementById('progress').width    = proVal;\r\n";
+            $execScript.= "    var _proVal = Math.round(parseFloat(proVal),-2);\r\n";
+            $execScript.= "    parent.document.getElementById('percent').innerHTML = _proVal + '%';\r\n";
+            $execScript.= "    if ( _proVal == 100 ) {                         \r\n";
+            $execScript.= "        parent.document.getElementById('infor_1').innerHTML   = ''         ;\r\n";
+            $execScript.= "        parent.document.getElementById('infor_2').innerHTML   = '발송 완료';\r\n";
+            $execScript.= "    }\r\n";
+            $execScript.= "}\r\n";
+            $execScript.= "parent.send_sms();\r\n";
+            $execScript.= "parent.document.getElementById('sms_send_cnt').innerText = (parent.sendIdx + 1);\r\n";
+
+            $execScript.= "parent.document.getElementById('sms_suc_cnt' ).innerText = (parent.sendIdx + 1);\r\n";
+            $execScript.= "parent.document.getElementById('sms_fail_cnt').innerText = (parent.sendIdx + 1);\r\n";
+            javascriptExec($execScript);
+
+
+////////////////////////////////////
+처음풀이 저장시 오2문제 산출 방법
+
+SELECT P.STUDENT_NO, Q.TYPE_NO
+FROM   question_chapter_type CT, question_master Q, admin_paper_question P 
+WHERE  CT.CHAPTER_ID IN ('07.m1.01.02.01','07.m1.01.02.02','07.m1.01.02.03') //<----- 단원조건
+AND    Q.TYPE_NO  = CT.TYPE_NO 
+AND    P.QUEST_NO = Q.QUEST_NO 
+AND    P.STUDENT_NO IN (10,11,20) //<--------- 학생조건
+AND    P.CORRECT_OX = 'X' 
+GROUP BY 1,2
+
+
+
+                            for( $wci = 0; $wci < $arr_wc_cnt; $wci++ ){
+                                    //$type_cnt++;
+                                    $type_no = $wrong_case[$wci][1];
+                                    $values_paper_question .= 
+                                       " UNION ALL ".$NL
+                                     . " SELECT QUEST_NO
+                                     . " FROM "
+                                     . " ( SELECT QUEST_NO "
+                                     . "   FROM ". $tb_question_master 
+                                     . "   WHERE TYPE_NO = '". $type_no ."' "
+                                     . "   ORDER BY RAND() "
+                                     . "   LIMIT ". $wrong_case_mcnt
+                                     . " ) Q3 ".$NL;
+                            }
+
+http://phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_function&wr_id=146873&sca=&sfl=wr_subject%7C%7Cwr_content&stx=php+%BD%A9&sop=and&page=2
+
+http://phpschool.com/gnuboard4/bbs/board.php?bo_table=qna_function&wr_id=146873&sca=&sfl=wr_subject%7C%7Cwr_content&stx=php+%BD%A9&sop=and&page=2
+
+        if ( $state == '0' )        { // 미수행 --> 처음풀기
+
+        } else if ( $state == '1' ) { // 처음풀기 -> 오2문제풀기
+
+        } else                      { // 오2문제풀기 -> 복습 --> 복습 ...........
+
+        }
+
+
+=--------------------------------------------------------------------------------------------------------
+
+과제마감일이 지난경우 --> 학생의 과제제출 및 교사,원장의 OFF라인 시험 채점이 불가.
+과제마감일 변경후 가능하게된다.
+과제마감일은 수정 가능하나 마감일이 지났다면 축소는 불가하다.
+
+교사,원장의 과제 삭제는 어떤 학생도 문제풀이를 참여하지 않은 상태에서만 가능하다.
+
+정답율     : 처음풀기
+랭킹       : 처음풀기
+
+과제수행율 : 02풀기 
+<--------- online 오2풀기완료,offline 채점완료 /과제수(일일과제,성취도평가) 
+
+////// 과제 삭제시 삭세 할 테이블
+
+delete  from admin_correct_rate;
+
+delete  from admin_task_main ;
+delete  from admin_task_chapter;
+delete  from admin_paper_question;
+delete  from admin_paper_o2;
+delete  from admin_paper_review;
+delete  from admin_paper_main;
+delete  from admin_task_classroom ;
+
+
+
+

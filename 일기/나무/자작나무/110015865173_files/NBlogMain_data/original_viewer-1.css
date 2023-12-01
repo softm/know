@@ -1,0 +1,16 @@
+img{border:none;}
+p,ul,ol,form,h1,h2,h3,h4,h5,dl,dt,dd{margin:0; padding:0;}
+span.no {display:none}
+#photoviewer .photoviewer_tl {width:15px;height:30px;background:url(http://static.naver.com/n/webphoto/bg_viewer_tl_0627.gif) no-repeat;}
+#photoviewer .photoviewer_tbg {height:30px;background:url(http://static.naver.com/n/webphoto/bg_viewer_tbg.gif) repeat-x;}
+#photoviewer .photoviewer_tr {width:24px;height:30px;background:url(http://static.naver.com/n/webphoto/bg_viewer_tr_0627.gif) no-repeat;}
+#photoviewer .photoviewer_tbg h1 a {float:left;width:45px;height:9px;margin-top:6px;background:url(http://static.naver.com/n/webphoto/lg_naver.gif) no-repeat;}
+#photoviewer .photoviewer_tbg .bar {float:left;width:16px;height:9px;margin-top:8px;background:url(http://static.naver.com/n/webphoto/bg_bar.gif) center top no-repeat;}
+#photoviewer .photoviewer_tbg h2 a {float:left;width:74px;height:8px;margin-top:6px;background:url(http://static.naver.com/n/webphoto/tit_photoviewer.gif) no-repeat;}
+#photoviewer .photoviewer_bg {position:relative;height:492px;border:1px solid #AAAAAA;}
+#photoviewer .photoviewer_bg img {display:block}
+#photoviewer .btn_photoviewer {position:relative;}
+#photoviewer .btn_left {position:absolute;top:200px;left:50px;width:60px;height:60px;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/btn_left.png',sizingMethod='scale');}
+html>body #photoviewer .btn_left {background:url(http://static.naver.com/n/webphoto/btn_left.png) transparent;}
+#photoviewer .btn_right {position:absolute;top:200px;right:50px;width:60px;height:60px;filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/btn_right.png',sizingMethod='scale');}
+html>body #photoviewer .btn_right {background:url(http://static.naver.com/n/webphoto/btn_right.png) transparent;}

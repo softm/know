@@ -1,0 +1,433 @@
+/* 리뷰쓰기 서브메뉴 */
+#edit_module .review{overflow:hidden; height:35px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_review01.gif) left top no-repeat;}
+#edit_module .review ul{height:35px; margin-left:3px; padding:7px 0 0 3px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_review02.gif) right top repeat-x;}
+#edit_module .review li{float:left; padding:3px 12px 0 10px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_line03.gif) right no-repeat;}
+#edit_module .review li.last{background:none;}
+#edit_module .review li a, #edit_module .review li a:hover, #edit_module .review li a:active{color:#1C1C1C; text-decoration:none;}
+/* //리뷰쓰기 서브메뉴 */
+
+/* 템플릿쓰기 상단검색 */
+#edit_module .template{padding:8px 10px 3px 10px; border-left:1px solid #C2C2C2;  border-right:1px solid #C2C2C2;}
+*html #edit_module .template{width:100%;}
+#edit_module .template .search{position:relative; margin-bottom:15px; padding:7px 0 8px 10px; border:1px solid #E7E7DD; background-color:#FCFBF8;z-index:100}
+#edit_module .template .search_cook{position:relative; margin-bottom:15px; padding:10px 0 26px 10px; border:1px solid #E7E7DD; background-color:#FCFBF8;z-index:100}
+#edit_module .template .search_travel{position:relative; margin-bottom:15px; padding:10px 0 26px 10px; border:1px solid #E7E7DD; background-color:#FCFBF8;z-index:100}
+#edit_module .template .search label{color:#000000;}
+#edit_module .template .search .box_input{width:350px; margin-left:2px; padding:3px 0 0 3px; vertical-align:middle; color:#888888; font-size:12px;}
+#edit_module .template .search .btn{vertical-align:middle; margin-top:1px;}
+#edit_module .template .array{position:absolute; right:16px; top:9px; color:#444444;}
+#edit_module .template .array th {padding:0 5px 0 3px;font-size:12px;font-weight:normal;}/* 0507 */
+#edit_module .template .array select{width:53px; margin:0 3px 2px 0; vertical-align:middle; font-size:12px;background-color:#ffffff;color:#444444;}
+
+/* //템플릿쓰기 상단검색 */
+
+/* 템플릿쓰기 */
+#edit_module .review_write{float:left;overflow:hidden; margin:0 0 0 5px; color:#444444;}
+#edit_module .review_write dl{position:relative; overflow:hidden; width:100%; margin:0 5px 12px 0;}
+#edit_module .review_write dl.cook{margin:14px 0 8px 0;}
+#edit_module .review_write dl.cook .box_input{width:380px; height:23px; margin-right:4px; padding:3px 0 0 3px; vertical-align:middle; color:#004790; font-size:14px; font-weight:bold;}
+#edit_module .review_write dl.cook select{width:65px; margin:0 3px 2px 0; vertical-align:middle; font-size:12px; color:#444444;}
+#edit_module .review_write dl.cook .help{vertical-align:top; margin:2px 0 0 -1px;}
+#edit_module .review_write dl.shop{margin-bottom:15px}
+#edit_module .review_write dl.shop02{margin-bottom:15px}
+#edit_module .review_write dl.travel{margin:0 0 12px 0;}
+#edit_module .review_write dt{float:left; margin-right:11px; display:inline;}
+/*#edit_module .review_write dt img{border:1px solid #DDDDDD;}*/
+#edit_module .review_write dt span{display:block; margin-top:3px; text-align:center;}
+#edit_module .review_write .travel dt span{display:block; margin-top:6px; text-align:center;}
+#edit_module .review_write dt span img{border:none;}
+#edit_module .review_write .travel dt.edit{padding-bottom:50px;} 
+#edit_module .review_write dd {float:left;}
+*html #edit_module .review_write dl.cook dd{margin-top:-2px;}
+
+#edit_module .review_write dd h4{margin:0 0 10px -1px; font-size:14px; color:#004790;}
+#edit_module .review_write dd h4 a.viewContents {color:#888888;font-size:11px;letter-spacing:-1px;font-weight:normal;text-decoration:underline;}
+#edit_module .review_write dd h4 a{color:#004790; text-decoration:none;}
+
+
+/*#edit_module .review_write dl.travel dd{margin-top:5px;}
+#edit_module .review_write dl.travel h4{margin-bottom:7px;}
+#edit_module .review_write dl.travel h4 span{font-size:12px; font-weight:normal;}*/
+
+#edit_module .review_write .tit_cate h4 {float:left;margin:0 5px 0 0;line-height:1.2}
+#edit_module .review_write .travel_cate input {height:19px;padding:2px;border:1px solid #cccccc;}
+#edit_module .review_write .travel_cate {margin:0 0 10px 30px;line-height:1.8}
+#edit_module .review_write .book{margin-bottom:4px;}
+#edit_module .review_write .book .bar{color:#CACACA;}
+#edit_module .review_write .book .date{color:#999999;}
+#edit_module .review_write .point{overflow:hidden; clear:both; margin-bottom:9px;}
+#edit_module .review_write .point strong{float:left; margin-top:4px; font-size:12px; color:#444444;}
+#edit_module .review_write .point .grade{float:left; display:inline; width:90px; height:19px; margin:0 5px 0 4px; background:url(http://blogimgs.naver.com/nblog/mylog/post/w_03.gif) repeat-x; cursor:pointer; cursor:hand;}
+#edit_module .review_write .point .grade span{float:left; height:19px !important; background:url(http://blogimgs.naver.com/nblog/mylog/post/w_01.gif) repeat-x; cursor:pointer; cursor:hand;}
+#edit_module .review_write .point .info{float:left; margin-top:5px; color:#FF7B2C; font-size:11px;}
+
+#edit_module .review_read .point{overflow:hidden; clear:both; margin-bottom:9px;}
+#edit_module .review_read .point strong{float:left; margin-top:2px; font-size:12px; color:#444444;}
+#edit_module .review_read .point .grade{float:left; display:inline; width:69px; height:13px; margin:0 5px 0 4px; background:url(http://blogimgs.naver.com/nblog/mylog/post/v_03.gif) no-repeat;}
+#edit_module .review_read .point .grade span{height:13px; background:url(http://blogimgs.naver.com/nblog/mylog/post/v_01.gif) repeat-x;}
+#edit_module .review_read .point .info{float:left; margin-top:3px; color:#FF7B2C; font-size:11px;}
+
+#edit_module .review_write .trip{clear:both; margin-bottom:3px;}
+#edit_module .review_write .trip .box_input {color:#888888;}
+#edit_module .review_write .trip02{float:left; clear:both; margin:2px 0 15px 0;}
+html>body #edit_module .review_write .trip02{margin:2px 0 5px 0;}
+#edit_module .review_write .trip03{clear:both; margin:-9px 0 17px 0;}
+#edit_module .review_write .trip04{clear:both;float:left;margin:12px 0 17px 0;}
+#edit_module .review_write .route{clear:both; margin:-13px 0 15px 30px; line-height:1.5;}
+#edit_module .review_write .trip_read{clear:both; margin-bottom:3px;}
+#edit_module .review_write .travel .item{float:left; display:inline; margin:4px 3px 0 0; color:#393939;font-size:12px;font-weight:normal;font-weight:bold;}/* 0507 */
+#edit_module .review_write .travel .input_path {padding-top:5px;}
+#edit_module .review_write .travel .input_path img {margin:-3px 4px -5px 0;vertical-aling:middle}
+html>body #edit_module .review_write .travel .input_path img {margin:-3px 4px -5px 2px;vertical-aling:middle}
+#edit_module .review_write .travel .input_path em {color:#676767;font-size:11px;letter-spacing:-1px;}
+#edit_module .review_write .travel .item a {float:left; display:inline; margin:0 1px 0 0; color:#004790;}
+#edit_module .review_write .travel .item em{font-size:11px; font-style:normal;}
+#edit_module .review_write .travel .box_input{font-size:12px; width:66px; padding-top:3px; vertical-align:top;}
+#edit_module .review_write .travel .path_input{font-size:12px; width:80px; height:20px;padding-top:3px; vertical-align:middle;border:1px solid #cccccc;background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_calender.gif) 64px 3px no-repeat;}
+html>body #edit_module .review_write .travel .path_input{font-size:12px; width:80px; height:20px;padding-top:3px; vertical-align:baseline;border:1px solid #cccccc;background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_calender.gif) 64px 2px no-repeat;}/* 0609수정  */
+#edit_module .review_write .travel .btn{vertical-align:middle; margin:0 0 5px -1px;}
+#edit_module .review_write .travel select{width:115px; margin:0 3px 2px 0; vertical-align:middle; font-size:12px; color:#444444;}
+#edit_module .review_write .travel .help{vertical-align:top; margin:2px 0 0 -1px;}
+#edit_module .review_write .travel .days {padding:0 0 0 4px;vertical-align:middle;}
+#edit_module .review_write .nation {float:left;}
+#edit_module .review_write .nation input {margin:1px 2px -2px 0;border:0}
+html>body #edit_module .review_write .nation input {margin:1px 4px -4px 5px;border:0}
+#edit_module .review_write .nation label {padding-right:10px;}
+#edit_module .review_write .trip02 img{float:left;}
+#edit_module .review_write .travel .notice{float:left; display:inline; padding:4px 0 0 2px; font-size:11px; color:#639933; letter-spacing:-1px;}
+#edit_module .review_write .route img{margin:5px 1px 2px 0;}
+#edit_module .review_write  h5.cost{margin-bottom:7px;}
+#edit_module .review_write  h5.cost span{font-weight:normal;}
+#edit_module .review_write  h5.cost .box_input{width:82px; padding-top:3px; font-size:12px; color:#A1A1A1; font-weight:normal;}
+#edit_module .review_write .travel .nation {padding:1px 0 0 3px;}
+html>body #edit_module .review_write .travel .nation {padding:0 3px 0 3px;}
+
+#edit_module .review_write dl.travel_read{margin-bottom:15px;} 
+#edit_module .review_write dl.travel_read .trip02{margin:-5px 0 5px 0;}
+#edit_module .review_write dl.travel_read .trip02 span{color:#A1A1A1;}
+
+#edit_module .review_write .part{margin-bottom:4px;}
+#edit_module .review_write .part span, #edit_module .review_write .part03 span{color:#999999}
+#edit_module .review_write .part .bar{color:#CACACA;}
+#edit_module .review_write .part02{margin-bottom:4px; color:#A1A1A1; line-height:1.3;}
+#edit_module .review_write .part03{margin-bottom:38px;}
+
+#edit_module .review_write .gopage{margin:2px 0 7px 0;}
+#edit_module .review_write .gopage a{color:#999999; font-size:11px;letter-spacing:-1px}
+
+#edit_module .review_write .travel .noimg{padding:12px 0 0 0;}
+#edit_module .review_write .noimg{clear:both;padding:0 1px 10px 0;color:#A1A1A1; font-size:11px;letter-spacing:-1px;}
+#edit_module .review_write .noimg .input_photo {margin:0 6px 1px 0;vertical-align:middle}
+html>body #edit_module .review_write .noimg .input_photo {margin:0 6px -3px 0;vertical-align:bottom}
+#edit_module .review_write .noimg label{font-size:12px; color:#444444;letter-spacing:0;}
+#edit_module .review_write .noimg input{vertical-align:bottom; margin:3px 4px 1px 0;}
+*html #edit_module .review_write .noimg input{vertical-align:middle; margin:-2px 0 0 -3px;}
+#edit_module .review_write .add {clear:both;padding:0;}
+/*#edit_module .review_write .add {position:absolute; left:118px; bottom:2px;}*/
+#edit_module .review_write .add a {color:#004790;}
+#edit_module .review_write .add_travel {clear:both;padding:10px 0 7px 0;margin:0}
+#edit_module .review_write .add_travel a {color:#004790}
+/*
+#edit_module .review_write dl.drama .add{position:absolute; left:202px; bottom:2px; width:100%;}
+#edit_module .review_write dl.music .add{position:absolute; left:144px; bottom:2px; width:100%;}
+#edit_module .review_write dl.shop .add{position:absolute; left:135px; bottom:23px; width:100%;}
+#edit_module .review_write dl.shop02 .add{position:absolute; left:314px; bottom:23px; width:100%;}
+#edit_module .review_write dl.travel .add{position:absolute; left:200px; bottom:0; width:100%;}
+*/
+#edit_module .review_write .food01, #edit_module .review_write .food02{margin-bottom:9px;}
+#edit_module .review_write .food02 h5{margin:0 0 1px 0; padding:0; font-weight:normal;}
+#edit_module .review_write .food02 .check_input{vertical-align:middle; margin:0 -4px 0 3px;}
+#edit_module .tip{margin:0 0 11px 4px;}
+#edit_module .tip img{margin:0}
+#edit_module .tip a{color:#004790;}
+
+#edit_module .review_write h5 img{vertical-align:middle; margin-top:-3px;}
+#edit_module .review_write h5 .ico_tip {margin:0 0 0 3px;}
+#edit_module .review_write ul{clear:both; min-height:29px; margin:9px 0 -1px 0;}
+#edit_module .review_write li{margin-bottom:5px;}
+#edit_module .review_write li span{color:#DADADA;}
+#edit_module .review_write li a{color:#084D8C;}
+#edit_module .review_write li img{margin-left:-2px;}
+
+#edit_module .review_write .course {position:relative;clear:both;overflow:hidden;width:415px;padding:6px 10px 1px 10px;margin:8px 0 0 30px;border:1px solid #EEEEEE;background-color:#FDFDFD;}/* 0719수정 */
+html>body #edit_module .review_write .course {width:393px;}
+#edit_module .review_write .course span {float:left;padding:4px 0 1px 3px;white-space:nowrap}
+#edit_module .review_write .course p {display:inline;height:22px;padding:0 12px 5px 0;margin-right:7px;background:url(http://blogimgs.naver.com/nblog/mylog/post/ico_arrow.gif) right 6px no-repeat;}/* 0719수정 */
+#edit_module .review_write .course p.txt_input {width:112px;}
+html>body #edit_module .review_write .course p.txt_input {width:100px;}
+#edit_module .review_write .course p.first {clear:left}
+#edit_module .review_write .course p .box_input {float:left;}
+#edit_module .review_write .course p img {float:left;margin:4px 0 0 3px;}
+#edit_module .review_write .course p.no_arr {background:none}
+#edit_module .review_write .course .add_course {position:absolute;top:11px;right:11px;}
+#edit_module .review_write .stay {margin:0 0 10px 0}
+.tool_wide04 #edit_module .review_write .stay .box_input {width:581px} /**0723**/
+.tool_wide06 #edit_module .review_write .stay .box_input {width:774px}  /**0723**/
+
+#edit_module .review_write h5{margin:0 0 5px 0; padding:0; font-size:12px; color:#444444;}
+#edit_module .review_write h5 input {width:72px;margin:0 0 0 5px;color:#A1A1A1;font-size:12px;font-weight:normal}
+#edit_module .review_write h5 span {font-weight:normal}
+#edit_module .review_write textarea{overflow:auto; width:579px; /*height:25px;*/ margin-bottom:10px; /*padding:3px 5px 3px 5px;*/ line-height:1.4; color:#444444; font-size:9pt;font-family:sans-serif;border:1px solid #CCCCCC;
+scrollbar-face-color:#DEE0DF;
+scrollbar-highlight-color:#FFFFFF;
+scrollbar-shadow-color:#C2C2C2;
+scrollbar-3dlight-color:#E2E2E2;
+scrollbar-arrow-color:#2F2F2F;
+scrollbar-track-color:#F2F2F2;
+scrollbar-darkshadow-color:#FFFFFF;
+scrollbar-base-color:#FFFFFF;
+}
+
+#edit_module textarea.cook01{width:380px; height:85px; margin-bottom:6px; padding:3px 5px 3px 5px; line-height:1.4; color:#A1A1A1;}
+#edit_module textarea.cook02{width:380px; height:85px; margin-bottom:6px; padding:3px 5px 3px 5px; line-height:1.4; color:#444444;}
+#edit_module textarea.high01{margin-bottom:1px;}
+#edit_module textarea.trip01{width:579px; height:85px; margin-bottom:6px; padding:3px 5px 3px 5px; line-height:1.4; color:#444444;}
+
+#edit_module .tip textarea{overflow:auto; width:579px; margin-top:2px; padding:3px 5px 3px 5px; line-height:1.4; color:#444444; border:1px solid #A7A7A7; border-bottom:1px solid #D8D8D8; border-right:1px solid #D8D8D8;
+scrollbar-face-color:#DEE0DF;
+scrollbar-highlight-color:#FFFFFF;
+scrollbar-shadow-color:#C2C2C2;
+scrollbar-3dlight-color:#E2E2E2;
+scrollbar-arrow-color:#2F2F2F;
+scrollbar-track-color:#F2F2F2;
+scrollbar-darkshadow-color:#FFFFFF;
+scrollbar-base-color:#FFFFFF;
+}
+/* //템플릿쓰기 */
+
+/* 여행리뷰 읽기 */
+#edit_module .review_read{overflow:hidden; margin:0 0 10px 5px; color:#444444;}
+#edit_module .review_read dl{position:relative; overflow:hidden; width:100%; margin:14px 0 12px 0;}
+#edit_module .review_read dt{float:left; margin-right:11px; display:inline;}
+#edit_module .review_read dt img{border:1px solid #DDDDDD;}
+
+#edit_module .review_read dd{float:left; margin-top:-3px;}
+#edit_module .review_read dd h4{margin:0 0 8px -1px; font-size:14px; color:#004790;}
+#edit_module .review_read dd h4 a{color:#004790; text-decoration:none;}
+
+#edit_module .review_read .trip{margin:0;} 
+#edit_module .review_read .trip02{margin-bottom:5px;}
+#edit_module .review_read .travel .item{color:#A1A1A1;}
+#edit_module .review_read .travel .item02{float:left; display:inline; margin-right:4px; color:#A1A1A1;}
+#edit_module .review_read  h5{margin:0; padding:0; font-size:12px; color:#444444;}
+#edit_module .review_read  h5 img{margin-bottom:5px;}
+#edit_module .review_read  h5.cost{margin-bottom:13px;}
+#edit_module .review_read  h5.cost span{font-weight:normal;}
+#edit_module .review_read .textarea_read{padding-right:10px; margin-bottom:15px; line-height:1.4;}
+#edit_module .review_read .route{float:left; display:inline; margin-top:-1px; line-height:1.5;}
+#edit_module .review_read .route img{margin:4px 1px 2px 0;}
+/* //여행리뷰 읽기 */
+
+#edit_module .review_read02{overflow:hidden; margin:13px 15px 20px 15px; color:#444444; line-height:1.5;}
+#edit_module .review_read02 h4{display:inline; color:#004790; margin-right:4px;}
+#edit_module .review_read02 .bar{color:#CACACA;}
+#edit_module .review_read02 .conts{float:left; display:inline; margin-right:3px;}
+#edit_module .review_read02 .grade{float:left; display:inline; width:69px; height:13px; margin:0 5px 0 4px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_star.gif) no-repeat;}
+#edit_module .review_read02 .grade span{float:left; display:inline; height:13px; background:url(http://blogimgs.naver.com/nblog/mylog/post/over_star.gif) repeat-x;}
+
+
+#layer_msg {font-family:돋움, Dotum, AppleGothic, sans-serif; font-size:12px; color:#333333; zIndex:1600}
+#layer_msg .boxlayer {width:326px;}
+#layer_msg .boxlayer .box01 {position:relative;padding:15px;background-color:#FFF;border:2px solid #777777}
+#layer_msg .boxlayer .btn_close {position:absolute;top:9px;right:9px;}
+#layer_msg .boxlayer .txt_01 {padding:0 0 5px 0;margin:0;line-height:1.5}
+#layer_msg .boxlayer .txt_02 {padding:0 0 5px 0;margin:0;font-size:11px;color:#888888;line-height:1.5}
+#layer_msg .boxlayer .btns {padding-top:9px;border-top:1px solid #E8E8E8;}
+
+#layer_msg .calender {width:172px;}
+#layer_msg .calender .box {position:relative; padding:8px 10px 8px 11px;background-color:#FFF;border:2px solid #777777;text-align:left;}
+#layer_msg .calender .btn_close {position:absolute;top:9px;right:7px;}
+#layer_msg .calender .date {margin-bottom:10px;}
+#layer_msg .calender .year {float:left;padding-right:5px;}
+#layer_msg .calender .month {float:left;}
+#layer_msg .calender .cboth {margin:0;clear:both}
+#layer_msg .calender .calender_list {clear:both;}
+#layer_msg .calender .calender_list th {width:21px;height:20px;color:#999999;font-size:11px;font-weight:normal;text-align:center}
+#layer_msg .calender .calender_list td {width:21px;height:19px;font-size:11px;text-align:center}
+#layer_msg .calender a {color:#444444;text-decoration:none}
+#layer_msg .calender a:hover {color:#004790; text-decoration:underline}
+#layer_msg .calender .calender_list .sun {color:#004790}
+#layer_msg .calender .sun a {color:#004790;}
+#layer_msg .calender .today {color:#004790;font-weight:bold;text-decoration:underline}
+
+#layer_msg .travel_layer {width:245px;}
+#layer_msg .travel_layer .box01 {position:relative;padding:15px;background-color:#FFF;border:2px solid #777777}
+#layer_msg .travel_layer .btn_close {position:absolute;top:9px;right:9px;}
+#layer_msg .travel_layer .txt {margin:0;padding-bottom:3px;font-size:11px;text-align:center;line-height:1.6;letter-spacing:-1px;}
+#layer_msg .travel_layer .btns {padding-top:9px;border-top:1px solid #E8E8E8;}
+
+/* 0620추가 */
+.template_layer {width:340px;}
+.template_layer .box01 {position:relative;padding:13px 15px 15px 15px;background-color:#FFF;border:2px solid #777777;text-align:left}
+.template_layer .btn_close {position:absolute;top:9px;right:9px;}
+.template_layer .txt_01 {padding:0 0 3px 5px;margin:0;line-height:1.5}
+.template_layer .txt_01 span {color:#004790;}
+.template_layer .txt_02 {padding:0 0 5px 5px;margin:0;font-size:11px;color:#888888;line-height:1.5}
+.template_layer .btns {padding-top:9px;border-top:1px solid #E8E8E8;text-align:center}
+.template_layer .btns img {margin:0 0 -6px 0;}
+.template_layer .txt_link {margin-right:7px;color:#004790;text-decoration:underline;}
+
+#edit_module .video_layer {width:415px;text-align:left;}
+#edit_module .video_layer .border_type {border:2px solid #777777; background-color:#ffffff; }
+#edit_module .video_layer h4.header {display:block; height:22px;_height:30px; padding:8px 0 0 13px;margin:0; background:#f4f4f4; font:bold 13px "굴림", Gulim, "돋움", Dotum, AppleGothic, Sans-serif;}
+#edit_module .video_layer .closelayer {position:absolute; right:9px; top:9px; }
+#edit_module .video_layer .content {display:block; margin:13px 14px 9px 14px;} 
+#edit_module .video_layer .content p {margin:0;padding:0}
+#edit_module .video_layer .content .txt01 {margin:0;line-height:1.3}
+#edit_module .video_layer .content .txt02 {padding:4px 0 7px 0;margin:0;line-height:1.2;color:#7B7B7B;font-size:11px;letter-spacing:-1px;}
+#edit_module .video_layer .content .line01 {height:1px;background-color:#F4F4F4;overflow:hidden}
+#edit_module .video_layer .content table {margin-top:10px;}
+#edit_module .video_layer .content th {height:22px;font-size:12px;text-align:left;}
+#edit_module .video_layer .content td a {color:#003D86;font-size:12px;text-decoration:none}
+#edit_module .video_layer .content td a:hover {color:#004790; text-decoration:underline}
+#edit_module .video_layer .content td span {padding:0 4px;color:#C7C7C7;font-size:12px;}
+#edit_module .blank10 {height:10px;overflow:hidden;font-size:0}
+
+.tbl_talk .tl {width:2px; height:13px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_tl.gif) left top no-repeat; font-size:0;}
+.tbl_talk .t {background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_t.gif) repeat; font-size:0;}
+.tbl_talk .tr {width:4px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_tr.png) right top no-repeat; font-size:0;}
+* html .tbl_talk .tr {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_tr.png',sizingMethod='corp');}
+
+.tbl_talk .bgl {background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_l.gif) repeat;}
+.tbl_talk .txt {padding:6px 7px; background-color:#FFF;font-size:11px;}
+.tbl_talk .txt h3 {padding-bottom:2px;margin:0;font-size:12px;}
+.tbl_talk .txt p {padding:0;margin:0}
+.tbl_talk .txt .txt01 {padding-bottom:5px;letter-spacing:-1px;}
+.tbl_talk .txt .txt02 {line-height:1.3;padding-bottom:5px;color:#878787;letter-spacing:-1px;}
+.tbl_talk .txt a {color:#003D86;font-size:11px;letter-spacing:-1px;text-decoration:underline}
+.tbl_talk .bgr {background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_r.png) repeat;}
+* html .tbl_talk .bgr {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_r.png',sizingMethod='scale');}
+
+.tbl_talk .bl {height:13px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_bl.png) no-repeat; font-size:0;}
+* html .tbl_talk .bl {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_bl.png',sizingMethod='corp');}
+.tbl_talk .b {background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_b.png) repeat; font-size:0; text-align:right;}
+* html .tbl_talk .b {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_b.png',sizingMethod='scale');}
+.tbl_talk .br {background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_br.png) no-repeat; font-size:0;}
+* html .tbl_talk .br {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_br.png',sizingMethod='corp');}
+
+.tbl_talk .point_area {position:relative; height:100%;}
+.tbl_talk .point_area .point_img {position:absolute; top:0; right:7px; width:12px; height:13px; background:url(http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_b_point.png) no-repeat;}
+* html .tbl_talk .point_area .point_img {background:none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/bg_wimg_b_point.png',sizingMethod='corp');}
+
+/* 0620추가 */
+
+#layer_msg .temporary {width:243px;position:absolute;display:none}
+#layer_msg .temporary .box01 {position:relative;padding:32px 0;background-color:#FFF;border:2px solid #777777;text-align:center;}
+#layer_msg .temporary .img_loading {padding:7px 0 0 0}
+
+#layer_msg .temporary_yes {width:295px;position:absolute;adisplay:none}
+#layer_msg .temporary_yes .box01 {position:relative;padding:15px;background-color:#FFF;border:2px solid #777777;text-align:left;}
+#layer_msg .temporary_yes .txt_01 {padding:0 0 0 4px;margin:0;color:#FF622C;}
+#layer_msg .temporary_yes .txt_02 {padding:5px 0 10px 4px;margin:0;color:#222222;font-size:11px;letter-spacing:-1px;}
+#layer_msg .temporary_yes .btns {padding-top:9px;border-top:1px solid #E8E8E8;text-align:center}
+#layer_msg .temporary_yes .btn_close {position:absolute;top:9px;right:9px;}
+
+#layer_msg .temporary_no {width:206px;position:absolute;adisplay:none}
+#layer_msg .temporary_no .box01 {position:relative;padding:15px;background-color:#FFF;border:2px solid #777777;text-align:left;}
+#layer_msg .temporary_no .txt_01 {padding:0 0 0 9px;margin:0;color:#FF622C;}
+#layer_msg .temporary_no .txt_02 {padding:5px 0 4px 9px;margin:0;color:#222222;}
+#layer_msg .temporary_no .btns {padding-top:9px;border-top:1px solid #E8E8E8;text-align:center}
+#layer_msg .temporary_no .btn_close {position:absolute;top:9px;right:9px;}
+
+#layer_msg .temporary_write {width:385px;position:absolute;display:none}
+#layer_msg .temporary_write .box01 {position:relative;padding:15px;background-color:#FFF;border:2px solid #777777;text-align:left;}
+#layer_msg .temporary_write .txt_01 {padding:0;margin:0;color:#909090;font-size:11px;letter-spacing:-1px;}
+#layer_msg .temporary_write .txt_02 {padding:5px 0 6px 0;margin:0;color:#7A7A7A;font-size:11px;letter-spacing:-1px;line-height:1.3}
+#layer_msg .temporary_write ul {margin:0;padding:0;border-top:1px solid #E2E2E2;border-bottom:1px solid #D7D7D7;}
+#layer_msg .temporary_write li {padding:8px 0 7px 2px;list-style-type:none;text-align:right;border-bottom:1px solid #F0F0F0;}
+#layer_msg .temporary_write li.end {border-bottom:0}
+#layer_msg .temporary_write li a.title {position:relative;float:left;padding-left:8px;background:url(http://blogimgs.naver.com/nblog/mylog/post/bu_dot2.gif) 0 5px no-repeat;color:#004790;text-decoration:none}
+#layer_msg .temporary_write li a.title:hover{text-decoration:underline}
+#layer_msg .temporary_write li span {font-size:10px;font-family:Verdana}
+#layer_msg .temporary_write li span.date {padding-right:3px;color:#777777}
+#layer_msg .temporary_write li span.time {padding-right:6px;color:#909090;letter-spacing:-1px}
+#layer_msg .temporary_write li .close {padding-right:5px}
+#layer_msg .temporary_write .btn_close {position:absolute;top:9px;right:9px;}
+#layer_msg .temporary_write .edit_change {padding-top:7px;}
+#layer_msg .temporary_write .edit_change_btn {font-weight:bold}
+#layer_msg .temporary_write .edit_change_btn span {padding-left:4px;font-size:11px;font-weight:normal}
+#layer_msg .temporary_write .edit_change_btn a {vertical-align:middle;cursor:pointer}
+* html #layer_msg .temporary_write .edit_change_btn a {cursor:hand} /* IE (included ver 5.5)) */
+html>body #layer_msg .temporary_write .edit_change_btn img {margin:0 0 -4px 0}
+#layer_msg .temporary_write .time_box {position:relative;height:70px;padding:0 15px;border:1px solid #DFDFDF}
+#layer_msg .temporary_write .time_box p {margin:0;padding:15px 0 0 0;}
+#layer_msg .temporary_write .time_box p input {margin:-3px 0 -1px -3px;}
+html>body #layer_msg .temporary_write .time_box p input {margin:0 3px -2px 0;}
+#layer_msg .temporary_write .time_box p label {margin:0 10px 0 0;}
+#layer_msg .temporary_write .time_box table {margin:3px 0 0 0}
+#layer_msg .temporary_write .time_box td {font-size:12px;}
+#layer_msg .temporary_write .time_box .select {padding:0 3px 0 5px;}
+#layer_msg .temporary_write .btn_confirm {position:absolute;bottom:15px;right:15px;cursor:pointer}
+* html #layer_msg .temporary_write .btn_confirm {cursor:hand} /* IE (included ver 5.5)) */
+
+#layer_msg .shadow01{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow01.png',sizingMethod='scale'); width:100%;}
+html>body #layer_msg .shadow01{background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow01.png') transparent;}
+#layer_msg .shadow01_side{position:relative; top:-2px; left:-2px;}
+
+#layer_msg .shadow02{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow02.png',sizingMethod='scale'); width:100%;}
+html>body #layer_msg .shadow02{background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow02.png') transparent;}
+#layer_msg .shadow02_side{position:relative; top:-1px; left:-1px;}
+
+/** 0627 by rainbowoony **/
+#layer_msg2 {font-family:돋움, Dotum, AppleGothic, sans-serif; font-size:12px; color:#333333; zIndex:1600}
+#layer_msg2 .temporary_no {width:206px;position:absolute;adisplay:none}
+#layer_msg2 .temporary_no .box01 {position:relative;padding:15px;background-color:#FFF;border:2px solid #777777;text-align:left;}
+#layer_msg2 .temporary_no .txt_01 {padding:0 0 0 9px;margin:0;color:#FF622C;}
+#layer_msg2 .temporary_no .txt_02 {padding:5px 0 4px 9px;margin:0;color:#222222;}
+#layer_msg2 .temporary_no .btns {padding-top:9px;border-top:1px solid #E8E8E8;text-align:center}
+#layer_msg2 .temporary_no .btn_close {position:absolute;top:9px;right:9px;}
+
+#layer_msg2 .shadow01{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow01.png',sizingMethod='scale'); width:100%;}
+html>body #layer_msg2 .shadow01{background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow01.png') transparent;}
+#layer_msg2 .shadow01_side{position:relative; top:-2px; left:-2px;}
+
+#layer_msg2 .shadow02{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow02.png',sizingMethod='scale'); width:100%;}
+html>body #layer_msg2 .shadow02{background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow02.png') transparent;}
+#layer_msg2 .shadow02_side{position:relative; top:-1px; left:-1px;}
+
+.moreSizeImg {display:block;right:0;_right:-2px !important;bottom:0;_bottom:1px !important;}
+
+#edit_module .template_layer {clear:both;width:100%;height:48px;position:relative;z-index:1000}
+#edit_module .template_layer .position_link {position:absolute;top:15px;right:0;}
+#edit_module .template_layer .position_link .view_sample {display:inline-block;padding-right:3px;color:#004294;font-size:12px;text-decoration:underline}/* 0725추가 */
+#edit_module .template_layer .position_link a {color:#6B6B6B;font-size:11px;}
+#edit_module .template_layer .position_link img {margin:0 0 0 0;vertical-align:middle}
+#edit_module .template_layer .position_layer {position:absolute;top:-49px;right:-6px;width:97px;}
+#edit_module .template_layer .position_layer .position_list {overflow:hidden;padding:6px 4px 6px 6px;border-top:1px solid #C5C5C5;border-left:1px solid #C5C5C5;border-right:1px solid #9F9F9F;border-bottom:1px solid #9F9F9F;background-color:#FBFBFB;}
+#edit_module .template_layer .position_layer ul {width:87px;}
+#edit_module .template_layer .position_layer li {float:left;padding:0 2px 0 0;}
+#edit_module .template_layer .position_layer li a {display:block}
+#edit_module .template_layer .position_layer li img {border:2px solid #FBFBFB}
+#edit_module .template_layer .position_layer li a.on img {border:2px solid #27C11A}
+#edit_module .template_layer .position_layer .shadow01{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow01.png',sizingMethod='scale'); width:100%;}
+html>body #edit_module .template_layer .position_layer .shadow01{background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow01.png') transparent;}
+#edit_module .template_layer .position_layer .shadow01_side{position:relative; top:-2px; left:-2px;}
+#edit_module .template_layer .position_layer .shadow02{filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow02.png',sizingMethod='scale'); width:100%;}
+html>body #edit_module .template_layer .position_layer .shadow02{background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow01.png') transparent;}
+#edit_module .template_layer .position_layer .shadow02_side{position:relative; top:-1px; left:-1px;}
+
+/* 0723추가 */
+.word_layer_popup { position:absolute; z-index:99; padding:3px 0 0 3px;font-size:12px;font-family:"돋움", Dotum, "굴림", Gulim, AppleGothic, Sans-serif; text-align:left}
+.word_layer_popup p {margin:0;padding:0}
+.word_layer_popup .shadow1 { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow01.png', sizingMethod='scale'); width:100%;}
+html>body .word_layer_popup .shadow1 { background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow01.png') transparent; }
+.word_layer_popup .shadow1_side { position:relative; top:-2px; left:-2px;}
+.word_layer_popup .shadow2 { filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://blogimgs.naver.com/nblog/mylog/post/shadow02.png', sizingMethod='scale'); width:100%;}
+html>body .word_layer_popup .shadow2 { background:url('http://blogimgs.naver.com/nblog/mylog/post/shadow02.png') transparent; }
+.word_layer_popup .shadow2_side { position:relative; top:-1px; left:-1px;}
+.word_layer_popup .border_type { border:2px solid #777777; background-color:#ffffff; }
+.word_layer_popup .header { display:block; height:22px;_height:30px; padding:8px 0 0 13px;margin:0; background:#f4f4f4; font:bold 13px "굴림", Gulim, "돋움", Dotum, AppleGothic, Sans-serif; }
+.word_layer_popup .closelayer { position:absolute; right:9px; top:9px; }
+.word_layer_popup .btn_box { text-align:center; padding:10px 0 15px 0; margin:10px 20px 0 20px; border-top:1px solid #e8e8e8; }
+.word_layer_popup .btn_box2 {padding:10px 0 15px 0;margin:0;text-align:center}
+.word_layer_popup .btn_box * { vertical-align:middle;}
+.word_layer_popup .content { display:block; margin:20px; margin-bottom:0;} 
+.word_layer_popup .t_btn {padding-bottom:14px;}
+.word_layer_popup .t_btn .btn_hwp {margin-left:7px;_margin-left:4px}
+.word_layer_popup .txt_1 {padding-bottom:6px;color:#278F00;font-size:11px;}
+.word_layer_popup .txt_2 {color:#707070;font-size:11px;line-height:1.4;letter-spacing:-1px}
+.word_layer_popup .txt_2 a {margin-left:5px;color:#004790;font-size:11px;text-decoration:underline}
+.word_layer_popup .txt_3 {padding:7px 0 16px 0;color:#278F00;font-size:11px;text-align:center;letter-spacing:-1px;}
+.word_layer_popup .txt_3 strong {font-size:12px;letter-spacing:0;}
+.word_layer_popup .xp_box {width:355px;height:80px;background:url(http://blogimgs.naver.com/nblog/mylog/post/word_rnd.gif) no-repeat;}
+/* 0723추가 */
